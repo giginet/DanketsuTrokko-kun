@@ -47,6 +47,11 @@
 		077D501716AEF852000941CC /* MSTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D501616AEF852000941CC /* MSTitleLayer.m */; };
 		077D501A16AEF89F000941CC /* MSMatchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D501916AEF89F000941CC /* MSMatchLayer.m */; };
 		077D502216AEFD55000941CC /* KWSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D502116AEFD55000941CC /* KWSessionManager.m */; };
+		077D502616AF3698000941CC /* MSPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D502516AF3698000941CC /* MSPlayer.m */; };
+		077D502C16AF36DB000941CC /* MSMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D502B16AF36DA000941CC /* MSMainLayer.m */; };
+		077D502F16AF36FF000941CC /* MSMainClientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D502E16AF36FE000941CC /* MSMainClientLayer.m */; };
+		077D503216AF3711000941CC /* MSMainServerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D503116AF3711000941CC /* MSMainServerLayer.m */; };
+		077D503516AF3C8B000941CC /* MSAngel.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D503416AF3C8B000941CC /* MSAngel.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -184,6 +189,16 @@
 		077D502016AEFD55000941CC /* KWSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWSessionManager.h; sourceTree = "<group>"; };
 		077D502116AEFD55000941CC /* KWSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWSessionManager.m; sourceTree = "<group>"; };
 		077D502316AF0A57000941CC /* KWSessionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KWSessionDelegate.h; sourceTree = "<group>"; };
+		077D502416AF3698000941CC /* MSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPlayer.h; path = Model/MSPlayer.h; sourceTree = "<group>"; };
+		077D502516AF3698000941CC /* MSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPlayer.m; path = Model/MSPlayer.m; sourceTree = "<group>"; };
+		077D502A16AF36DA000941CC /* MSMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMainLayer.h; path = Scene/MSMainLayer.h; sourceTree = "<group>"; };
+		077D502B16AF36DA000941CC /* MSMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMainLayer.m; path = Scene/MSMainLayer.m; sourceTree = "<group>"; };
+		077D502D16AF36FE000941CC /* MSMainClientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMainClientLayer.h; path = Scene/MSMainClientLayer.h; sourceTree = "<group>"; };
+		077D502E16AF36FE000941CC /* MSMainClientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMainClientLayer.m; path = Scene/MSMainClientLayer.m; sourceTree = "<group>"; };
+		077D503016AF3710000941CC /* MSMainServerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMainServerLayer.h; path = Scene/MSMainServerLayer.h; sourceTree = "<group>"; };
+		077D503116AF3711000941CC /* MSMainServerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMainServerLayer.m; path = Scene/MSMainServerLayer.m; sourceTree = "<group>"; };
+		077D503316AF3C8B000941CC /* MSAngel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAngel.h; path = Model/MSAngel.h; sourceTree = "<group>"; };
+		077D503416AF3C8B000941CC /* MSAngel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAngel.m; path = Model/MSAngel.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -460,6 +475,12 @@
 				077D501616AEF852000941CC /* MSTitleLayer.m */,
 				077D501816AEF89F000941CC /* MSMatchLayer.h */,
 				077D501916AEF89F000941CC /* MSMatchLayer.m */,
+				077D502A16AF36DA000941CC /* MSMainLayer.h */,
+				077D502B16AF36DA000941CC /* MSMainLayer.m */,
+				077D502D16AF36FE000941CC /* MSMainClientLayer.h */,
+				077D502E16AF36FE000941CC /* MSMainClientLayer.m */,
+				077D503016AF3710000941CC /* MSMainServerLayer.h */,
+				077D503116AF3711000941CC /* MSMainServerLayer.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -467,6 +488,10 @@
 		077D501E16AEFB8F000941CC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				077D502416AF3698000941CC /* MSPlayer.h */,
+				077D502516AF3698000941CC /* MSPlayer.m */,
+				077D503316AF3C8B000941CC /* MSAngel.h */,
+				077D503416AF3C8B000941CC /* MSAngel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -805,6 +830,11 @@
 				077D501716AEF852000941CC /* MSTitleLayer.m in Sources */,
 				077D501A16AEF89F000941CC /* MSMatchLayer.m in Sources */,
 				077D502216AEFD55000941CC /* KWSessionManager.m in Sources */,
+				077D502616AF3698000941CC /* MSPlayer.m in Sources */,
+				077D502C16AF36DB000941CC /* MSMainLayer.m in Sources */,
+				077D502F16AF36FF000941CC /* MSMainClientLayer.m in Sources */,
+				077D503216AF3711000941CC /* MSMainServerLayer.m in Sources */,
+				077D503516AF3C8B000941CC /* MSAngel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@ typedef enum {
   CCLabelTTF* _stateLabel;
   CCNode* _peersNode;
   NSString* _serverPeerID;
+  CCMenu* _startMenu;
 }
 
 - (id)initWithServerOrClient:(MSSessionType)type;

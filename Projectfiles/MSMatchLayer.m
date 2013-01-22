@@ -7,14 +7,18 @@
 //
 
 #import "MSMatchLayer.h"
+#import "MSMainClientLayer.h"
+#import "MSMainServerLayer.h"
 
 @interface MSMatchLayer()
 - (void)updatePeerStateFor:(NSString*)peer toState:(GKPeerConnectionState)state;
+- (void)onStart:(id)sender;
 @end
 
 @implementation MSMatchLayer
 
 NSString* kSessionID = @"MultipleMatch";
+NSString* kStartMessage = @"GameStart";
 
 - (id)initWithServerOrClient:(MSSessionType)type {
   self = [super init];
@@ -41,6 +45,14 @@ NSString* kSessionID = @"MultipleMatch";
       _serverPeerID = _sessionManager.session.peerID;
     } else {
       _serverPeerID = @"";
+    }
+    if (_type == MSSessionTypeServer) {
+      CCLabelTTF* startLabel = [CCLabelTTF labelWithString:@"Start" fontName:@"Helvetica" fontSize:32];
+      CCMenuItemLabel* start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStart:)];
+      _startMenu = [CCMenu menuWithItems:start, nil];
+      _startMenu.enabled = NO;
+      _startMenu.position = ccp(director.screenCenter.x, 50);
+      [self addChild:_startMenu];
     }
   }
   return self;
@@ -100,6 +112,11 @@ NSString* kSessionID = @"MultipleMatch";
   }
   NSLog(@"%@, %@", [_sessionManager.session displayNameForPeer:peerID], stateName);
   [self updatePeerStateFor:peerID toState:state];
+  if (_type == MSSessionTypeServer) {
+    int count = [_sessionManager.connectedPeers count];
+    NSLog(@"count = %d", count);
+    _startMenu.enabled = count > 0;
+  }
 }
 
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
@@ -114,9 +131,32 @@ NSString* kSessionID = @"MultipleMatch";
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
   if (_type == MSSessionTypeClient) {
-    _serverPeerID = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [self updatePeerStateFor:peer toState:GKPeerStateConnected];
+    NSString* command = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([command isEqualToString:kStartMessage]) {
+      [self onStart:nil];
+    } else {
+      _serverPeerID = command;
+      [self updatePeerStateFor:peer toState:GKPeerStateConnected];
+    }
   }
+}
+
+- (void)onStart:(id)sender {
+  NSMutableArray* clients = [NSMutableArray arrayWithArray:_sessionManager.connectedPeers];
+  [clients removeObject:_serverPeerID];
+  CCLayer* nextLayer = nil;
+  if (_type == MSSessionTypeServer) {
+    nextLayer = [[MSMainServerLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
+    for (NSString* client in clients) {
+      [_sessionManager sendStringToPeer:kStartMessage to:client mode:GKSendDataReliable];
+    }
+  } else {
+    nextLayer = [[MSMainClientLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
+  }
+  CCScene* scene = [CCScene node];
+  [scene addChild:nextLayer];
+  CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
+  [[CCDirector sharedDirector] replaceScene:fade];
 }
 
 @end
