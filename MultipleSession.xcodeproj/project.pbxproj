@@ -52,6 +52,7 @@
 		077D502F16AF36FF000941CC /* MSMainClientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D502E16AF36FE000941CC /* MSMainClientLayer.m */; };
 		077D503216AF3711000941CC /* MSMainServerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D503116AF3711000941CC /* MSMainServerLayer.m */; };
 		077D503516AF3C8B000941CC /* MSAngel.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D503416AF3C8B000941CC /* MSAngel.m */; };
+		0789617B16AF539A0094D334 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0789617A16AF539A0094D334 /* background.jpg */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -199,6 +200,7 @@
 		077D503116AF3711000941CC /* MSMainServerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMainServerLayer.m; path = Scene/MSMainServerLayer.m; sourceTree = "<group>"; };
 		077D503316AF3C8B000941CC /* MSAngel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSAngel.h; path = Model/MSAngel.h; sourceTree = "<group>"; };
 		077D503416AF3C8B000941CC /* MSAngel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSAngel.m; path = Model/MSAngel.m; sourceTree = "<group>"; };
+		0789617A16AF539A0094D334 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				DC275D2A13B27DBF009C5098 /* Pow.caf */,
 				DC485B4713AA194F00F2BC70 /* ship.png */,
 				DC485B4A13AA1C0E00F2BC70 /* ship-hd.png */,
+				0789617A16AF539A0094D334 /* background.jpg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				077D4FF216AEE59E000941CC /* graphic_converter.py in Resources */,
 				077D4FF316AEE59E000941CC /* sound_converter.py in Resources */,
 				077D500C16AEED63000941CC /* README.md in Resources */,
+				0789617B16AF539A0094D334 /* background.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
