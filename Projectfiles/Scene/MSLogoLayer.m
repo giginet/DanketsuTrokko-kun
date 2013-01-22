@@ -7,12 +7,12 @@
 //
 
 #import "MSLogoLayer.h"
-#import "HelloWorldLayer.h"
+#import "MSTitleLayer.h"
 
 @implementation MSLogoLayer
 
 - (id)init {
-  self = [super initWithNext:[HelloWorldLayer class]];
+  self = [super initWithNext:[MSTitleLayer class]];
   return self;
 }
 
