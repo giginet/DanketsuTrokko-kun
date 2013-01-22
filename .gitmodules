@@ -1,0 +1,3 @@
+[submodule "Projectfiles/Heqet"]
+	path = Projectfiles/Heqet
+	url = git://github.com/giginet/Heqet.git
