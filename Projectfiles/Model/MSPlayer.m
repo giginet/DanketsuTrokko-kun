@@ -21,7 +21,9 @@
     _no = no;
     KWSessionManager* manager = [KWSessionManager sharedManager];
     NSString* myPeerID = manager.session.peerID;
+    NSLog(@"%@, %@", peerID, myPeerID);
     _isMine = [_peerID isEqualToString:myPeerID];
+    NSLog(@"%d", _isMine);
   }
   return self;
 }

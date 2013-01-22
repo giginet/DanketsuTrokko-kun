@@ -151,6 +151,7 @@ NSString* kStartMessage = @"GameStart";
       [_sessionManager sendStringToPeer:kStartMessage to:client mode:GKSendDataReliable];
     }
   } else {
+    [clients addObject:_sessionManager.session.peerID];
     nextLayer = [[MSMainClientLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
   }
   CCScene* scene = [CCScene node];

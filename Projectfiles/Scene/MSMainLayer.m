@@ -19,7 +19,7 @@
     _angel = [[MSAngel alloc] initWithPeerID:peer];
     int no = 0;
     for (NSString* client in peers) {
-      MSPlayer* player = [[MSPlayer alloc] initWithPeerID:peer no:no];
+      MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player];
       player.position = ccp(350 * no, 0);
