@@ -12,6 +12,10 @@
 @synthesize tag = _tag;
 @synthesize object = _object;
 
++ (MSContainer*)containerWithObject:(id<NSCoding>)object forTag:(int)tag {
+  return [[[self class] alloc] initWithObject:object forTag:tag];
+}
+
 - (id)initWithObject:(id<NSCoding>)object forTag:(int)tag {
   self = [super init];
   if (self) {

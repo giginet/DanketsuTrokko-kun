@@ -52,17 +52,20 @@
 
 - (void)sendPlayerToServer:(MSPlayer *)player {
   KWSessionManager* manager = [KWSessionManager sharedManager];
-  NSData* data = [player dump];
-  [manager sendDataToPeer:data to:_angel.peerID mode:GKSendDataUnreliable];
+  MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagPlayerState];
+  [manager sendDataToPeer:[NSKeyedArchiver archivedDataWithRootObject:container] to:_angel.peerID mode:GKSendDataUnreliable];
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
   if ([peer isEqualToString:_angel.peerID]) { // サーバーから送られてきたとき
-    CCArray* playerStates = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    for (MSPlayerState* state in playerStates) {
-      if (![_myPlayer.peerID isEqualToString:state.peerID]) { // 自分以外の時
-        MSPlayer* player = [self playerWithPeerID:state.peerID];
-        [player updateWithPlayerState:state];
+    MSContainer* container = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (container.tag == MSContainerTagPlayerStates) {
+      NSArray* playerStates = (NSArray*)container.object;
+      for (MSPlayerState* state in playerStates) {
+        if (![_myPlayer.peerID isEqualToString:state.peerID]) { // 自分以外の時
+          MSPlayer* player = [self playerWithPeerID:state.peerID];
+          [player updateWithPlayerState:state];
+        }
       }
     }
   }

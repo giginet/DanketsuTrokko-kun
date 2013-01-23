@@ -9,6 +9,7 @@
 #import "heqet.h"
 #import "MSMainLayer.h"
 #import "MSPlayer.h"
+#import "MSContainer.h"
 
 @interface MSMainClientLayer : MSMainLayer {
   MSPlayer* _myPlayer;

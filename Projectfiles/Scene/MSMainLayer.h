@@ -9,7 +9,14 @@
 #import "CCLayer.h"
 #import "MSAngel.h"
 #import "MSPlayer.h"
+#import "MSContainer.h"
 #import "KWSessionDelegate.h"
+
+typedef enum {
+  MSContainerTagInitialInfo,
+  MSContainerTagPlayerState,
+  MSContainerTagPlayerStates
+} MSContainerTag;
 
 @interface MSMainLayer : CCLayer <KWSessionDelegate> {
   CCCamera* _camera;

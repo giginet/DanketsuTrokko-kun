@@ -24,15 +24,20 @@
   for (MSPlayer* player in _players) {
     [array addObject:[player state]];
   }
-  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:array];
+  MSContainer* container = [MSContainer containerWithObject:array forTag:MSContainerTagPlayerStates];
+  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:container];
   [manager broadCastData:data mode:GKSendDataUnreliable];
 }
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
-  MSPlayer* player = [self playerWithPeerID:peer];
-  if (player) {
-    [player updateWithPlayerState:[MSPlayerState stateWithData:data]];
-    [self broadCastAllPlayers];
+  MSContainer* container = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+  if (container.tag == MSContainerTagPlayerState) {
+    MSPlayer* player = [self playerWithPeerID:peer];
+    if (player) {
+      MSPlayerState* state = (MSPlayerState*)container.object;
+      [player updateWithPlayerState:state];
+      [self broadCastAllPlayers];
+    }
   }
 }
 
