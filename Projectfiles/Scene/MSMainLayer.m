@@ -15,6 +15,7 @@
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
   self = [super init];
   if (self) {
+    _state = MSGameStateReady;
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
     _stage = [CCNode node];

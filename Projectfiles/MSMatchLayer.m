@@ -27,9 +27,12 @@ NSString* kStartMessage = @"GameStart";
     _type = type;
     _peers = [NSMutableDictionary dictionary];
     _sessionManager = [KWSessionManager sharedManager];
+    _clients = [NSArray array];
+    
     [_sessionManager startSession:kSessionID sessionMode:type == MSSessionTypeClient ? GKSessionModeClient : GKSessionModeServer];
     _sessionManager.delegate = self;
     [_sessionManager available];
+    
     if (_type == MSSessionTypeClient) {
       _stateLabel = [CCLabelTTF labelWithString:@"ホストを探しています" fontName:@"Helvetica" fontSize:24];
     } else {
@@ -37,6 +40,7 @@ NSString* kStartMessage = @"GameStart";
     }
     _stateLabel.position = ccp(director.screenCenter.x, 280);
     _stateLabel.color = ccc3(255, 255, 255);
+    
     _peersNode = [CCNode node];
     _peersNode.position = director.screenCenter;
     [self addChild:_stateLabel];
@@ -88,17 +92,20 @@ NSString* kStartMessage = @"GameStart";
 }
 
 - (void)onStart:(id)sender {
-  NSMutableArray* clients = [NSMutableArray arrayWithArray:_sessionManager.connectedPeers];
-  [clients removeObject:_serverPeerID];
   CCLayer* nextLayer = nil;
   if (_type == MSSessionTypeServer) {
-    nextLayer = [[MSMainServerLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
+    // サーバー側、接続順に従ってクライアント一覧を作る
+    NSMutableArray* clients = [NSMutableArray arrayWithArray:_sessionManager.connectedPeers];
+    [clients removeObject:_serverPeerID];
+    _clients = [NSArray arrayWithArray:clients];
+    nextLayer = [[MSMainServerLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:_clients]];
     for (NSString* client in clients) {
-      [_sessionManager sendStringToPeer:kStartMessage to:client mode:GKSendDataReliable];
+      MSContainer* container = [MSContainer containerWithObject:clients forTag:MSMatchContainerTagClients];
+      [_sessionManager sendDataToPeer:[NSKeyedArchiver archivedDataWithRootObject:container] to:client mode:GKSendDataReliable];
     }
   } else {
-    [clients addObject:_sessionManager.session.peerID];
-    nextLayer = [[MSMainClientLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
+    // クライアント側、サーバーから受け取ったクライアントをそのまま使う
+    nextLayer = [[MSMainClientLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:_clients]];
   }
   CCScene* scene = [CCScene node];
   [scene addChild:nextLayer];
@@ -122,9 +129,9 @@ NSString* kStartMessage = @"GameStart";
       stateName = @"Connected";
       if (_type == MSSessionTypeClient) {
         [_stateLabel setString:@"ホストに接続しました"];
-      } else {
-        NSLog(@"%@", session.peerID);
-        [_sessionManager broadCastString:_sessionManager.session.peerID mode:GKSendDataUnreliable];
+      } else if (_type == MSSessionTypeServer) {
+        MSContainer* container = [MSContainer containerWithObject:_serverPeerID forTag:MSMatchContainerTagServerPeer];
+        [_sessionManager broadCastData:[NSKeyedArchiver archivedDataWithRootObject:container] mode:GKSendDataUnreliable];
       }
     default:
       break;
@@ -133,7 +140,6 @@ NSString* kStartMessage = @"GameStart";
   [self updatePeerStateFor:peerID toState:state];
   if (_type == MSSessionTypeServer) {
     int count = [_sessionManager.connectedPeers count];
-    NSLog(@"count = %d", count);
     _startMenu.enabled = count > 0;
   }
 }
@@ -150,11 +156,12 @@ NSString* kStartMessage = @"GameStart";
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
   if (_type == MSSessionTypeClient) {
-    NSString* command = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    if ([command isEqualToString:kStartMessage]) {
+    MSContainer* container = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (container.tag == MSMatchContainerTagClients) {
+      _clients = (NSArray*)container.object;
       [self onStart:nil];
-    } else {
-      _serverPeerID = command;
+    } else if (container.tag == MSMatchContainerTagServerPeer) {
+      _serverPeerID = (NSString*)container.object;
       [self updatePeerStateFor:peer toState:GKPeerStateConnected];
     }
   }

@@ -13,13 +13,20 @@
 #import "KWSessionDelegate.h"
 
 typedef enum {
-  MSContainerTagInitialInfo,
-  MSContainerTagPlayerState,
-  MSContainerTagPlayerStates
+  MSContainerTagInitialInfo, // サーバーから。初期プレイヤーを各クライアントに送信
+  MSContainerTagPlayerState, // クライアントから。更新された状態をサーバーに送信
+  MSContainerTagPlayerStates // サーバーから。全プレイヤーの状態を全クライアントに送信
 } MSContainerTag;
 
+typedef enum {
+  MSGameStateReady,
+  MSGameStateMain,
+  MSGameStateGameOver,
+  MSGameStateClear
+} MSGameState;
+
 @interface MSMainLayer : CCLayer <KWSessionDelegate> {
-  CCCamera* _camera;
+  MSGameState _state;
   CCArray* _players;
   CCNode* _stage;
   MSAngel* _angel;
