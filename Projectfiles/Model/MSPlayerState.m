@@ -12,11 +12,13 @@
 
 - (void)encodeWithCoder:(NSCoder*)coder {
   [coder encodeCGPoint:self.position forKey:@"position"];
+  [coder encodeObject:self.peerID forKey:@"peerID"];
 }
 - (id)initWithCoder:(NSCoder*)decoder {
   self = [super init];
   if (self) {
     self.position = [decoder decodeCGPointForKey:@"position"];
+    self.peerID = (NSString*)[decoder decodeObjectOfClass:[NSString class] forKey:@"peerID"];
   }
   return self;
 }

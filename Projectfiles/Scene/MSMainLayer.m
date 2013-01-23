@@ -70,11 +70,4 @@
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
 }
 
-- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
-  MSPlayer* player = [self playerWithPeerID:peer];
-  if (player && !player.isMine) {
-    [player updateWithPlayerState:[MSPlayerState stateWithData:data]];
-  }
-}
-
 @end

@@ -12,6 +12,7 @@
 }
 
 @property(readwrite) CGPoint position;
+@property(readwrite, copy) NSString* peerID;
 
 + (MSPlayerState*)stateWithData:(NSData*)data;
 

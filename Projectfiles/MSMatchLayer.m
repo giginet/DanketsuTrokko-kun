@@ -70,7 +70,7 @@ NSString* kStartMessage = @"GameStart";
       NSString* peerName = [_sessionManager.session displayNameForPeer:peerID];
       CCLabelTTF* label = [CCLabelTTF labelWithString:peerName fontName:@"Helvetica" fontSize:16];
       label.position = ccp(0, count * 20);
-      if ([_serverPeerID isEqualToString:peer]) {
+      if ([_serverPeerID isEqualToString:peerID]) {
         label.color = ccc3(0, 0, 255);
       } else if (s == GKPeerStateConnecting) {
         label.color = ccc3(255, 255, 0);
@@ -124,7 +124,7 @@ NSString* kStartMessage = @"GameStart";
         [_stateLabel setString:@"ホストに接続しました"];
       } else {
         NSLog(@"%@", session.peerID);
-        [_sessionManager broadCastString:_sessionManager.session.peerID mode:GKSendDataReliable];
+        [_sessionManager broadCastString:_sessionManager.session.peerID mode:GKSendDataUnreliable];
       }
     default:
       break;

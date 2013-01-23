@@ -21,6 +21,7 @@
 
 - (id)initWithPeerID:(NSString*)peerID no:(int)no;
 - (NSData*)dump;
+- (MSPlayerState*)state;
 - (void)updateWithPlayerState:(MSPlayerState*)state;
 
 @end

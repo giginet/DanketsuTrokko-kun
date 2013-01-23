@@ -10,7 +10,7 @@
 #import "KWSessionManager.h"
 
 @interface MSMainClientLayer()
-- (void)broadcastPlayer:(MSPlayer*)player;
+- (void)sendPlayerToServer:(MSPlayer*)player;
 @end
 
 @implementation MSMainClientLayer
@@ -33,8 +33,8 @@
   CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
   if ([input deviceMotionAvailable]) {
-    float x = input.deviceMotion.pitch;
-    float y = input.deviceMotion.roll;
+    float x = -input.deviceMotion.roll;
+    float y = input.deviceMotion.pitch;
     KWVector* vector = [KWVector vectorWithPoint:ccp(x, y)];
     _myPlayer.position = ccpSub(_myPlayer.position, [vector point]);
     float eyeX, eyeY, eyeZ;
@@ -46,14 +46,26 @@
     float playerY = player.y;
     [_stage.camera setCenterX:playerX centerY:playerY centerZ:centerZ];
     [_stage.camera setEyeX:playerX eyeY:playerY eyeZ:eyeZ];
-    [self broadcastPlayer:_myPlayer];
+    [self sendPlayerToServer:_myPlayer];
   }
 }
 
-- (void)broadcastPlayer:(MSPlayer *)player {
+- (void)sendPlayerToServer:(MSPlayer *)player {
   KWSessionManager* manager = [KWSessionManager sharedManager];
   NSData* data = [player dump];
-  [manager broadCastData:data mode:GKSendDataUnreliable];
+  [manager sendDataToPeer:data to:_angel.peerID mode:GKSendDataUnreliable];
+}
+
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
+  if ([peer isEqualToString:_angel.peerID]) { // サーバーから送られてきたとき
+    CCArray* playerStates = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    for (MSPlayerState* state in playerStates) {
+      if (![_myPlayer.peerID isEqualToString:state.peerID]) { // 自分以外の時
+        MSPlayer* player = [self playerWithPeerID:state.peerID];
+        [player updateWithPlayerState:state];
+      }
+    }
+  }
 }
 
 @end

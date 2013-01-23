@@ -21,21 +21,26 @@
     _no = no;
     KWSessionManager* manager = [KWSessionManager sharedManager];
     NSString* myPeerID = manager.session.peerID;
-    NSLog(@"%@, %@", peerID, myPeerID);
     _isMine = [_peerID isEqualToString:myPeerID];
-    NSLog(@"%d", _isMine);
   }
   return self;
 }
 
 - (NSData*)dump {
+  return [NSKeyedArchiver archivedDataWithRootObject:[self state]];
+}
+
+- (MSPlayerState*)state {
   MSPlayerState* state = [[MSPlayerState alloc] init];
   state.position = self.position;
-  return [NSKeyedArchiver archivedDataWithRootObject:state];
+  state.peerID = self.peerID;
+  return state;
 }
 
 - (void)updateWithPlayerState:(MSPlayerState *)state {
-  self.position = state.position;
+  if ([state.peerID isEqualToString:self.peerID]) {
+    self.position = state.position;
+  }
 }
 
 @end
