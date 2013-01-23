@@ -8,8 +8,10 @@
 
 #import "CCLayer.h"
 #import "MSAngel.h"
+#import "MSPlayer.h"
+#import "KWSessionDelegate.h"
 
-@interface MSMainLayer : CCLayer {
+@interface MSMainLayer : CCLayer <KWSessionDelegate> {
   CCCamera* _camera;
   CCArray* _players;
   CCNode* _stage;
@@ -17,5 +19,6 @@
 }
 
 - (id)initWithServerPeer:(NSString*)peer andClients:(CCArray*)peers;
+- (MSPlayer*)playerWithPeerID:(NSString*)peerID;
 
 @end

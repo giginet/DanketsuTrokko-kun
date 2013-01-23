@@ -7,13 +7,15 @@
 //
 
 #import "MSMainLayer.h"
-#import "MSPlayer.h"
+#import "KWSessionManager.h"
 
 @implementation MSMainLayer
 
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
   self = [super init];
   if (self) {
+    KWSessionManager* manager = [KWSessionManager sharedManager];
+    manager.delegate = self;
     _stage = [CCNode node];
     _players = [CCArray array];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
@@ -35,6 +37,44 @@
 }
 
 - (void)update:(ccTime)dt {
+}
+
+- (MSPlayer*)playerWithPeerID:(NSString *)peerID {
+  for (MSPlayer* player in _players) {
+    if ([player.peerID isEqualToString:peerID]) {
+      return player;
+    }
+  }
+  return nil;
+}
+
+#pragma mark KWSessionDelegate
+
+- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+  switch (state) {
+    case GKPeerStateDisconnected:
+      break;
+    case GKPeerStateUnavailable:
+      break;
+    default:
+      break;
+  }
+}
+
+- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+}
+
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+}
+
+- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+}
+
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
+  MSPlayer* player = [self playerWithPeerID:peer];
+  if (player && !player.isMine) {
+    [player updateWithPlayerState:[MSPlayerState stateWithData:data]];
+  }
 }
 
 @end

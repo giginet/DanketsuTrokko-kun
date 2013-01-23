@@ -7,6 +7,7 @@
 //
 
 #import "CCSprite.h"
+#import "MSPlayerState.h"
 
 @interface MSPlayer : CCSprite {
   int _no;
@@ -19,5 +20,7 @@
 @property(readonly, copy) NSString* peerID;
 
 - (id)initWithPeerID:(NSString*)peerID no:(int)no;
+- (NSData*)dump;
+- (void)updateWithPlayerState:(MSPlayerState*)state;
 
 @end

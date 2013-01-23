@@ -87,6 +87,25 @@ NSString* kStartMessage = @"GameStart";
   }
 }
 
+- (void)onStart:(id)sender {
+  NSMutableArray* clients = [NSMutableArray arrayWithArray:_sessionManager.connectedPeers];
+  [clients removeObject:_serverPeerID];
+  CCLayer* nextLayer = nil;
+  if (_type == MSSessionTypeServer) {
+    nextLayer = [[MSMainServerLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
+    for (NSString* client in clients) {
+      [_sessionManager sendStringToPeer:kStartMessage to:client mode:GKSendDataReliable];
+    }
+  } else {
+    [clients addObject:_sessionManager.session.peerID];
+    nextLayer = [[MSMainClientLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
+  }
+  CCScene* scene = [CCScene node];
+  [scene addChild:nextLayer];
+  CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
+  [[CCDirector sharedDirector] replaceScene:fade];
+}
+
 #pragma mark KWSessionDelegate
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
@@ -139,25 +158,6 @@ NSString* kStartMessage = @"GameStart";
       [self updatePeerStateFor:peer toState:GKPeerStateConnected];
     }
   }
-}
-
-- (void)onStart:(id)sender {
-  NSMutableArray* clients = [NSMutableArray arrayWithArray:_sessionManager.connectedPeers];
-  [clients removeObject:_serverPeerID];
-  CCLayer* nextLayer = nil;
-  if (_type == MSSessionTypeServer) {
-    nextLayer = [[MSMainServerLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
-    for (NSString* client in clients) {
-      [_sessionManager sendStringToPeer:kStartMessage to:client mode:GKSendDataReliable];
-    }
-  } else {
-    [clients addObject:_sessionManager.session.peerID];
-    nextLayer = [[MSMainClientLayer alloc] initWithServerPeer:_serverPeerID andClients:[CCArray arrayWithNSArray:clients]];
-  }
-  CCScene* scene = [CCScene node];
-  [scene addChild:nextLayer];
-  CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
-  [[CCDirector sharedDirector] replaceScene:fade];
 }
 
 @end

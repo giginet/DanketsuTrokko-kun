@@ -28,4 +28,14 @@
   return self;
 }
 
+- (NSData*)dump {
+  MSPlayerState* state = [[MSPlayerState alloc] init];
+  state.position = self.position;
+  return [NSKeyedArchiver archivedDataWithRootObject:state];
+}
+
+- (void)updateWithPlayerState:(MSPlayerState *)state {
+  self.position = state.position;
+}
+
 @end
