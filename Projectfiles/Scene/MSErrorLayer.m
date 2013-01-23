@@ -8,6 +8,7 @@
 
 #import "MSErrorLayer.h"
 #import "MSTitleLayer.h"
+#import "KWSessionManager.h"
 
 @implementation MSErrorLayer
 
@@ -19,6 +20,11 @@
     error.position = director.screenCenter;
     [self addChild:error];
     self.isTouchEnabled = YES;
+    KWSessionManager* manager = [KWSessionManager sharedManager];
+    [manager.session disconnectFromAllPeers];
+    [manager disable];
+    [manager setDelegate:nil];
+    [manager stopSession];
   }
   return self;
 }
