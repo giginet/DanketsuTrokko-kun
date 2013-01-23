@@ -55,6 +55,7 @@
 		0789617B16AF539A0094D334 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0789617A16AF539A0094D334 /* background.jpg */; };
 		078961B316AF5E960094D334 /* MSPlayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 078961B216AF5E960094D334 /* MSPlayerState.m */; };
 		078961B616AF63880094D334 /* background-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 078961B416AF63880094D334 /* background-hd.jpg */; };
+		078961BA16AFA4EC0094D334 /* MSErrorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 078961B916AFA4EB0094D334 /* MSErrorLayer.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -206,6 +207,8 @@
 		078961B116AF5E960094D334 /* MSPlayerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPlayerState.h; path = Model/MSPlayerState.h; sourceTree = "<group>"; };
 		078961B216AF5E960094D334 /* MSPlayerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPlayerState.m; path = Model/MSPlayerState.m; sourceTree = "<group>"; };
 		078961B416AF63880094D334 /* background-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background-hd.jpg"; sourceTree = "<group>"; };
+		078961B816AFA4EB0094D334 /* MSErrorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSErrorLayer.h; path = Scene/MSErrorLayer.h; sourceTree = "<group>"; };
+		078961B916AFA4EB0094D334 /* MSErrorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSErrorLayer.m; path = Scene/MSErrorLayer.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -488,6 +491,8 @@
 				077D502E16AF36FE000941CC /* MSMainClientLayer.m */,
 				077D503016AF3710000941CC /* MSMainServerLayer.h */,
 				077D503116AF3711000941CC /* MSMainServerLayer.m */,
+				078961B816AFA4EB0094D334 /* MSErrorLayer.h */,
+				078961B916AFA4EB0094D334 /* MSErrorLayer.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -849,6 +854,7 @@
 				077D503216AF3711000941CC /* MSMainServerLayer.m in Sources */,
 				077D503516AF3C8B000941CC /* MSAngel.m in Sources */,
 				078961B316AF5E960094D334 /* MSPlayerState.m in Sources */,
+				078961BA16AFA4EC0094D334 /* MSErrorLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

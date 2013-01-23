@@ -7,6 +7,7 @@
 //
 
 #import "MSMainLayer.h"
+#import "MSErrorLayer.h"
 #import "KWSessionManager.h"
 
 @implementation MSMainLayer
@@ -53,8 +54,11 @@
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
   switch (state) {
     case GKPeerStateDisconnected:
-      break;
     case GKPeerStateUnavailable:
+      if ([peerID isEqualToString:_angel.peerID] || [self playerWithPeerID:peerID]) {
+        CCScene* error = [MSErrorLayer nodeWithScene];
+        [[CCDirector sharedDirector] replaceScene:error];
+      }
       break;
     default:
       break;
