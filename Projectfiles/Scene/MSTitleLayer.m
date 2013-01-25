@@ -33,35 +33,25 @@
     
     menu.position = director.screenCenter;
     [menu alignItemsVerticallyWithPadding:50];
-    
-    CCSprite* sky = [CCSprite spriteWithFile:@"sky.png"];
-    sky.position = director.screenCenter;
-    [self addChild:sky];
-    CCNode* background = [CCNode node];
-    for (int i = 0; i < 20; ++i ) {
-      CCSprite* grass = [CCSprite spriteWithFile:@"grass.jpg"];
-      float center = director.screenCenter.x;
-      CGPoint initial = ccp(center, grass.contentSize.height * i);
-      grass.position = initial;
-      [grass runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
-                                                               [CCMoveBy actionWithDuration:1.0 position:ccp(0, -2 * grass.contentSize.height)],
-                                                               [CCPlace actionWithPosition:initial],
-                                                               nil]]];
-      [background addChild:grass];
-      
-    }
-    [self addChild:background];
-    float centerX, centerY, centerZ;
-    float eyeX, eyeY, eyeZ;
-    [background.camera centerX:&centerX centerY:&centerY centerZ:&centerZ];
-    [background.camera setCenterX:centerX centerY:centerY + 0.000001 centerZ:centerZ];
-    [background.camera eyeX:&eyeX  eyeY:&eyeY eyeZ:&eyeZ];
-    [background.camera setEyeX:eyeX eyeY:eyeY eyeZ:eyeZ + 0.00000001];
     [self addChild:menu];
   }
   return self;
 }
 
+- (void)onEnterTransitionDidFinish {
+  // シーンに入った瞬間にマッチング画面に飛ばす
+  CCDirector* director = [CCDirector sharedDirector];
+  if (director.currentDeviceIsIPad) {
+    [self onServerButtonPressed:nil];
+  } else {
+    [self onClientButtonPressed:nil];
+  }
+}
+
+
+/**
+ Hostボタンが押されたとき
+ */
 - (void)onServerButtonPressed:(id)sender {
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeServer];
   CCScene* scene = [CCNode node];
@@ -70,6 +60,9 @@
   [[CCDirector sharedDirector] replaceScene:transition];
 }
 
+/**
+ Clientボタンが押されたとき
+ */
 - (void)onClientButtonPressed:(id)sender {
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeClient];
   CCScene* scene = [CCNode node];

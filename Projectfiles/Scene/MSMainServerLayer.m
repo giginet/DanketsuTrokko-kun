@@ -16,6 +16,7 @@
 @implementation MSMainServerLayer
 
 - (void)update:(ccTime)dt {
+  [super update:dt];
 }
 
 - (void)broadCastAllPlayers {

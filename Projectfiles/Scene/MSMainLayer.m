@@ -29,7 +29,7 @@
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player];
-      player.position = ccp(350 * no, 0);
+      player.position = ccp(30 + 350 * no, 20);
       ++no;
     }
     [self addChild:_stage];
@@ -39,6 +39,8 @@
 }
 
 - (void)update:(ccTime)dt {
+  _scroll += SCROLL_SPEED;
+  _stage.position = ccpSub(_stage.position, ccp(0, SCROLL_SPEED));
 }
 
 - (MSPlayer*)playerWithPeerID:(NSString *)peerID {

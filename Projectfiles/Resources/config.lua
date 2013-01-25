@@ -17,9 +17,9 @@ local config =
 	KKStartupConfig = 
 	{
 		-- load first scene from a class with this name, or from a Lua script with this name with .lua appended
-		FirstSceneClassName = "MSLogoLayer",
+		FirstSceneClassName = "MSTitleLayer",
 
-		MaxFrameRate = 60,
+		MaxFrameRate = 30,
 		DisplayFPS = YES,
 
 		EnableUserInteraction = YES,

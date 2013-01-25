@@ -22,8 +22,15 @@
     KWSessionManager* manager = [KWSessionManager sharedManager];
     NSString* myPeerID = manager.session.peerID;
     _isMine = [_peerID isEqualToString:myPeerID];
+    self.velocity = [KWVector vector];
+    self.velocity.y = SCROLL_SPEED;
+    [self scheduleUpdate];
   }
   return self;
+}
+
+- (void)update:(ccTime)dt {
+  self.position = ccpAdd(self.position, [_velocity point]);
 }
 
 - (NSData*)dump {

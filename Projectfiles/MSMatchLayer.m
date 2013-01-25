@@ -132,6 +132,7 @@ NSString* kStartMessage = @"GameStart";
       } else if (_type == MSSessionTypeServer) {
         MSContainer* container = [MSContainer containerWithObject:_serverPeerID forTag:MSMatchContainerTagServerPeer];
         [_sessionManager broadCastData:[NSKeyedArchiver archivedDataWithRootObject:container] mode:GKSendDataUnreliable];
+        [self onStart:nil];
       }
     default:
       break;

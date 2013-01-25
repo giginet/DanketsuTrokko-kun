@@ -30,12 +30,13 @@
 }
 
 - (void)update:(ccTime)dt {
+  [super update:dt];
   CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
   if ([input deviceMotionAvailable]) {
     float x = -input.deviceMotion.roll;
-    float y = input.deviceMotion.pitch;
-    KWVector* vector = [KWVector vectorWithPoint:ccp(x, y)];
+    //float y = input.deviceMotion.pitch;
+    KWVector* vector = [KWVector vectorWithPoint:ccp(x, _myPlayer.velocity.y)];
     _myPlayer.position = ccpSub(_myPlayer.position, [vector point]);
     float eyeX, eyeY, eyeZ;
     float centerX, centerY, centerZ;
