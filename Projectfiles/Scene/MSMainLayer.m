@@ -29,7 +29,7 @@
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player];
-      player.position = ccp(30 + 350 * no, 20);
+      player.position = ccp(30 + 350 * no, 100);
       ++no;
     }
     [self addChild:_stage];

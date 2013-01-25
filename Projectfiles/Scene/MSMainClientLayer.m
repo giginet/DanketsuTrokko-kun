@@ -31,24 +31,27 @@
 
 - (void)update:(ccTime)dt {
   [super update:dt];
-  CCDirector* director = [CCDirector sharedDirector];
+  //CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
   if ([input deviceMotionAvailable]) {
     float x = -input.deviceMotion.roll;
     //float y = input.deviceMotion.pitch;
-    KWVector* vector = [KWVector vectorWithPoint:ccp(x, _myPlayer.velocity.y)];
-    _myPlayer.position = ccpSub(_myPlayer.position, [vector point]);
-    float eyeX, eyeY, eyeZ;
-    float centerX, centerY, centerZ;
-    [_stage.camera centerX:&centerX centerY:&centerY centerZ:&centerZ];
-    [_stage.camera eyeX:&eyeX eyeY:&eyeY eyeZ:&eyeZ];
-    CGPoint player = ccpSub(_myPlayer.position, director.screenCenter);
-    float playerX = player.x;
-    float playerY = player.y;
-    [_stage.camera setCenterX:playerX centerY:playerY centerZ:centerZ];
-    [_stage.camera setEyeX:playerX eyeY:playerY eyeZ:eyeZ];
+    _myPlayer.velocity = [KWVector vectorWithPoint:ccp(-x, SCROLL_SPEED)];
     [self sendPlayerToServer:_myPlayer];
   }
+  
+  /*
+  // カメラの位置を同期
+  float eyeX, eyeY, eyeZ;
+  float centerX, centerY, centerZ;
+  [_stage.camera centerX:&centerX centerY:&centerY centerZ:&centerZ];
+  [_stage.camera eyeX:&eyeX eyeY:&eyeY eyeZ:&eyeZ];
+  CGPoint player = ccpSub(_myPlayer.position, director.screenCenter);
+  float playerX = player.x;
+  float playerY = player.y;
+  [_stage.camera setCenterX:playerX centerY:playerY centerZ:centerZ];
+  [_stage.camera setEyeX:playerX eyeY:playerY eyeZ:eyeZ];*/
+  
 }
 
 - (void)sendPlayerToServer:(MSPlayer *)player {

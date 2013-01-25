@@ -10,7 +10,7 @@
 #import "MSPlayerState.h"
 #import "KWVector.h"
 
-#define SCROLL_SPEED 1 // 面倒なのでとりあえずハードコード
+#define SCROLL_SPEED 5 // 面倒なのでとりあえずハードコード
 
 @interface MSPlayer : CCSprite {
   int _no;
