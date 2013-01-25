@@ -18,8 +18,6 @@
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
   self = [super initWithServerPeer:peer andClients:peers];
   if (self) {
-    _playerCache = nil;
-    _playerStateCache = nil;
     _cameraNode.scale = 0.8f; // iPad版はサイズを0.8倍にして扱う
   }
   return self;
@@ -29,18 +27,7 @@
   [super update:dt];
   CCDirector* director = [CCDirector sharedDirector];
   
-  if (!_playerStateCache) {
-    NSLog(@"update");
-    [_playerCache updateWithPlayerState:_playerStateCache];
-    _playerStateCache = nil;
-    _playerCache = nil;
-  }
-  
   // スクロールする
-  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  if (_scroll < GOAL_POINT) {
-    _scroll += scrollSpeed;
-  }
   
   
   // ゴール判定
@@ -66,9 +53,11 @@
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
   MSContainer* container = [NSKeyedUnarchiver unarchiveObjectWithData:data];
   if (container.tag == MSContainerTagPlayerState) {
-    _playerCache = [self playerWithPeerID:peer];
-    if (_playerCache) {
-      _playerStateCache = (MSPlayerState*)container.object;
+    MSPlayer* player = [self playerWithPeerID:peer];
+    if (player) {
+      MSPlayerState* playerState = (MSPlayerState*)container.object;
+      [player updateWithPlayerState:playerState];
+      
       [self broadCastAllPlayers];
     }
   }

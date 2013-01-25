@@ -10,8 +10,6 @@
 #import "MSMainLayer.h"
 
 @interface MSMainServerLayer : MSMainLayer {
-  MSPlayer* _playerCache;
-  MSPlayerState* _playerStateCache;
 }
 
 @end

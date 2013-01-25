@@ -44,10 +44,14 @@
 
 - (void)update:(ccTime)dt {
   float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+  if (_scroll < GOAL_POINT) {
+    _scroll += scrollSpeed;
+  }
+  _stage.position = ccp(0, -_scroll);
+
   for (MSPlayer* player in _players) {
     [player updateRailAndLineNumber]; // レール番号、ライン番号を更新
   }
-  _stage.position = ccpSub(_stage.position, ccp(0, scrollSpeed));
 }
 
 - (MSPlayer*)playerWithPeerID:(NSString *)peerID {
