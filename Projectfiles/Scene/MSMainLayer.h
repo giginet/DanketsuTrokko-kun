@@ -33,6 +33,7 @@ typedef enum {
   MSGameState _state;
   CCArray* _players;
   CCNode* _stage;
+  CCNode* _cameraNode;
   MSAngel* _angel;
 }
 

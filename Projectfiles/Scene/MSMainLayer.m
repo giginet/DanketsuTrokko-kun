@@ -18,21 +18,25 @@
     _state = MSGameStateReady;
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
+    _cameraNode = [CCNode node];
     _stage = [CCNode node];
     _players = [CCArray array];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
     CCSprite* background = [CCSprite spriteWithFile:@"background.jpg"];
+    
     [_stage addChild:background];
+    [_cameraNode addChild:_stage];
+    
     background.position = ccp(240, 150);
     int no = 0;
     for (NSString* client in peers) {
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player];
-      player.position = ccp(160 + 350 * no, 100);
+      player.position = ccp(128 + 256 * no, 100);
       ++no;
     }
-    [self addChild:_stage];
+    [self addChild:_cameraNode];
     [self scheduleUpdate];
   }
   return self;

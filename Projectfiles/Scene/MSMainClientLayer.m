@@ -24,6 +24,7 @@
         break;
       }
     }
+    _cameraNode.position = ccp(-256 * _myPlayer.no, 0);
     [KKInput sharedInput].deviceMotionActive = YES;
   }
   return self;

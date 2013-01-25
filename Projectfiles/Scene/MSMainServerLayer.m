@@ -15,6 +15,13 @@
 
 @implementation MSMainServerLayer
 
+- (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
+  self = [super initWithServerPeer:peer andClients:peers];
+  if (self) {
+  }
+  return self;
+}
+
 - (void)update:(ccTime)dt {
   [super update:dt];
   CCDirector* director = [CCDirector sharedDirector];
