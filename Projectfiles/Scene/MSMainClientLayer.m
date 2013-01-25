@@ -18,6 +18,7 @@
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
   self = [super initWithServerPeer:peer andClients:peers];
   if (self) {
+    _playerStatesCache = nil;
     for (MSPlayer* player in _players) {
       if (player.isMine) {
         _myPlayer = player;
@@ -33,6 +34,15 @@
 - (void)update:(ccTime)dt {
   [super update:dt];
   //CCDirector* director = [CCDirector sharedDirector];
+  if (!_playerStatesCache) {
+    for (MSPlayerState* state in _playerStatesCache) {
+      if (![_myPlayer.peerID isEqualToString:state.peerID]) { // 自分以外の時
+        MSPlayer* player = [self playerWithPeerID:state.peerID];
+        [player updateWithPlayerState:state];
+      }
+    }
+    _playerStatesCache = nil;
+  }
   KKInput* input = [KKInput sharedInput];
   if ([input deviceMotionAvailable]) {
     float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
@@ -44,6 +54,7 @@
         [_myPlayer setRailChangeAction:MSDirectionRight];
       }
     }
+    _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]);
     [self sendPlayerToServer:_myPlayer];
   }
   
@@ -71,13 +82,7 @@
   if ([peer isEqualToString:_angel.peerID]) { // サーバーから送られてきたとき
     MSContainer* container = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (container.tag == MSContainerTagPlayerStates) { // PlayerState
-      NSArray* playerStates = (NSArray*)container.object;
-      for (MSPlayerState* state in playerStates) {
-        if (![_myPlayer.peerID isEqualToString:state.peerID]) { // 自分以外の時
-          MSPlayer* player = [self playerWithPeerID:state.peerID];
-          [player updateWithPlayerState:state];
-        }
-      }
+      _playerStatesCache = (NSArray*)container.object;
     } else if (container.tag == MSContainerTagPlayerGoal) { // ゴールはいりました通知を貰ったとき
       NSLog(@"goal %d", _myPlayer.no);
     }

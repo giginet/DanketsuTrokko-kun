@@ -13,6 +13,7 @@
 
 @interface MSMainClientLayer : MSMainLayer {
   MSPlayer* _myPlayer;
+  NSArray* _playerStatesCache;
 }
 
 @end

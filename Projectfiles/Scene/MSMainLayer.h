@@ -18,7 +18,8 @@ typedef enum {
   MSContainerTagInitialInfo,  // サーバーから。初期プレイヤーを各クライアントに送信
   MSContainerTagPlayerState,  // クライアントから。更新された状態をサーバーに送信
   MSContainerTagPlayerStates, // サーバーから。全プレイヤーの状態を全クライアントに送信
-  MSContainerTagPlayerGoal    // ゴール
+  MSContainerTagPlayerGoal,   // ゴール
+  MSContainerTagScroll,       // サーバーから。スクロールした通知
 } MSContainerTag;
 
 typedef enum {

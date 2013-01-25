@@ -59,7 +59,7 @@ local config =
 	},
   RailWidth = 88,
   LineWidth = 320,
-  ScrollSpeed = 5.0
+  ScrollSpeed = 10.0
 }
 
 return config

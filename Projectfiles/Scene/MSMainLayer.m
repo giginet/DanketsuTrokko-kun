@@ -20,7 +20,7 @@
     manager.delegate = self;
     _cameraNode = [CCNode node];
     _stage = [CCNode node];
-    _players = [CCArray array];
+    _players = [CCArray array                                                                                                                                                                                          ];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
     CCSprite* background = [CCSprite spriteWithFile:@"back.png"];
     
@@ -33,7 +33,7 @@
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player];
-      player.position = ccp(128 + 256 * no, 100);
+      player.position = ccp(128 + 256 * no, 200);
       ++no;
     }
     [self addChild:_cameraNode];
@@ -44,8 +44,8 @@
 
 - (void)update:(ccTime)dt {
   float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  if (_scroll < GOAL_POINT) {
-    _scroll += scrollSpeed;
+  for (MSPlayer* player in _players) {
+    [player updateRailAndLineNumber]; // レール番号、ライン番号を更新
   }
   _stage.position = ccpSub(_stage.position, ccp(0, scrollSpeed));
 }

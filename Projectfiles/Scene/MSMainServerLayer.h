@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MSMainLayer.h"
 
-@interface MSMainServerLayer : MSMainLayer
+@interface MSMainServerLayer : MSMainLayer {
+  MSPlayer* _playerCache;
+  MSPlayerState* _playerStateCache;
+}
 
 @end

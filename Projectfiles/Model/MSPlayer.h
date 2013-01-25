@@ -23,6 +23,8 @@ typedef enum {
 }
 
 @property(readonly) int no; // キャラ番号0~2
+@property(readwrite) int railNumber; // 現在のレール番号
+@property(readwrite) int lineNumber; // 現在のライン番号
 @property(readonly) BOOL isMine; // 自分の操っているキャラかどうか
 @property(readwrite) BOOL isRailChanging; // レール切り替え中かどうか
 @property(readonly, copy) NSString* peerID; // PeerID
@@ -33,6 +35,11 @@ typedef enum {
 - (NSData*)dump;
 - (MSPlayerState*)state;
 - (void)updateWithPlayerState:(MSPlayerState*)state;
+
+/**
+ 現在の座標からレール番号、ライン番号を更新します
+ */
+- (void)updateRailAndLineNumber;
 
 
 /**

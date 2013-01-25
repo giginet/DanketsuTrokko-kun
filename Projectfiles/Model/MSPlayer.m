@@ -24,15 +24,15 @@
     NSString* myPeerID = manager.session.peerID;
     _isMine = [_peerID isEqualToString:myPeerID];
     self.velocity = [KWVector vector];
-    float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+    int scrollSpeed = [KKConfig intForKey:@"ScrollSpeed"];
     self.velocity.y = scrollSpeed;
+    self.railNumber = 1; // 中央のレールから
     [self scheduleUpdate];
   }
   return self;
 }
 
 - (void)update:(ccTime)dt {
-  self.position = ccpAdd(self.position, [_velocity point]);
 }
 
 - (NSData*)dump {
@@ -52,13 +52,23 @@
   }
 }
 
+- (void)updateRailAndLineNumber {
+  float x = self.position.x;
+  float lineWidth = [KKConfig intForKey:@"LineWidth"];
+  float railWidth = [KKConfig intForKey:@"RailWidth"];
+  self.lineNumber = floor(self.position.x / lineWidth);
+  self.railNumber = floor((x - self.lineNumber * lineWidth) / railWidth);
+}
+
 - (void)setRailChangeAction:(MSDirection)direction {
+  if ((self.railNumber == 0 && direction == MSDirectionLeft) || (self.railNumber == 2 && direction == MSDirectionRight)) return; // 左端、右端だったらはみ出さないようにする
   int railWidth = [KKConfig intForKey:@"RailWidth"];
-  const float animationDuration = 0.5f;
+  const float animationDuration = 0.2f;
   float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
   float fps = [[KKStartupConfig config] maxFrameRate];
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
+  
   CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed)]; // レール切り替えアニメーション
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
