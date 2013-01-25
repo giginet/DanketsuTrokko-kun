@@ -15,7 +15,7 @@
 @synthesize peerID = _peerID;
 
 - (id)initWithPeerID:(NSString *)peerID no:(int)no {
-  self = [super initWithFile:@"ship.png"];
+  self = [super initWithFile:@"player0.png"];
   if (self) {
     _peerID = peerID;
     _no = no;

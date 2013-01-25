@@ -45,21 +45,8 @@
       }
     }
     _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]);
-    [self sendPlayerToServer:_myPlayer];
   }
-  
-  /*
-  // カメラの位置を同期　カメラはオワコン
-  float eyeX, eyeY, eyeZ;
-  float centerX, centerY, centerZ;
-  [_stage.camera centerX:&centerX centerY:&centerY centerZ:&centerZ];
-  [_stage.camera eyeX:&eyeX eyeY:&eyeY eyeZ:&eyeZ];
-  CGPoint player = ccpSub(_myPlayer.position, director.screenCenter);
-  float playerX = player.x;
-  float playerY = player.y;
-  [_stage.camera setCenterX:playerX centerY:playerY centerZ:centerZ];
-  [_stage.camera setEyeX:playerX eyeY:playerY eyeZ:eyeZ];*/
-  
+  [self sendPlayerToServer:_myPlayer];
 }
 
 - (void)sendPlayerToServer:(MSPlayer *)player {

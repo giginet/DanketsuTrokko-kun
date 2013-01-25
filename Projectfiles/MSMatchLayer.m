@@ -9,6 +9,7 @@
 #import "MSMatchLayer.h"
 #import "MSMainClientLayer.h"
 #import "MSMainServerLayer.h"
+#import "MSMapLoader.h"
 
 @interface MSMatchLayer()
 - (void)updatePeerStateFor:(NSString*)peer toState:(GKPeerConnectionState)state;
@@ -23,6 +24,9 @@ NSString* kStartMessage = @"GameStart";
 - (id)initWithServerOrClient:(MSSessionType)type {
   self = [super init];
   if (self) {
+    
+    MSMapLoader* loader = [[MSMapLoader alloc] init];
+    
     CCDirector* director = [CCDirector sharedDirector];
     _type = type;
     _peers = [NSMutableDictionary dictionary];

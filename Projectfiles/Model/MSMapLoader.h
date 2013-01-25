@@ -11,6 +11,8 @@
 /**
  Mapを読み込むクラスです
  */
-@interface MSMapLoader : NSObject
+@interface MSMapLoader : NSObject {
+  NSArray* _lines;
+}
 
 @end

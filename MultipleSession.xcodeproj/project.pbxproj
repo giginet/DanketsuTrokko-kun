@@ -61,6 +61,17 @@
 		078961BD16AFAC2F0094D334 /* MSContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 078961BC16AFAC2F0094D334 /* MSContainer.m */; };
 		07F414DE16B2FD050040F9A3 /* back-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414DC16B2FD050040F9A3 /* back-hd.png */; };
 		07F414DF16B2FD050040F9A3 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414DD16B2FD050040F9A3 /* back.png */; };
+		07F414E216B316F80040F9A3 /* stage.lua in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E116B316F80040F9A3 /* stage.lua */; };
+		07F414E416B3194F0040F9A3 /* stage.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E316B3194F0040F9A3 /* stage.txt */; };
+		07F414F316B31C470040F9A3 /* rail0-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F116B31C470040F9A3 /* rail0-hd.png */; };
+		07F414F416B31C470040F9A3 /* rail0.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F216B31C470040F9A3 /* rail0.png */; };
+		07F414FB16B31C510040F9A3 /* player0-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F516B31C500040F9A3 /* player0-hd.png */; };
+		07F414FC16B31C510040F9A3 /* player0.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F616B31C500040F9A3 /* player0.png */; };
+		07F414FD16B31C510040F9A3 /* player1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F716B31C500040F9A3 /* player1-hd.png */; };
+		07F414FE16B31C510040F9A3 /* player1.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F816B31C510040F9A3 /* player1.png */; };
+		07F414FF16B31C510040F9A3 /* player2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414F916B31C510040F9A3 /* player2-hd.png */; };
+		07F4150016B31C510040F9A3 /* player2.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F414FA16B31C510040F9A3 /* player2.png */; };
+		07F4150316B31C860040F9A3 /* MSTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F4150216B31C860040F9A3 /* MSTile.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -220,6 +231,18 @@
 		078961BC16AFAC2F0094D334 /* MSContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSContainer.m; path = Model/MSContainer.m; sourceTree = "<group>"; };
 		07F414DC16B2FD050040F9A3 /* back-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back-hd.png"; path = "Image/back-hd.png"; sourceTree = "<group>"; };
 		07F414DD16B2FD050040F9A3 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Image/back.png; sourceTree = "<group>"; };
+		07F414E116B316F80040F9A3 /* stage.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.lua; path = Map/stage.lua; sourceTree = "<group>"; };
+		07F414E316B3194F0040F9A3 /* stage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.txt; path = Map/stage.txt; sourceTree = "<group>"; };
+		07F414F116B31C470040F9A3 /* rail0-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rail0-hd.png"; path = "Image/rail0-hd.png"; sourceTree = "<group>"; };
+		07F414F216B31C470040F9A3 /* rail0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rail0.png; path = Image/rail0.png; sourceTree = "<group>"; };
+		07F414F516B31C500040F9A3 /* player0-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "player0-hd.png"; path = "Image/player0-hd.png"; sourceTree = "<group>"; };
+		07F414F616B31C500040F9A3 /* player0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player0.png; path = Image/player0.png; sourceTree = "<group>"; };
+		07F414F716B31C500040F9A3 /* player1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "player1-hd.png"; path = "Image/player1-hd.png"; sourceTree = "<group>"; };
+		07F414F816B31C510040F9A3 /* player1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player1.png; path = Image/player1.png; sourceTree = "<group>"; };
+		07F414F916B31C510040F9A3 /* player2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "player2-hd.png"; path = "Image/player2-hd.png"; sourceTree = "<group>"; };
+		07F414FA16B31C510040F9A3 /* player2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player2.png; path = Image/player2.png; sourceTree = "<group>"; };
+		07F4150116B31C850040F9A3 /* MSTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTile.h; path = Model/MSTile.h; sourceTree = "<group>"; };
+		07F4150216B31C860040F9A3 /* MSTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSTile.m; path = Model/MSTile.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -519,6 +542,8 @@
 				078961BC16AFAC2F0094D334 /* MSContainer.m */,
 				070E638F16B2EAC9004ABC0C /* MSMapLoader.h */,
 				070E639016B2EAC9004ABC0C /* MSMapLoader.m */,
+				07F4150116B31C850040F9A3 /* MSTile.h */,
+				07F4150216B31C860040F9A3 /* MSTile.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -536,10 +561,27 @@
 		07F414DA16B2FCFE0040F9A3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				07F414F516B31C500040F9A3 /* player0-hd.png */,
+				07F414F616B31C500040F9A3 /* player0.png */,
+				07F414F716B31C500040F9A3 /* player1-hd.png */,
+				07F414F816B31C510040F9A3 /* player1.png */,
+				07F414F916B31C510040F9A3 /* player2-hd.png */,
+				07F414FA16B31C510040F9A3 /* player2.png */,
+				07F414F116B31C470040F9A3 /* rail0-hd.png */,
+				07F414F216B31C470040F9A3 /* rail0.png */,
 				07F414DC16B2FD050040F9A3 /* back-hd.png */,
 				07F414DD16B2FD050040F9A3 /* back.png */,
 			);
 			name = Image;
+			sourceTree = "<group>";
+		};
+		07F414E016B316920040F9A3 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				07F414E116B316F80040F9A3 /* stage.lua */,
+				07F414E316B3194F0040F9A3 /* stage.txt */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		DC1BE68414F417CC00F49D25 /* ubuntu-font-family-0.80 */ = {
@@ -669,6 +711,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				07F414E016B316920040F9A3 /* Map */,
 				07F414DA16B2FCFE0040F9A3 /* Image */,
 				07619E9116B17BD7001E5EA1 /* sky-hd.png */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
@@ -818,6 +861,16 @@
 				07619E9216B17BD7001E5EA1 /* sky-hd.png in Resources */,
 				07F414DE16B2FD050040F9A3 /* back-hd.png in Resources */,
 				07F414DF16B2FD050040F9A3 /* back.png in Resources */,
+				07F414E216B316F80040F9A3 /* stage.lua in Resources */,
+				07F414E416B3194F0040F9A3 /* stage.txt in Resources */,
+				07F414F316B31C470040F9A3 /* rail0-hd.png in Resources */,
+				07F414F416B31C470040F9A3 /* rail0.png in Resources */,
+				07F414FB16B31C510040F9A3 /* player0-hd.png in Resources */,
+				07F414FC16B31C510040F9A3 /* player0.png in Resources */,
+				07F414FD16B31C510040F9A3 /* player1-hd.png in Resources */,
+				07F414FE16B31C510040F9A3 /* player1.png in Resources */,
+				07F414FF16B31C510040F9A3 /* player2-hd.png in Resources */,
+				07F4150016B31C510040F9A3 /* player2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,6 +938,7 @@
 				078961BA16AFA4EC0094D334 /* MSErrorLayer.m in Sources */,
 				078961BD16AFAC2F0094D334 /* MSContainer.m in Sources */,
 				070E639116B2EAC9004ABC0C /* MSMapLoader.m in Sources */,
+				07F4150316B31C860040F9A3 /* MSTile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
