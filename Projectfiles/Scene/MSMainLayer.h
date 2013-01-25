@@ -42,5 +42,6 @@ typedef enum {
 - (void)sendContainer:(MSContainer*)container peerID:(NSString*)peerID; // peerIDにContainerを送信します
 - (MSPlayer*)playerWithPeerID:(NSString*)peerID;
 - (void)update:(ccTime)dt;
+- (void)buildMap;
 
 @end

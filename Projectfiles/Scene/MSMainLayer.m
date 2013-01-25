@@ -9,6 +9,7 @@
 #import "MSMainLayer.h"
 #import "MSErrorLayer.h"
 #import "KWSessionManager.h"
+#import "MSTile.h"
 
 @implementation MSMainLayer
 
@@ -24,8 +25,12 @@
     _angel = [[MSAngel alloc] initWithPeerID:peer];
     CCSprite* background = [CCSprite spriteWithFile:@"back.png"];
     
-    [_stage addChild:background];
+    //[_stage addChild:background];
     [_cameraNode addChild:_stage];
+    CCSprite* tile = [CCSprite spriteWithFile:@"player0.png"];
+    tile.position = [CCDirector sharedDirector].screenCenter;
+    [_stage addChild:tile];
+    [self buildMap];
     
     background.position = ccp(768 * 1.25 / 2.0f, 1024 * 1.25 / 2.0f);
     int no = 0;
@@ -40,6 +45,23 @@
     [self scheduleUpdate];
   }
   return self;
+}
+
+- (void)buildMap {
+  for (int y = 0; y < 100; ++y) {
+    for (int x = 0; x < 9; ++x) {
+      int line = floor(x / 3);
+      int rail = x % 3;
+      const int tileSize = 88;
+      const int margin = 28;
+      //MSTile* tile = [[MSTile alloc] initWithTileType:MSTileTypeRail];
+      CCSprite* tile = [CCSprite spriteWithFile:@"rail0.png"];
+      int ax = (margin * 2 + tileSize * 3) * line + margin + rail * tileSize;
+      int ay = y * tileSize;
+      tile.position = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));
+      [_stage addChild:tile];
+    }
+  }
 }
 
 - (void)update:(ccTime)dt {
