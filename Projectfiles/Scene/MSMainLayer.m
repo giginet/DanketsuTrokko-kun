@@ -22,12 +22,12 @@
     _stage = [CCNode node];
     _players = [CCArray array];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
-    CCSprite* background = [CCSprite spriteWithFile:@"background.jpg"];
+    CCSprite* background = [CCSprite spriteWithFile:@"back.png"];
     
     [_stage addChild:background];
     [_cameraNode addChild:_stage];
     
-    background.position = ccp(240, 150);
+    background.position = ccp(768 * 1.25 / 2.0f, 1024 * 1.25 / 2.0f);
     int no = 0;
     for (NSString* client in peers) {
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];

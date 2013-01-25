@@ -18,6 +18,7 @@
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
   self = [super initWithServerPeer:peer andClients:peers];
   if (self) {
+    self.scale = 0.8f; // iPad版はサイズを0.8倍にして扱う
   }
   return self;
 }
