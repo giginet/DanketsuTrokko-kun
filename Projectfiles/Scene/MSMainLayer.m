@@ -29,7 +29,7 @@
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player];
-      player.position = ccp(30 + 350 * no, 100);
+      player.position = ccp(160 + 350 * no, 100);
       ++no;
     }
     [self addChild:_stage];
@@ -39,7 +39,9 @@
 }
 
 - (void)update:(ccTime)dt {
-  _scroll += SCROLL_SPEED;
+  if (_scroll < GOAL_POINT) {
+    _scroll += SCROLL_SPEED;
+  }
   _stage.position = ccpSub(_stage.position, ccp(0, SCROLL_SPEED));
 }
 
@@ -50,6 +52,12 @@
     }
   }
   return nil;
+}
+
+- (void)sendContainer:(MSContainer *)container peerID:(NSString *)peerID {
+  NSData* data = [NSKeyedArchiver archivedDataWithRootObject:container];
+  KWSessionManager* manager = [KWSessionManager sharedManager];
+  [manager sendDataToPeer:data to:peerID mode:GKSendDataReliable];
 }
 
 #pragma mark KWSessionDelegate

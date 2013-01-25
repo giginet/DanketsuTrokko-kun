@@ -17,6 +17,15 @@
 
 - (void)update:(ccTime)dt {
   [super update:dt];
+  CCDirector* director = [CCDirector sharedDirector];
+  
+  // ゴール判定
+  for (MSPlayer* player in _players) {
+    if (_scroll >= GOAL_POINT && player.position.y > director.screenCenter.y) { // ゴールになったとき、ゴールタグが付いたモノを送ります
+      MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
+      [self sendContainer:container peerID:player.peerID];
+    }
+  }
 }
 
 - (void)broadCastAllPlayers {

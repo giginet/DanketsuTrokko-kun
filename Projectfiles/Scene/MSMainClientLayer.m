@@ -63,7 +63,7 @@
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
   if ([peer isEqualToString:_angel.peerID]) { // サーバーから送られてきたとき
     MSContainer* container = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if (container.tag == MSContainerTagPlayerStates) {
+    if (container.tag == MSContainerTagPlayerStates) { // PlayerState
       NSArray* playerStates = (NSArray*)container.object;
       for (MSPlayerState* state in playerStates) {
         if (![_myPlayer.peerID isEqualToString:state.peerID]) { // 自分以外の時
@@ -71,6 +71,8 @@
           [player updateWithPlayerState:state];
         }
       }
+    } else if (container.tag == MSContainerTagPlayerGoal) { // ゴールはいりました通知を貰ったとき
+      NSLog(@"goal %d", _myPlayer.no);
     }
   }
 }

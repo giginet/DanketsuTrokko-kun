@@ -12,6 +12,8 @@
 #import "MSContainer.h"
 #import "KWSessionDelegate.h"
 
+#define GOAL_POINT 500 // ゴール
+
 typedef enum {
   MSContainerTagInitialInfo,  // サーバーから。初期プレイヤーを各クライアントに送信
   MSContainerTagPlayerState,  // クライアントから。更新された状態をサーバーに送信
@@ -35,6 +37,7 @@ typedef enum {
 }
 
 - (id)initWithServerPeer:(NSString*)peer andClients:(CCArray*)peers;
+- (void)sendContainer:(MSContainer*)container peerID:(NSString*)peerID; // peerIDにContainerを送信します
 - (MSPlayer*)playerWithPeerID:(NSString*)peerID;
 - (void)update:(ccTime)dt;
 
