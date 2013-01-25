@@ -11,6 +11,12 @@
 #import "KWSessionManager.h"
 #import "MSTile.h"
 
+typedef enum {
+  MSMainLayerZOrderBackground = 0,
+  MSMainLayerZOrderRail = 1,
+  MSMainLayerZOrderPlayer = 2
+} MSMainLayerZOrder;
+
 @implementation MSMainLayer
 
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
@@ -23,22 +29,17 @@
     _stage = [CCNode node];
     _players = [CCArray array                                                                                                                                                                                          ];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
-    CCSprite* background = [CCSprite spriteWithFile:@"back.png"];
-    
-    //[_stage addChild:background];
     [_cameraNode addChild:_stage];
     CCSprite* tile = [CCSprite spriteWithFile:@"player0.png"];
     tile.position = [CCDirector sharedDirector].screenCenter;
     [_stage addChild:tile];
     [self buildMap];
-    
-    background.position = ccp(768 * 1.25 / 2.0f, 1024 * 1.25 / 2.0f);
     int no = 0;
     for (NSString* client in peers) {
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
-      [_stage addChild:player];
-      player.position = ccp(128 + 256 * no, 200);
+      [_stage addChild:player z:MSMainLayerZOrderPlayer];
+      player.position = ccp(320 * no + 28 + 88 + 44, 200);
       ++no;
     }
     [self addChild:_cameraNode];
@@ -54,12 +55,17 @@
       int rail = x % 3;
       const int tileSize = 88;
       const int margin = 28;
-      //MSTile* tile = [[MSTile alloc] initWithTileType:MSTileTypeRail];
-      CCSprite* tile = [CCSprite spriteWithFile:@"rail0.png"];
+      MSTile* tile = [[MSTile alloc] initWithTileType:MSTileTypeRail];
       int ax = (margin * 2 + tileSize * 3) * line + margin + rail * tileSize;
       int ay = y * tileSize;
-      tile.position = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));
-      [_stage addChild:tile];
+      CGPoint pos = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));
+      tile.position = pos;
+      if (rail == 1) { // 背景の配置
+        CCSprite* background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background%d.png", line]];
+        background.position = pos;
+        [_stage addChild:background z:MSMainLayerZOrderBackground];
+      }
+      [_stage addChild:tile z:MSMainLayerZOrderRail];
     }
   }
 }
