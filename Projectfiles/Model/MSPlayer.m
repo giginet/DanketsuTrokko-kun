@@ -19,11 +19,13 @@
   if (self) {
     _peerID = peerID;
     _no = no;
+    _isRailChanging = NO;
     KWSessionManager* manager = [KWSessionManager sharedManager];
     NSString* myPeerID = manager.session.peerID;
     _isMine = [_peerID isEqualToString:myPeerID];
     self.velocity = [KWVector vector];
-    self.velocity.y = SCROLL_SPEED;
+    float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+    self.velocity.y = scrollSpeed;
     [self scheduleUpdate];
   }
   return self;
@@ -48,6 +50,21 @@
   if ([state.peerID isEqualToString:self.peerID]) {
     self.position = state.position;
   }
+}
+
+- (void)setRailChangeAction:(MSDirection)direction {
+  int railWidth = [KKConfig intForKey:@"RailWidth"];
+  const float animationDuration = 0.5f;
+  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+  float fps = [[KKStartupConfig config] maxFrameRate];
+  self.isRailChanging = YES; // レール切り替え中をONにする
+  int x = direction == MSDirectionLeft ? -railWidth : railWidth;
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed)]; // レール切り替えアニメーション
+  CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
+    MSPlayer* p = (MSPlayer*)node;
+    p.isRailChanging = NO;
+  }];
+  [self runAction:[CCSequence actionOne:move two:off]]; // アクションの実装
 }
 
 @end

@@ -43,10 +43,11 @@
 }
 
 - (void)update:(ccTime)dt {
+  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
   if (_scroll < GOAL_POINT) {
-    _scroll += SCROLL_SPEED;
+    _scroll += scrollSpeed;
   }
-  _stage.position = ccpSub(_stage.position, ccp(0, SCROLL_SPEED));
+  _stage.position = ccpSub(_stage.position, ccp(0, scrollSpeed));
 }
 
 - (MSPlayer*)playerWithPeerID:(NSString *)peerID {
@@ -61,7 +62,7 @@
 - (void)sendContainer:(MSContainer *)container peerID:(NSString *)peerID {
   NSData* data = [NSKeyedArchiver archivedDataWithRootObject:container];
   KWSessionManager* manager = [KWSessionManager sharedManager];
-  [manager sendDataToPeer:data to:peerID mode:GKSendDataReliable];
+  [manager sendDataToPeer:data to:peerID mode:GKSendDataUnreliable];
 }
 
 #pragma mark KWSessionDelegate

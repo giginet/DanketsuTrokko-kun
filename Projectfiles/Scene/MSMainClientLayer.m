@@ -35,14 +35,20 @@
   //CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
   if ([input deviceMotionAvailable]) {
-    float x = -input.deviceMotion.roll;
-    //float y = input.deviceMotion.pitch;
-    _myPlayer.velocity = [KWVector vectorWithPoint:ccp(-x, SCROLL_SPEED)];
+    float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
+    float deg = rad * 180 / M_PI; // ラジアンを度にする
+    if (!_myPlayer.isRailChanging) { // レール切り替え中じゃないとき
+      if (deg < -45) { // 左に45度以上傾いてたら
+        [_myPlayer setRailChangeAction:MSDirectionLeft];
+      } else if (deg > 45) { // 右に45度以上傾いてたら
+        [_myPlayer setRailChangeAction:MSDirectionRight];
+      }
+    }
     [self sendPlayerToServer:_myPlayer];
   }
   
   /*
-  // カメラの位置を同期
+  // カメラの位置を同期　カメラはオワコン
   float eyeX, eyeY, eyeZ;
   float centerX, centerY, centerZ;
   [_stage.camera centerX:&centerX centerY:&centerY centerZ:&centerZ];

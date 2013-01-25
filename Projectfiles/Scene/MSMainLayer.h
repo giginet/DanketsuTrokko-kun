@@ -12,7 +12,7 @@
 #import "MSContainer.h"
 #import "KWSessionDelegate.h"
 
-#define GOAL_POINT 500 // ゴール
+#define GOAL_POINT 5000 // ゴール
 
 typedef enum {
   MSContainerTagInitialInfo,  // サーバーから。初期プレイヤーを各クライアントに送信

@@ -57,15 +57,9 @@ local config =
 		AcceptsMouseMovedEvents = NO,
 		EnableFullScreen = NO,
 	},
-	
-	-- you can create your own config sections using the same mechanism and use KKConfig to access the parameters
-	-- or use the KKConfig injectPropertiesFromKeyPath method
-	HelloWorldSettings =
-	{
-		HelloWorldString = "Hello Kobold2D!",
-		HelloWorldFontName = "Marker Felt",
-		HelloWorldFontSize = 50,
-	},
+  RailWidth = 88,
+  LineWidth = 320,
+  ScrollSpeed = 5.0
 }
 
 return config
