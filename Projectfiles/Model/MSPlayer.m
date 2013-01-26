@@ -68,18 +68,20 @@
 - (void)setRailChangeAction:(MSDirection)direction {
   if ((self.railNumber == 0 && direction == MSDirectionLeft) || (self.railNumber == 2 && direction == MSDirectionRight)) return; // 左端、右端だったらはみ出さないようにする
   int railWidth = [KKConfig intForKey:@"RailWidth"];
-  const float animationDuration = 0.2f;
+  const float animationDuration = 0.6f;
   float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
   float fps = [[KKStartupConfig config] maxFrameRate];
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
   
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed * 0.6)]; // レール切り替えアニメーション
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed * 0.7)]; // レール切り替えアニメーション
+  id jump = [CCSequence actionOne:[CCEaseSineIn actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.5f]]
+                              two:[CCEaseSineOut actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.0f]]];
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
     p.isRailChanging = NO;
   }];
-  [self runAction:[CCSequence actionOne:move two:off]]; // アクションの実装
+  [self runAction:[CCSequence actionOne:[CCSpawn actionOne:move two:jump] two:off]]; // アクションの実装
 }
 
 - (void)setLineChangeAction:(MSDirection)direction {
