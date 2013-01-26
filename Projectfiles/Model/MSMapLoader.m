@@ -60,6 +60,14 @@
   return [[MSTile alloc] initWithTileType:type];
 }
 
+- (MSTile*)tileWithStagePoint:(CGPoint)point {
+  int railWidth = [KKConfig intForKey:@"RailWidth"];
+  int line = floor(floor( point.x / railWidth ) / 3);
+  int rail = (int)floor( point.x / railWidth ) % 3;
+  int y = floor(point.y / railWidth);
+  return [self tileWithLine:line rail:rail y:y];
+}
+
 - (int)height {
   return [_lines count];
 }

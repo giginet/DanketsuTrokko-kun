@@ -19,6 +19,14 @@
 
 @property(readonly) int height;
 
+/**
+ Line, Rail, yから設置されているタイルを取ります
+ */
 - (MSTile*)tileWithLine:(int)line rail:(int)rail y:(int)y;
+
+/**
+ ステージ上の座標を元に、タイルを取ります。ない場合nilが返ります
+ */
+- (MSTile*)tileWithStagePoint:(CGPoint)point;
 
 @end
