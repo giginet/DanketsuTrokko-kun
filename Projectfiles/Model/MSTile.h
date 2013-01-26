@@ -11,12 +11,13 @@
 typedef enum {
   MSTileTypeNone,
   MSTileTypeRail,
-  MSTileTypeBranch,
+  MSTileTypeBranchLeft,
+  MSTileTypeBranchRight,
   MSTileTypeRock,
   MSTileTypeCoin
 } MSTileType;
 
-@interface MSTile : CCSprite
+@interface MSTile : CCNode
 
 - (id)initWithTileType:(MSTileType)type;
 

@@ -57,6 +57,7 @@ local config =
 		AcceptsMouseMovedEvents = NO,
 		EnableFullScreen = NO,
 	},
+  Margin = 28,
   RailWidth = 88,
   LineWidth = 320,
   ScrollSpeed = 10.0

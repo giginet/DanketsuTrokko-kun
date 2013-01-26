@@ -31,9 +31,7 @@
   int count = [_lines count];
   if (y < count) {
     int x = line * 3 + rail;
-    NSLog(@"x = %d", x);
     NSString* line = (NSString*)[_lines objectAtIndex:count - y - 1];
-    NSLog(@"%@", line);
     NSString* chip = [line substringWithRange:NSMakeRange(x, 1)];
     return [self tileWithString:chip];
   }
@@ -44,6 +42,8 @@
   MSTileType type = MSTileTypeRail;
   if ([chip isEqualToString:@"."]) {
     type = MSTileTypeNone;
+  } else if ([chip isEqualToString:@"B"]) {
+    type = MSTileTypeBranchRight;
   }
   return [[MSTile alloc] initWithTileType:type];
 }

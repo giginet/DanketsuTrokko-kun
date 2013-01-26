@@ -73,6 +73,10 @@
 		07B6797816B329C4009C37D8 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6797216B329C4009C37D8 /* background1.png */; };
 		07B6797916B329C4009C37D8 /* background2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6797316B329C4009C37D8 /* background2-hd.png */; };
 		07B6797A16B329C4009C37D8 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6797416B329C4009C37D8 /* background2.png */; };
+		07B6798E16B38945009C37D8 /* branch-left-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6798A16B38945009C37D8 /* branch-left-hd.png */; };
+		07B6798F16B38945009C37D8 /* branch-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6798B16B38945009C37D8 /* branch-left.png */; };
+		07B6799016B38945009C37D8 /* branch-right-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6798C16B38945009C37D8 /* branch-right-hd.png */; };
+		07B6799116B38945009C37D8 /* branch-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6798D16B38945009C37D8 /* branch-right.png */; };
 		07F414E216B316F80040F9A3 /* stage.lua in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E116B316F80040F9A3 /* stage.lua */; };
 		07F414E416B3194F0040F9A3 /* stage.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E316B3194F0040F9A3 /* stage.txt */; };
 		07F4150316B31C860040F9A3 /* MSTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F4150216B31C860040F9A3 /* MSTile.m */; };
@@ -247,6 +251,10 @@
 		07B6797216B329C4009C37D8 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background1.png; path = Image/background1.png; sourceTree = "<group>"; };
 		07B6797316B329C4009C37D8 /* background2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "background2-hd.png"; path = "Image/background2-hd.png"; sourceTree = "<group>"; };
 		07B6797416B329C4009C37D8 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background2.png; path = Image/background2.png; sourceTree = "<group>"; };
+		07B6798A16B38945009C37D8 /* branch-left-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "branch-left-hd.png"; path = "Image/branch-left-hd.png"; sourceTree = "<group>"; };
+		07B6798B16B38945009C37D8 /* branch-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "branch-left.png"; path = "Image/branch-left.png"; sourceTree = "<group>"; };
+		07B6798C16B38945009C37D8 /* branch-right-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "branch-right-hd.png"; path = "Image/branch-right-hd.png"; sourceTree = "<group>"; };
+		07B6798D16B38945009C37D8 /* branch-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "branch-right.png"; path = "Image/branch-right.png"; sourceTree = "<group>"; };
 		07F414E116B316F80040F9A3 /* stage.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.lua; path = Map/stage.lua; sourceTree = "<group>"; };
 		07F414E316B3194F0040F9A3 /* stage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.txt; path = Map/stage.txt; sourceTree = "<group>"; };
 		07F4150116B31C850040F9A3 /* MSTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTile.h; path = Model/MSTile.h; sourceTree = "<group>"; };
@@ -569,6 +577,10 @@
 		07F414DA16B2FCFE0040F9A3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				07B6798A16B38945009C37D8 /* branch-left-hd.png */,
+				07B6798B16B38945009C37D8 /* branch-left.png */,
+				07B6798C16B38945009C37D8 /* branch-right-hd.png */,
+				07B6798D16B38945009C37D8 /* branch-right.png */,
 				07B6795F16B322DD009C37D8 /* player0-hd.png */,
 				07B6796016B322DD009C37D8 /* player0.png */,
 				07B6796116B322DD009C37D8 /* player1-hd.png */,
@@ -887,6 +899,10 @@
 				07B6797816B329C4009C37D8 /* background1.png in Resources */,
 				07B6797916B329C4009C37D8 /* background2-hd.png in Resources */,
 				07B6797A16B329C4009C37D8 /* background2.png in Resources */,
+				07B6798E16B38945009C37D8 /* branch-left-hd.png in Resources */,
+				07B6798F16B38945009C37D8 /* branch-left.png in Resources */,
+				07B6799016B38945009C37D8 /* branch-right-hd.png in Resources */,
+				07B6799116B38945009C37D8 /* branch-right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
