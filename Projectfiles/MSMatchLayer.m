@@ -146,7 +146,10 @@ NSString* kStartMessage = @"GameStart";
         [scene addChild:nextLayer];
         CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
         [[CCDirector sharedDirector] replaceScene:fade];
-        
+      
+      [_sessionManager disable];
+      [_sessionManager stopSession];
+      
     }
 }
 
