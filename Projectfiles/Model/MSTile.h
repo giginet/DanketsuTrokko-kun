@@ -17,8 +17,12 @@ typedef enum {
   MSTileTypeCoin
 } MSTileType;
 
-@interface MSTile : CCNode
+@interface MSTile : CCNode {
+    MSTileType _tileType;
+}
 
 - (id)initWithTileType:(MSTileType)type;
+
+@property(nonatomic,readonly) MSTileType tile;
 
 @end

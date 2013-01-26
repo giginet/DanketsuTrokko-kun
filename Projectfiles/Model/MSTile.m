@@ -38,4 +38,10 @@
   return self;
 }
 
+- (MSTileType) tile
+{
+    return _tileType;
+}
+
+
 @end
