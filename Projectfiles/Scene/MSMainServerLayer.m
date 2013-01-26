@@ -9,6 +9,7 @@
 #import "MSMainServerLayer.h"
 #import "KWSessionManager.h"
 #import "MSGoalLayer.h"
+#import "KKInputTouch.h"
 
 @interface MSMainServerLayer()
 - (void)broadCastAllPlayers;
@@ -65,6 +66,34 @@
     [self addChild:goal];
     _state = MSGameStateClear;
   }
+  
+  
+  [KKInput sharedInput].gestureTapEnabled = YES;
+  KKInput* input = [KKInput sharedInput];
+  if ([input anyTouchBeganThisFrame]) {
+    for( KKTouch* touch in input.touches ){
+      //      NSLog(@"touch=%@",touch );
+      //      CGPoint touchLocation = touch.location;
+      
+      CGPoint touchLocation =[_stage convertToNodeSpace:touch.location];
+      
+      MSTile* tile = [_loader tileWithStagePoint:touchLocation];
+      switch ([tile tileType]) {
+        case MSTileTypeRock:
+        {
+        NSLog(@"MSTileTypeRock" );
+        }
+          break;
+        default:
+        {
+        NSLog(@"not type" );
+        }
+          break;
+      }
+    }
+  }
+  
+  
   
 }
 

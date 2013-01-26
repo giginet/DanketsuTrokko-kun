@@ -85,6 +85,7 @@
 		07F414E216B316F80040F9A3 /* stage.lua in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E116B316F80040F9A3 /* stage.lua */; };
 		07F414E416B3194F0040F9A3 /* stage.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E316B3194F0040F9A3 /* stage.txt */; };
 		07F4150316B31C860040F9A3 /* MSTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F4150216B31C860040F9A3 /* MSTile.m */; };
+		87574C7916B3C92D00D94F09 /* DummyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87574C7816B3C92D00D94F09 /* DummyManager.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -270,6 +271,8 @@
 		07F414E316B3194F0040F9A3 /* stage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.txt; path = Map/stage.txt; sourceTree = "<group>"; };
 		07F4150116B31C850040F9A3 /* MSTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTile.h; path = Model/MSTile.h; sourceTree = "<group>"; };
 		07F4150216B31C860040F9A3 /* MSTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSTile.m; path = Model/MSTile.m; sourceTree = "<group>"; };
+		87574C7716B3C92D00D94F09 /* DummyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyManager.h; sourceTree = "<group>"; };
+		87574C7816B3C92D00D94F09 /* DummyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyManager.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 				078961B916AFA4EB0094D334 /* MSErrorLayer.m */,
 				0724733A16B3C7B20096870E /* MSGoalLayer.h */,
 				0724733B16B3C7B20096870E /* MSGoalLayer.m */,
+				87574C7716B3C92D00D94F09 /* DummyManager.h */,
+				87574C7816B3C92D00D94F09 /* DummyManager.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -993,6 +998,7 @@
 				070E639116B2EAC9004ABC0C /* MSMapLoader.m in Sources */,
 				07F4150316B31C860040F9A3 /* MSTile.m in Sources */,
 				0724733C16B3C7B30096870E /* MSGoalLayer.m in Sources */,
+				87574C7916B3C92D00D94F09 /* DummyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
