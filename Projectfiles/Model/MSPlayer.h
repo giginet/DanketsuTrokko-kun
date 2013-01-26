@@ -23,6 +23,7 @@ typedef enum {
 }
 
 @property(readonly) int no; // キャラ番号0~2
+@property(readwrite) int life; // ライフ
 @property(readwrite) int railNumber; // 現在のレール番号
 @property(readwrite) int lineNumber; // 現在のライン番号
 @property(readwrite) int coinCount; // コインの枚数
@@ -32,6 +33,7 @@ typedef enum {
 @property(readwrite) BOOL isRailChanged; // レールチェンジ後かどうか
 @property(readwrite) BOOL isCrashing;
 @property(readwrite) BOOL isGoal; // ゴールしたかどうか
+@property(readonly) BOOL isDead; // 死んでるかどうか
 @property(readonly, copy) NSString* peerID; // PeerID
 @property(readwrite, retain) KWVector* velocity; // 加速度
 

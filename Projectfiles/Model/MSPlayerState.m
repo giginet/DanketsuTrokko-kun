@@ -11,6 +11,8 @@
 @implementation MSPlayerState
 
 - (void)encodeWithCoder:(NSCoder*)coder {
+  [coder encodeInt:self.life forKey:@"life"];
+  [coder encodeFloat:self.opacity forKey:@"opacity"];
   [coder encodeFloat:self.scale forKey:@"scale"];
   [coder encodeFloat:self.rotation forKey:@"rotation"];
   [coder encodeCGPoint:self.position forKey:@"position"];
@@ -19,6 +21,8 @@
 - (id)initWithCoder:(NSCoder*)decoder {
   self = [super init];
   if (self) {
+    self.life = [decoder decodeIntegerForKey:@"life"];
+    self.opacity = [decoder decodeFloatForKey:@"opacity"];
     self.scale = [decoder decodeFloatForKey:@"scale"];
     self.rotation = [decoder decodeFloatForKey:@"rotation"];
     self.position = [decoder decodeCGPointForKey:@"position"];

@@ -32,6 +32,7 @@
     self.isRailChanged = NO;
     self.isGoal = NO;
     self.isCrashing = NO;
+    self.life = 2; // 初期体力2ハードコード
     [self scheduleUpdate];
     [self updateRailAndLineNumber];
   }
@@ -47,6 +48,8 @@
 
 - (MSPlayerState*)state {
   MSPlayerState* state = [[MSPlayerState alloc] init];
+  state.life = self.life;
+  state.opacity = self.opacity;
   state.rotation = self.rotation;
   state.scale = self.scale;
   state.position = self.position;
@@ -56,9 +59,11 @@
 
 - (void)updateWithPlayerState:(MSPlayerState *)state {
   if ([state.peerID isEqualToString:self.peerID]) {
+    self.life = state.life;
+    self.opacity = state.opacity;
     self.position = state.position;
     self.scale = state.scale;
-    self.rotation = state.rotation;            
+    self.rotation = state.rotation;
   }
 }
 
@@ -114,21 +119,26 @@
 }
 
 - (void)setCrashAnimation {
-  if (self.isCrashing) return;
-  self.velocity.y = 0;
   self.isCrashing = YES;
   id crash = [CCRepeat actionWithAction:[CCRotateBy actionWithDuration:0.5 angle:360] times:3];
+  id blink = [CCRepeat actionWithAction:[CCSequence actionOne:[CCFadeTo actionWithDuration:0.05 opacity:128]
+                                                          two:[CCFadeTo actionWithDuration:0.05 opacity:255]] times:5];
   id call = [CCCallBlockN actionWithBlock:^(CCNode *node) {
     MSPlayer* player = (MSPlayer*)node;
+    self.rotation = 0;
     player.isCrashing = NO;
     float speed = [KKConfig floatForKey:@"ScrollSpeed"];
     player.velocity.y = speed;
   }];
-  [self runAction:[CCSequence actionOne:crash two:call]];
+  [self runAction:[CCSequence actionOne:[CCSpawn actionOne:crash two:blink] two:call]];
 }
 
 - (BOOL)canMoving {
   return !self.isRailChanging && !self.isLineChanging && !self.isCrashing;
+}
+
+- (BOOL)isDead {
+  return self.life <= 0;
 }
 
 @end

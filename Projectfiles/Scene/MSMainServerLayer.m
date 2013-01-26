@@ -55,7 +55,15 @@
       [self broadcastContainerToPlayer:container];
       [self updateCoinLabel];
     } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
-      [player setCrashAnimation];
+      if (!player.isCrashing) {
+        player.life -= 1;
+        [player setCrashAnimation];
+        if (currentTile.tileType == MSTileTypeRock) {
+          // 岩の破壊 @ToDo
+        }
+        MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagDamage]; // ダメージ受けました通知
+        [self sendContainer:container peerID:player.peerID]; // ダメージ受けたキャラに送信
+      }
     }
     
     // ゴール判定
@@ -93,16 +101,16 @@
       switch ([tile tileType]) {
         case MSTileTypeRock:
         {
-//            NSLog(@"MSTileTypeRock" );
-            [tile setTileType:MSTileTypeRuinRock];
-          
-          MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
-          [self broadcastContainerToPlayer:container];
+        //            NSLog(@"MSTileTypeRock" );
+        [tile setTileType:MSTileTypeRuinRock];
+        
+        MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
+        [self broadcastContainerToPlayer:container];
         }
           break;
         case MSTileTypeRuinRock:
         {
-          [tile setTileType:MSTileTypeBrokenRock];
+        [tile setTileType:MSTileTypeBrokenRock];
         }
           break;
       }

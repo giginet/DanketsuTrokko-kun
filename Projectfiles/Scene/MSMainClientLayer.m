@@ -102,7 +102,9 @@
     } else if (container.tag == MSContainerTagScroll) { // スクロール座標を貰ったとき、同期する
       NSNumber* scroll = (NSNumber*)container.object;
       _scroll = [scroll floatValue];
-      _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]); // ついでにプレイヤーも進ませる
+      if (!_myPlayer.isDead) { // 生きているとき
+        _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]); // ついでにプレイヤーも進ませる
+      }
     } else if (container.tag == MSContainerTagPlayerGoal) { // ゴール終わりました通知を貰ったとき
       // ゴールレイヤー追加
       MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
@@ -119,13 +121,14 @@
       [self updateCoinLabel];
       MSTile* coin = [_loader tileWithStagePoint:state.position];
       [coin setTileType:MSTileTypeRail];
-    } else if (container.tag == MSContainerTagRuinRock) { // 岩野破壊
+    } else if (container.tag == MSContainerTagRuinRock) { // 岩の破壊
       CGPoint touchPoint = [(NSValue*)container.object CGPointValue];
       MSTile* tile = [_loader tileWithStagePoint:touchPoint];
       [tile setTileType:MSTileTypeRuinRock];
+    } else if (container.tag == MSContainerTagDamage) { // ダメージ受けました通知
+      _myPlayer.life -= 1;
+      [_myPlayer setCrashAnimation]; // クラッシュ
     }
-    
-    
   }
 }
 
