@@ -13,8 +13,6 @@
 #import "KWSessionDelegate.h"
 #import "MSMapLoader.h"
 
-#define GOAL_POINT 5000 // ゴール
-
 typedef enum {
   MSContainerTagInitialInfo,  // サーバーから。初期プレイヤーを各クライアントに送信
   MSContainerTagPlayerState,  // クライアントから。更新された状態をサーバーに送信

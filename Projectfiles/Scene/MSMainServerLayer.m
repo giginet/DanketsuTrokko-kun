@@ -29,12 +29,13 @@
   
   // スクロールする
   float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  if (_scroll < GOAL_POINT) {
+  float railWidth = [KKConfig floatForKey:@"RailWidth"];
+  float goalPoint = _loader.height * railWidth;
+  if (_scroll < goalPoint - 1024 * 1.25f) {
     _scroll += scrollSpeed;
   }
   
   // 現在のスクロール座標をPlayerにbroadcastする
-  NSMutableArray* array = [NSMutableArray array];
   for (MSPlayer* player in _players) {
     NSNumber* scroll = [NSNumber numberWithFloat:_scroll];
     MSContainer* container = [MSContainer containerWithObject:scroll forTag:MSContainerTagScroll];
@@ -43,7 +44,7 @@
   
   // ゴール判定
   for (MSPlayer* player in _players) {
-    if (_scroll >= GOAL_POINT && player.position.y > director.screenCenter.y) { // ゴールになったとき、ゴールタグが付いたモノを送ります
+    if (_scroll >= goalPoint && player.position.y > director.screenCenter.y) { // ゴールになったとき、ゴールタグが付いたモノを送ります
       MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
       [self sendContainer:container peerID:player.peerID];
     }

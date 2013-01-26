@@ -18,7 +18,7 @@
   self = [super init];
   if (self) {
     self.position = [decoder decodeCGPointForKey:@"position"];
-    self.peerID = (NSString*)[decoder decodeObjectOfClass:[NSString class] forKey:@"peerID"];
+    self.peerID = [decoder decodeObjectForKey:@"peerID"];
   }
   return self;
 }
