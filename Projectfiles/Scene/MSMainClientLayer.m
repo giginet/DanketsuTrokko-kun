@@ -109,8 +109,8 @@
       _myPlayer.isGoal = YES;
     } else if (container.tag == MSContainerTagScroll) { // スクロール座標を貰ったとき、同期する
       NSNumber* scroll = (NSNumber*)container.object;
-      _scroll = [scroll floatValue];
-      if (!_myPlayer.isDead) { // 生きているとき
+      if (!_myPlayer.isDead) { // プレイヤーが死んだらスクロール停止
+        _scroll = [scroll floatValue];
         _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]); // ついでにプレイヤーも進ませる
       }
     } else if (container.tag == MSContainerTagPlayerGoal) { // ゴール終わりました通知を貰ったとき
