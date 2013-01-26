@@ -43,7 +43,7 @@
     KKSwipeGestureDirection direction = [input gestureSwipeDirection];
     if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
       MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
-      if (!_myPlayer.isLineChanging && !_myPlayer.isRailChanging) {
+      if ([_myPlayer canMoving]) {
         if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
           [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
         }
@@ -55,7 +55,7 @@
   if ([input deviceMotionAvailable]) {
     float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
     float deg = rad * 180 / M_PI; // ラジアンを度にする
-    if (!_myPlayer.isRailChanging && !_myPlayer.isLineChanging) { // レール切り替え中じゃないとき
+    if ([_myPlayer canMoving]) { // レール切り替え中じゃないとき
       if (deg < -45) { // 左に45度以上傾いてたら
         if (!_myPlayer.isRailChanged) {
           [_myPlayer setRailChangeAction:MSDirectionLeft];

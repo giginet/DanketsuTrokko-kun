@@ -50,7 +50,7 @@ typedef enum {
       MSPlayer* player = [[MSPlayer alloc] initWithPeerID:client no:no];
       [_players addObject:player];
       [_stage addChild:player z:MSMainLayerZOrderPlayer];
-      player.position = ccp(320 * no + 28 + 88 + 44, 200);
+      player.position = ccp(320 * no + 28 + 88 + 44, 260);
       ++no;
     }
     [self addChild:_cameraNode];

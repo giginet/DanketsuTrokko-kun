@@ -31,6 +31,7 @@
     self.railNumber = 1; // 中央のレールから
     self.isRailChanged = NO;
     self.isGoal = NO;
+    self.isCrashing = NO;
     [self scheduleUpdate];
     [self updateRailAndLineNumber];
   }
@@ -74,7 +75,7 @@
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
   
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed * 0.7)]; // レール切り替えアニメーション
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed)]; // レール切り替えアニメーション
   id jump = [CCSequence actionOne:[CCEaseSineIn actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.5f]]
                               two:[CCEaseSineOut actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.0f]]];
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
@@ -106,6 +107,23 @@
   }];
   [self runAction:[CCSequence actionOne:move two:off]]; // アクションの実装
   
+}
+
+- (void)setCrashAnimation {
+  if (self.isCrashing) return;
+  self.velocity.y = 0;
+  id crash = [CCRepeat actionWithAction:[CCRotateBy actionWithDuration:0.5 angle:360] times:3];
+  id call = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+    MSPlayer* player = (MSPlayer*)node;
+    player.isCrashing = NO;
+    float speed = [KKConfig floatForKey:@"ScrollSpeed"];
+    player.velocity.y = speed;
+  }];
+  [self runAction:[CCSequence actionOne:crash two:call]];
+}
+
+- (BOOL)canMoving {
+  return !self.isRailChanging && !self.isLineChanging && !self.isCrashing;
 }
 
 @end

@@ -30,6 +30,7 @@ typedef enum {
 @property(readwrite) BOOL isRailChanging; // レール切り替え中かどうか
 @property(readwrite) BOOL isLineChanging; // ライン切り替え中かどうか
 @property(readwrite) BOOL isRailChanged; // レールチェンジ後かどうか
+@property(readwrite) BOOL isCrashing;
 @property(readwrite) BOOL isGoal; // ゴールしたかどうか
 @property(readonly, copy) NSString* peerID; // PeerID
 @property(readwrite, retain) KWVector* velocity; // 加速度
@@ -53,5 +54,9 @@ typedef enum {
 - (void)setRailChangeAction:(MSDirection)direction;
 
 - (void)setLineChangeAction:(MSDirection)direction;
+
+- (void)setCrashAnimation;
+
+- (BOOL)canMoving;
 
 @end
