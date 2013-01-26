@@ -15,7 +15,7 @@
 @synthesize peerID = _peerID;
 
 - (id)initWithPeerID:(NSString *)peerID no:(int)no {
-  self = [super initWithFile:@"player0.png"];
+  self = [super initWithFile:[NSString stringWithFormat:@"player%d.png", no]];
   if (self) {
     _coinCount = 0;
     _peerID = peerID;
@@ -58,7 +58,7 @@
   if ([state.peerID isEqualToString:self.peerID]) {
     self.position = state.position;
     self.scale = state.scale;
-    self.rotation = state.rotation;
+    self.rotation = state.rotation;            
   }
 }
 

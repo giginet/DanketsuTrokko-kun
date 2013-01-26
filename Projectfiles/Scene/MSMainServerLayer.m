@@ -54,7 +54,7 @@
       MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagGetCoin]; // 取った人のプレイヤーステートを送ります
       [self broadcastContainerToPlayer:container];
       [self updateCoinLabel];
-    } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRuinRock) {
+    } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
       [player setCrashAnimation];
     }
     
@@ -103,11 +103,6 @@
         case MSTileTypeRuinRock:
         {
           [tile setTileType:MSTileTypeBrokenRock];
-        }
-          break;
-        default:
-        {
-        NSLog(@"not type" );
         }
           break;
       }
