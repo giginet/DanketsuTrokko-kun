@@ -7,7 +7,12 @@
 //
 
 #import "CCLayer.h"
+#import "MSMainLayer.h"
 
 @interface MSGoalLayer : CCLayer
+
+- (id)initWithMainLayer:(MSMainLayer*)main;
+
+@property(readwrite) MSMainLayer* mainLayer;
 
 @end

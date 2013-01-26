@@ -20,6 +20,7 @@ typedef enum {
   MSContainerTagPlayerGoal,   // ゴール
   MSContainerTagScroll,       // サーバーから。現在のスクロール
   MSContainerTagGameEnd,      // サーバーから。ゲーム終わりました通知
+  MSContainerTagTitleButtonPressed, // サーバーから。タイトルボタン押されました通知
 } MSContainerTag;
 
 typedef enum {
@@ -43,6 +44,7 @@ typedef enum {
 
 - (id)initWithServerPeer:(NSString*)peer andClients:(CCArray*)peers;
 - (void)sendContainer:(MSContainer*)container peerID:(NSString*)peerID; // peerIDにContainerを送信します
+- (void)broadcastContainerToPlayer:(MSContainer*)container; // 全プレイヤーにコンテナを送信します
 - (MSPlayer*)playerWithPeerID:(NSString*)peerID;
 - (void)update:(ccTime)dt;
 - (void)buildMap;

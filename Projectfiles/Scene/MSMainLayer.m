@@ -98,6 +98,12 @@ typedef enum {
   [manager sendDataToPeer:data to:peerID mode:GKSendDataUnreliable];
 }
 
+- (void)broadcastContainerToPlayer:(MSContainer *)container {
+  for (MSPlayer* player in _players) {
+    [self sendContainer:container peerID:player.peerID];
+  }
+}
+
 #pragma mark KWSessionDelegate
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {

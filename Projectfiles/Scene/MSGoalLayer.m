@@ -8,6 +8,7 @@
 
 #import "MSGoalLayer.h"
 #import "MSTitleLayer.h"
+#import "MSContainer.h"
 
 @interface MSGoalLayer()
 - (void)onTitleButtonPressed:(id)sender;
@@ -15,9 +16,10 @@
 
 @implementation MSGoalLayer
 
-- (id)init {
+- (id)initWithMainLayer:(MSMainLayer *)main {
   self = [super init];
   if (self) {
+    self.mainLayer = main;
     CCDirector* director = [CCDirector sharedDirector];
     if (director.currentDeviceIsIPad) {
       CCLabelTTF* titleLabel = [CCLabelTTF labelWithString:@"タイトル" fontName:@"Helvetica" fontSize:24];
@@ -36,6 +38,8 @@
   CCScene* scene = [MSTitleLayer nodeWithScene];
   CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:fade];
+  MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagTitleButtonPressed];
+  [self.mainLayer broadcastContainerToPlayer:container];
 }
 
 @end

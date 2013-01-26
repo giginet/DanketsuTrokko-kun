@@ -9,6 +9,7 @@
 #import "MSMainClientLayer.h"
 #import "KWSessionManager.h"
 #import "MSGoalLayer.h"
+#import "MSTitleLayer.h"
 
 @interface MSMainClientLayer()
 - (void)sendPlayerToServer:(MSPlayer*)player;
@@ -96,9 +97,13 @@
       _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]); // ついでにプレイヤーも進ませる
     } else if (container.tag == MSContainerTagPlayerGoal) { // ゴール終わりました通知を貰ったとき
       // ゴールレイヤー追加
-      MSGoalLayer* goal = [MSGoalLayer node];
+      MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
       [self addChild:goal];
       _state = MSGameStateClear;
+    } else if (container.tag == MSContainerTagTitleButtonPressed) { // ボタンが押されたこと通知
+      CCScene* scene = [MSTitleLayer nodeWithScene];
+      CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
+      [[CCDirector sharedDirector] replaceScene:fade];
     }
   }
 }

@@ -56,13 +56,12 @@
     }
   }
   if (isAllGoal) { // 全員がゴールしてたら
-    NSLog(@"all Goal");
     MSContainer* container = [[MSContainer alloc] initWithObject:nil forTag:MSContainerTagGameEnd];
     for (MSPlayer* player in _players) {
       [self sendContainer:container peerID:player.peerID];
     }
     // ゴールレイヤー追加
-    MSGoalLayer* goal = [MSGoalLayer node];
+    MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
     [self addChild:goal];
     _state = MSGameStateClear;
   }
