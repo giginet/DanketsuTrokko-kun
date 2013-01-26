@@ -15,26 +15,52 @@
   if (self) {
     int railWidth = [KKConfig intForKey:@"RailWidth"];
     int margin = [KKConfig intForKey:@"Margin"];
+    int rockAndCoinWidth = [KKConfig intForKey:@"RockAndCoinWidth"];
+    
     if (type != MSTileTypeNone) {
       CCSprite* rail = [CCSprite spriteWithFile:@"rail0.png"];
       //rail.position = ccp(tileSize / 2.0f, tileSize / 2.0f);
       //rail.anchorPoint = ccp(0.5f, 0.5f);
       [self addChild:rail];
-      if (type == MSTileTypeBranchRight || type == MSTileTypeBranchLeft) {
-        NSString* fileName = @"";
+
         CGPoint pos = CGPointZero;
-        const int frameWidth = 10;
-        if (type == MSTileTypeBranchLeft) {
-          fileName = @"branch-left.png";
-          pos = ccp(- 2 * margin - frameWidth, railWidth);
-        } else if (type == MSTileTypeBranchRight) {
-          fileName = @"branch-right.png";
-          pos = ccp(2 * margin + frameWidth, railWidth);
+        NSString* fileName = @"";
+      
+        switch (type) {
+        case MSTileTypeRock:
+        case MSTileTypeCoin:
+        {
+            /*NSString**/ fileName = type == MSTileTypeRock ? @"coin.png" : @"iwa.png";
+          pos = ccp(rockAndCoinWidth,rockAndCoinWidth);
+          CCSprite* branch = [CCSprite spriteWithFile:fileName];
+          branch.position = pos;
+          [self addChild:branch];
         }
-        CCSprite* branch = [CCSprite spriteWithFile:fileName];
-        branch.position = pos;
-        [self addChild:branch];
-      }
+            break;
+        case MSTileTypeBranchRight:
+        case MSTileTypeBranchLeft:
+        {
+          if (type == MSTileTypeBranchRight || type == MSTileTypeBranchLeft) {
+            NSString* fileName = @"";
+            CGPoint pos = CGPointZero;
+            const int frameWidth = 10;
+            if (type == MSTileTypeBranchLeft) {
+              fileName = @"branch-left.png";
+              pos = ccp(- 2 * margin - frameWidth, railWidth);
+            } else if (type == MSTileTypeBranchRight) {
+              fileName = @"branch-right.png";
+              pos = ccp(2 * margin + frameWidth, railWidth);
+            }
+            CCSprite* branch = [CCSprite spriteWithFile:fileName];
+            branch.position = pos;
+            [self addChild:branch];
+          }
+        }
+            break;
+    default:
+            break;
+        }
+      
     }
   }
   return self;
