@@ -43,7 +43,6 @@
     KKSwipeGestureDirection direction = [input gestureSwipeDirection];
     if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
       MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
-      NSLog(@"tile = %d", tile.tileType);
       if (!_myPlayer.isLineChanging && !_myPlayer.isRailChanging) {
         if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
           [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
@@ -73,7 +72,7 @@
   
   // 移動に応じてカメラを動かしてやる
   if (_myPlayer.isLineChanging) {
-    _cameraNode.position = ccp(-_myPlayer.position.x, 0);
+    _cameraNode.position = ccp(-_myPlayer.position.x + 160, 0);
   } else {
     _cameraNode.position = ccp(_myPlayer.lineNumber * -320, 0);
   }
