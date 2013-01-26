@@ -38,6 +38,8 @@ typedef enum {
   CCNode* _cameraNode;
   MSAngel* _angel;
   MSMapLoader* _loader;
+  
+  CCLabelTTF* _scrollDebugLabel;
 }
 
 - (id)initWithServerPeer:(NSString*)peer andClients:(CCArray*)peers;

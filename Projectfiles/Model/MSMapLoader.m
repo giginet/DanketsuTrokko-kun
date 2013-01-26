@@ -9,7 +9,7 @@
 #import "MSMapLoader.h"
 
 @interface MSMapLoader()
-- (MSTile*)tileWithString:(NSString*)chip;
+- (MSTile*)tileWithString:(NSString*)chip line:(int)line rail:(int)rail;
 @end
 
 @implementation MSMapLoader
@@ -36,9 +36,9 @@
     if ([_chips objectForKey:key]) { // キャッシュにあるときはそのまま返す
       return [_chips objectForKey:key];
     } else { // ないときは新しく作る
-      NSString* line = (NSString*)[_lines objectAtIndex:count - y - 1];
-      NSString* chip = [line substringWithRange:NSMakeRange(x, 1)];
-      MSTile* tile = [self tileWithString:chip];
+      NSString* lineString = (NSString*)[_lines objectAtIndex:count - y - 1];
+      NSString* chip = [lineString substringWithRange:NSMakeRange(x, 1)];
+      MSTile* tile = [self tileWithString:chip line:line rail:rail];
       [_chips setObject:tile forKey:key];
       return tile;
     }
@@ -46,12 +46,16 @@
   return nil;
 }
 
-- (MSTile*)tileWithString:(NSString *)chip {
+- (MSTile*)tileWithString:(NSString *)chip line:(int)line rail:(int)rail {
   MSTileType type = MSTileTypeRail;
   if ([chip isEqualToString:@"."]) {
     type = MSTileTypeNone;
   } else if ([chip isEqualToString:@"B"]) {
-    type = MSTileTypeBranchRight;
+    if (rail == 2) {
+      type = MSTileTypeBranchRight;
+    } else if (rail == 0) {
+      type = MSTileTypeBranchLeft;
+    }
   }
   return [[MSTile alloc] initWithTileType:type];
 }

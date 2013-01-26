@@ -44,6 +44,10 @@ typedef enum {
     }
     [self addChild:_cameraNode];
     [self scheduleUpdate];
+    
+    _scrollDebugLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Helvetica" fontSize:16];
+    _scrollDebugLabel.position = ccp(50, 50);
+    [self addChild:_scrollDebugLabel];
   }
   return self;
 }
@@ -75,6 +79,7 @@ typedef enum {
   if (_scroll < GOAL_POINT) {
     _scroll += scrollSpeed;
   }
+  [_scrollDebugLabel setString:[NSString stringWithFormat:@"%d", (int)_scroll                                                                                                                           ]];
   _stage.position = ccp(0, -_scroll);
 
   for (MSPlayer* player in _players) {

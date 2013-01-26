@@ -89,12 +89,12 @@ RRRC#CRRR
 R#RC##R#R
 R#RC##RRR
 ##RRCRR#R
-##R#C#RRR
+##B#C#BRR
 ###CCC###
 ###C#C###
 RRRC#CRRR
-R#B#C#R#R
-RRR#C#R#R
+R###C###R
+RRB#C#B#R
 ##R###R#R
 RRR###RRR
-#########
+##B###B##
