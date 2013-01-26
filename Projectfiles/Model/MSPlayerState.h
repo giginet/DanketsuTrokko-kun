@@ -11,6 +11,8 @@
 @interface MSPlayerState : NSObject <NSCoding> {
 }
 
+@property(readwrite) float scale;
+@property(readwrite) float rotation;
 @property(readwrite) CGPoint position;
 @property(readwrite, copy) NSString* peerID;
 

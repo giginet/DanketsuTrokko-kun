@@ -47,6 +47,8 @@
 
 - (MSPlayerState*)state {
   MSPlayerState* state = [[MSPlayerState alloc] init];
+  state.rotation = self.rotation;
+  state.scale = self.scale;
   state.position = self.position;
   state.peerID = self.peerID;
   return state;
@@ -55,6 +57,8 @@
 - (void)updateWithPlayerState:(MSPlayerState *)state {
   if ([state.peerID isEqualToString:self.peerID]) {
     self.position = state.position;
+    self.scale = state.scale;
+    self.rotation = state.rotation;
   }
 }
 
@@ -112,6 +116,7 @@
 - (void)setCrashAnimation {
   if (self.isCrashing) return;
   self.velocity.y = 0;
+  self.isCrashing = YES;
   id crash = [CCRepeat actionWithAction:[CCRotateBy actionWithDuration:0.5 angle:360] times:3];
   id call = [CCCallBlockN actionWithBlock:^(CCNode *node) {
     MSPlayer* player = (MSPlayer*)node;
