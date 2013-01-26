@@ -142,6 +142,8 @@
                                             [CCDelayTime actionWithDuration:1.0f]
                                             two:[CCRemoveFromParentAction action]] target:_startLabel paused:NO];
       _state = MSGameStateMain;
+    } else if (container.tag == MSContainerTagGameOver) { // ゲームオーバー通知
+      [self gotoGameOverScene];
     }
   }
 }

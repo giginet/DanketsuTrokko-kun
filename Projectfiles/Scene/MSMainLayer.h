@@ -25,6 +25,7 @@ typedef enum {
   MSContainerTagRuinRock, // サーバから、クライアントへ岩の破壊通知
   MSContainerTagDamage,  // サーバーから、ダメージ受けました通知
   MSContainerTagGameStart,   // サーバーから、ゲームスタートしました通知を送信します
+  MSContainerTagGameOver,    // サーバーから、ゲームオーバー通知
 } MSContainerTag;
 
 typedef enum {
@@ -57,5 +58,6 @@ typedef enum {
 - (void)buildMap;
 - (void)updateCoinLabel;
 - (void)buildReadyAnimation;
+- (void)gotoGameOverScene;
 
 @end

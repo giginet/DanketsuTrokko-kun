@@ -11,6 +11,7 @@
 #import "KWSessionManager.h"
 #import "MSTile.h"
 #import "DummyManager.h"
+#import "MSGameOverLayer.h"
 
 typedef enum {
   MSMainLayerZOrderBackground = 0,
@@ -185,6 +186,12 @@ typedef enum {
     return [_angel.peerID isEqualToString:manager.session.peerID];
   }
   return NO;
+}
+
+- (void)gotoGameOverScene {
+  CCScene* scene = [MSGameOverLayer nodeWithScene];
+  CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:1.0f scene:scene];
+  [[CCDirector sharedDirector] replaceScene:fade];
 }
 
 #pragma mark KWSessionDelegate

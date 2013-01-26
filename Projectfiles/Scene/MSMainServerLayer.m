@@ -48,6 +48,7 @@
     }
     
     BOOL isAllGoal = YES;
+    BOOL isAllDead = YES;
     for (MSPlayer* player in _players) {
       // コイン取りました判定
       MSTile* currentTile = [_loader tileWithStagePoint:player.position];
@@ -68,7 +69,6 @@
           [self sendContainer:container peerID:player.peerID]; // ダメージ受けたキャラに送信
         }
       }
-      
       // ゴール判定
       if (player.position.y - _scroll > director.screenSize.height) { // ゴールになったとき、ゴールタグが付いたモノを送ります
         MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
@@ -78,19 +78,10 @@
       if (!player.isGoal) {
         isAllGoal = NO;
       }
-    }
-    if (isAllGoal) { // 全員がゴールしてたら
-      MSContainer* container = [[MSContainer alloc] initWithObject:nil forTag:MSContainerTagGameEnd];
-      for (MSPlayer* player in _players) {
-        [self sendContainer:container peerID:player.peerID];
+      if (!player.isDead) {
+        isAllDead = NO;
       }
-      // ゴールレイヤー追加
-      MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
-      [self addChild:goal];
-      _state = MSGameStateClear;
     }
-    
-    
     [KKInput sharedInput].gestureTapEnabled = YES;
     KKInput* input = [KKInput sharedInput];
     if ([input anyTouchBeganThisFrame]) {
@@ -119,6 +110,25 @@
         }
       }
     }
+    if (isAllGoal) { // 全員がゴールしてたら
+      MSContainer* container = [[MSContainer alloc] initWithObject:nil forTag:MSContainerTagGameEnd];
+      for (MSPlayer* player in _players) {
+        [self sendContainer:container peerID:player.peerID];
+      }
+      // ゴールレイヤー追加
+      MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
+      [self addChild:goal];
+      _state = MSGameStateClear;
+    } else if (isAllDead) { // 全員死んだとき
+      _state = MSGameStateGameOver;
+      __block MSMainLayer* blockSelf = self;
+      [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:1.0f]
+                                        two:[CCCallBlock actionWithBlock:^{
+        MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagGameOver];
+        [blockSelf broadcastContainerToPlayer:container];
+        [blockSelf gotoGameOverScene];
+      }]]];
+    }
     }
       break;
       
@@ -145,7 +155,6 @@
     if (player) {
       MSPlayerState* playerState = (MSPlayerState*)container.object;
       [player updateWithPlayerState:playerState];
-      
       [self broadCastAllPlayers];
     }
   }

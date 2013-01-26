@@ -83,6 +83,11 @@
 		07B6799016B38945009C37D8 /* branch-right-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6798C16B38945009C37D8 /* branch-right-hd.png */; };
 		07B6799116B38945009C37D8 /* branch-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6798D16B38945009C37D8 /* branch-right.png */; };
 		07BD81AF16B41B83006D1D1E /* stage1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81AE16B41B83006D1D1E /* stage1.txt */; };
+		07BD81B216B4972D006D1D1E /* MSGameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BD81B116B4972D006D1D1E /* MSGameOverLayer.m */; };
+		07BD81B716B49FB7006D1D1E /* gameover-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B316B49FB7006D1D1E /* gameover-hd.png */; };
+		07BD81B816B49FB7006D1D1E /* gameover-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B416B49FB7006D1D1E /* gameover-ipad.png */; };
+		07BD81B916B49FB7006D1D1E /* gameover-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B516B49FB7006D1D1E /* gameover-ipadhd.png */; };
+		07BD81BA16B49FB7006D1D1E /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B616B49FB7006D1D1E /* gameover.png */; };
 		07F414E216B316F80040F9A3 /* stage.lua in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E116B316F80040F9A3 /* stage.lua */; };
 		07F414E416B3194F0040F9A3 /* stage.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E316B3194F0040F9A3 /* stage.txt */; };
 		07F4150316B31C860040F9A3 /* MSTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F4150216B31C860040F9A3 /* MSTile.m */; };
@@ -269,6 +274,12 @@
 		07B6798C16B38945009C37D8 /* branch-right-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "branch-right-hd.png"; path = "Image/branch-right-hd.png"; sourceTree = "<group>"; };
 		07B6798D16B38945009C37D8 /* branch-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "branch-right.png"; path = "Image/branch-right.png"; sourceTree = "<group>"; };
 		07BD81AE16B41B83006D1D1E /* stage1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage1.txt; path = Map/stage1.txt; sourceTree = "<group>"; };
+		07BD81B016B4972C006D1D1E /* MSGameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSGameOverLayer.h; path = Scene/MSGameOverLayer.h; sourceTree = "<group>"; };
+		07BD81B116B4972D006D1D1E /* MSGameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSGameOverLayer.m; path = Scene/MSGameOverLayer.m; sourceTree = "<group>"; };
+		07BD81B316B49FB7006D1D1E /* gameover-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gameover-hd.png"; path = "Image/gameover-hd.png"; sourceTree = "<group>"; };
+		07BD81B416B49FB7006D1D1E /* gameover-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gameover-ipad.png"; path = "Image/gameover-ipad.png"; sourceTree = "<group>"; };
+		07BD81B516B49FB7006D1D1E /* gameover-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gameover-ipadhd.png"; path = "Image/gameover-ipadhd.png"; sourceTree = "<group>"; };
+		07BD81B616B49FB7006D1D1E /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameover.png; path = Image/gameover.png; sourceTree = "<group>"; };
 		07F414E116B316F80040F9A3 /* stage.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.lua; path = Map/stage.lua; sourceTree = "<group>"; };
 		07F414E316B3194F0040F9A3 /* stage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.txt; path = Map/stage.txt; sourceTree = "<group>"; };
 		07F4150116B31C850040F9A3 /* MSTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTile.h; path = Model/MSTile.h; sourceTree = "<group>"; };
@@ -561,6 +572,8 @@
 				0724733B16B3C7B20096870E /* MSGoalLayer.m */,
 				87574C7716B3C92D00D94F09 /* DummyManager.h */,
 				87574C7816B3C92D00D94F09 /* DummyManager.m */,
+				07BD81B016B4972C006D1D1E /* MSGameOverLayer.h */,
+				07BD81B116B4972D006D1D1E /* MSGameOverLayer.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -597,6 +610,10 @@
 		07F414DA16B2FCFE0040F9A3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				07BD81B316B49FB7006D1D1E /* gameover-hd.png */,
+				07BD81B416B49FB7006D1D1E /* gameover-ipad.png */,
+				07BD81B516B49FB7006D1D1E /* gameover-ipadhd.png */,
+				07BD81B616B49FB7006D1D1E /* gameover.png */,
 				0724733116B3B65F0096870E /* coin-hd.png */,
 				0724733216B3B65F0096870E /* coin.png */,
 				0724733316B3B65F0096870E /* rock-hd.png */,
@@ -933,6 +950,10 @@
 				0724733716B3B65F0096870E /* rock-hd.png in Resources */,
 				0724733816B3B65F0096870E /* rock.png in Resources */,
 				07BD81AF16B41B83006D1D1E /* stage1.txt in Resources */,
+				07BD81B716B49FB7006D1D1E /* gameover-hd.png in Resources */,
+				07BD81B816B49FB7006D1D1E /* gameover-ipad.png in Resources */,
+				07BD81B916B49FB7006D1D1E /* gameover-ipadhd.png in Resources */,
+				07BD81BA16B49FB7006D1D1E /* gameover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1024,7 @@
 				07F4150316B31C860040F9A3 /* MSTile.m in Sources */,
 				0724733C16B3C7B30096870E /* MSGoalLayer.m in Sources */,
 				87574C7916B3C92D00D94F09 /* DummyManager.m in Sources */,
+				07BD81B216B4972D006D1D1E /* MSGameOverLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
