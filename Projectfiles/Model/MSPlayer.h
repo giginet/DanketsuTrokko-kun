@@ -27,6 +27,7 @@ typedef enum {
 @property(readwrite) int lineNumber; // 現在のライン番号
 @property(readonly) BOOL isMine; // 自分の操っているキャラかどうか
 @property(readwrite) BOOL isRailChanging; // レール切り替え中かどうか
+@property(readwrite) BOOL isLineChanging; // ライン切り替え中かどうか
 @property(readonly, copy) NSString* peerID; // PeerID
 @property(readwrite, retain) KWVector* velocity; // 加速度
 
@@ -47,5 +48,7 @@ typedef enum {
  @param MSDirection どちらのラインに移動するか
  */
 - (void)setRailChangeAction:(MSDirection)direction;
+
+- (void)setLineChangeAction:(MSDirection)direction;
 
 @end

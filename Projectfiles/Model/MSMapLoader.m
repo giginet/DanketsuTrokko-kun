@@ -23,6 +23,7 @@
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
     _lines = [content componentsSeparatedByString:@"\n"];
+    _chips = [NSMutableDictionary dictionary];
   }
   return self;
 }
@@ -31,9 +32,16 @@
   int count = [_lines count];
   if (y < count) {
     int x = line * 3 + rail;
-    NSString* line = (NSString*)[_lines objectAtIndex:count - y - 1];
-    NSString* chip = [line substringWithRange:NSMakeRange(x, 1)];
-    return [self tileWithString:chip];
+    NSValue* key = [NSValue valueWithCGPoint:CGPointMake(x, y)];
+    if ([_chips objectForKey:key]) { // キャッシュにあるときはそのまま返す
+      return [_chips objectForKey:key];
+    } else { // ないときは新しく作る
+      NSString* line = (NSString*)[_lines objectAtIndex:count - y - 1];
+      NSString* chip = [line substringWithRange:NSMakeRange(x, 1)];
+      MSTile* tile = [self tileWithString:chip];
+      [_chips setObject:tile forKey:key];
+      return tile;
+    }
   }
   return nil;
 }

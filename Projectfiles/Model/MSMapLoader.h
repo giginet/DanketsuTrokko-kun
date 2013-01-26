@@ -14,6 +14,7 @@
  */
 @interface MSMapLoader : NSObject {
   NSArray* _lines;
+  NSMutableDictionary* _chips;
 }
 
 @property(readonly) int height;

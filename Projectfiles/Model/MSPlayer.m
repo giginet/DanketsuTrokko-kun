@@ -19,7 +19,8 @@
   if (self) {
     _peerID = peerID;
     _no = no;
-    _isRailChanging = NO;
+    self.isRailChanging = NO;
+    self.isLineChanging = NO;
     KWSessionManager* manager = [KWSessionManager sharedManager];
     NSString* myPeerID = manager.session.peerID;
     _isMine = [_peerID isEqualToString:myPeerID];
@@ -75,6 +76,29 @@
     p.isRailChanging = NO;
   }];
   [self runAction:[CCSequence actionOne:move two:off]]; // アクションの実装
+}
+
+- (void)setLineChangeAction:(MSDirection)direction {
+  BOOL canRight = self.lineNumber != 2 && self.railNumber == 2;
+  BOOL canLeft = self.lineNumber != 0 && self.railNumber == 0;
+  if ( (direction == MSDirectionRight && !canRight) || (direction == MSDirectionLeft && !canLeft) ) return;
+  int railWidth = [KKConfig intForKey:@"RailWidth"];
+  int margin = [KKConfig intForKey:@"Margin"];
+  const float animationDuration = 0.5f;
+  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+  float fps = [[KKStartupConfig config] maxFrameRate];
+  
+  self.isLineChanging = YES; // ライン切り替え中をONにする
+  int distance = margin * 2 + railWidth;
+  int x = direction == MSDirectionLeft ? -distance : distance;
+  
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, railWidth * 2)]; // レール切り替えアニメーション
+  CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、ライン切り替え中フラグをOFFに
+    MSPlayer* p = (MSPlayer*)node;
+    p.isLineChanging = NO;
+  }];
+  [self runAction:[CCSequence actionOne:move two:off]]; // アクションの実装
+  
 }
 
 @end

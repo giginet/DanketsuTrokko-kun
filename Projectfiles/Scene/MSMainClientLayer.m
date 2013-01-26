@@ -26,6 +26,7 @@
     }
     _cameraNode.position = ccp(-256 * _myPlayer.no, 0);
     [KKInput sharedInput].deviceMotionActive = YES;
+    [KKInput sharedInput].gestureSwipeEnabled = YES;
   }
   return self;
 }
@@ -34,6 +35,15 @@
   [super update:dt];
   //CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
+  if ([input gesturesAvailable]) {
+    KKSwipeGestureDirection direction = [input gestureSwipeDirection];
+    if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
+      if (!_myPlayer.isLineChanging) {
+        [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
+      }
+    }
+  }
+  
   if ([input deviceMotionAvailable]) {
     float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
     float deg = rad * 180 / M_PI; // ラジアンを度にする
