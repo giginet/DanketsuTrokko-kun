@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MSTile.h"
 
 /**
  Mapを読み込むクラスです
@@ -14,5 +15,9 @@
 @interface MSMapLoader : NSObject {
   NSArray* _lines;
 }
+
+@property(readonly) int height;
+
+- (MSTile*)tileWithLine:(int)line rail:(int)rail y:(int)y;
 
 @end

@@ -11,6 +11,7 @@
 #import "MSPlayer.h"
 #import "MSContainer.h"
 #import "KWSessionDelegate.h"
+#import "MSMapLoader.h"
 
 #define GOAL_POINT 5000 // ゴール
 
@@ -36,6 +37,7 @@ typedef enum {
   CCNode* _stage;
   CCNode* _cameraNode;
   MSAngel* _angel;
+  MSMapLoader* _loader;
 }
 
 - (id)initWithServerPeer:(NSString*)peer andClients:(CCArray*)peers;

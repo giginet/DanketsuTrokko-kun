@@ -24,9 +24,6 @@ NSString* kStartMessage = @"GameStart";
 - (id)initWithServerOrClient:(MSSessionType)type {
   self = [super init];
   if (self) {
-    
-    MSMapLoader* loader = [[MSMapLoader alloc] init];
-    
     CCDirector* director = [CCDirector sharedDirector];
     _type = type;
     _peers = [NSMutableDictionary dictionary];

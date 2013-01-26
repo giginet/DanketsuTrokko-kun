@@ -23,6 +23,9 @@ typedef enum {
   self = [super init];
   if (self) {
     _state = MSGameStateReady;
+    
+    _loader = [[MSMapLoader alloc] init];
+    
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
     _cameraNode = [CCNode node];
@@ -30,9 +33,6 @@ typedef enum {
     _players = [CCArray array                                                                                                                                                                                          ];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
     [_cameraNode addChild:_stage];
-    CCSprite* tile = [CCSprite spriteWithFile:@"player0.png"];
-    tile.position = [CCDirector sharedDirector].screenCenter;
-    [_stage addChild:tile];
     [self buildMap];
     int no = 0;
     for (NSString* client in peers) {
@@ -49,13 +49,13 @@ typedef enum {
 }
 
 - (void)buildMap {
-  for (int y = 0; y < 100; ++y) {
+  for (int y = 0; y < [_loader height]; ++y) {
     for (int x = 0; x < 9; ++x) {
       int line = floor(x / 3);
       int rail = x % 3;
       const int tileSize = 88;
       const int margin = 28;
-      MSTile* tile = [[MSTile alloc] initWithTileType:MSTileTypeRail];
+      MSTile* tile = [_loader tileWithLine:line rail:rail y:y];
       int ax = (margin * 2 + tileSize * 3) * line + margin + rail * tileSize;
       int ay = y * tileSize;
       CGPoint pos = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));

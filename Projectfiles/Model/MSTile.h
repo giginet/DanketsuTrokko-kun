@@ -11,7 +11,9 @@
 typedef enum {
   MSTileTypeNone,
   MSTileTypeRail,
-  MSTileTypeBranch
+  MSTileTypeBranch,
+  MSTileTypeRock,
+  MSTileTypeCoin
 } MSTileType;
 
 @interface MSTile : CCSprite
