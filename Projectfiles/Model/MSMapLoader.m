@@ -51,6 +51,7 @@
   if( _itemDictionary == nil ){
     _itemDictionary = @{
     @".":[NSNumber numberWithInt:MSTileTypeNone]
+    ,@"#":[NSNumber numberWithBool:MSTileTypeRail]
     ,@"B":[NSNumber numberWithInt:MSTileTypeBranch]
     ,@"R":[NSNumber numberWithInt:MSTileTypeRock]
     ,@"C":[NSNumber numberWithInt:MSTileTypeCoin]

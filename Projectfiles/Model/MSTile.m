@@ -19,20 +19,15 @@
     
     if (type != MSTileTypeNone) {
       CCSprite* rail = [CCSprite spriteWithFile:@"rail0.png"];
-      //rail.position = ccp(tileSize / 2.0f, tileSize / 2.0f);
-      //rail.anchorPoint = ccp(0.5f, 0.5f);
       [self addChild:rail];
       
       switch (type) {
         case MSTileTypeRock:
         case MSTileTypeCoin:
         {
-        CGPoint pos = CGPointZero;
-        NSString* fileName = type == MSTileTypeRock ? @"coin.png" : @"rock.png";
-        pos = ccp(rockAndCoinWidth,rockAndCoinWidth);
-        CCSprite* branch = [CCSprite spriteWithFile:fileName];
-        branch.position = ccp(rockAndCoinWidth, rockAndCoinWidth);
-        [self addChild:branch];
+        NSString* fileName = type == MSTileTypeRock ? @"rock.png" : @"coin.png";
+        CCSprite* object = [CCSprite spriteWithFile:fileName];
+        [self addChild:object];
         }
           break;
         case MSTileTypeBranchRight:
