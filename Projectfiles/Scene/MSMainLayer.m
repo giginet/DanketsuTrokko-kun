@@ -32,11 +32,11 @@ typedef enum {
       KWSessionManager* manager = [KWSessionManager sharedManager];
       manager.delegate = self;
     }else{
-        
-        
+      
+      
     }
     
-      
+    
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
     _cameraNode = [CCNode node];
@@ -68,6 +68,11 @@ typedef enum {
   return self;
 }
 
+- (void)onEnterTransitionDidFinish {
+  [super onEnterTransitionDidFinish];
+  [self buildReadyAnimation];
+}
+
 - (void)buildMap {
   for (int y = 0; y < [_loader height]; ++y) {
     for (int x = 0; x < 9; ++x) {
@@ -93,7 +98,7 @@ typedef enum {
 - (void)update:(ccTime)dt {
   [_scrollDebugLabel setString:[NSString stringWithFormat:@"%d", (int)_scroll                                                                                                                           ]];
   _stage.position = ccp(0, -_scroll); // スクロールを指定
-
+  
   for (MSPlayer* player in _players) {
     [player updateRailAndLineNumber]; // レール番号、ライン番号を更新
   }
@@ -126,6 +131,60 @@ typedef enum {
     sum += player.coinCount;
   }
   [_coinLabel setString:[NSString stringWithFormat:@"%d/%d", sum, _loader.coinCount]];
+}
+
+- (void)buildReadyAnimation {
+  CCDirector* director = [CCDirector sharedDirector];
+  _startLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", 3] fontName:@"Helvetica" fontSize:72];
+  _startLabel.scale = 0.0f;
+  _startLabel.position = director.screenCenter;
+  // 共通アクションを定義
+  NSMutableArray* actions = [NSMutableArray arrayWithObjects:
+                      [CCScaleTo actionWithDuration:0.1f scale:1.0],
+                      [CCDelayTime actionWithDuration:0.9f],
+                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+    CCLabelTTF* label = (CCLabelTTF*)node;
+    [label setString:@"2"];
+    label.scale = 0.0;
+  }],
+                      [CCScaleTo actionWithDuration:0.1f scale:1.0],
+                      [CCDelayTime actionWithDuration:0.9f],
+                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+    CCLabelTTF* label = (CCLabelTTF*)node;
+    [label setString:@"1"];
+    label.scale = 0.0;
+  }],
+                      [CCScaleTo actionWithDuration:0.1f scale:1.0],
+                      [CCDelayTime actionWithDuration:0.9f],
+                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+    CCLabelTTF* label = (CCLabelTTF*)node;
+    [label setString:@"Go!"];
+    label.scale = 0.0;
+  }],
+                      [CCScaleTo actionWithDuration:0.1f scale:1.0f],
+                             nil];
+  // サーバー固有アクションの追加
+  if (self.isServer) {
+    __block MSMainLayer* blockSelf = self;
+    [actions addObject:[CCCallBlock actionWithBlock:^{
+      // ゲーム開始時処理
+      MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagGameStart];
+      [blockSelf broadcastContainerToPlayer:container];
+      _state = MSGameStateMain;
+    }]];
+    [actions addObject:[CCDelayTime actionWithDuration:1.0f]];
+    [actions addObject:[CCRemoveFromParentAction action]];
+  }
+  [_startLabel runAction:[CCSequence actionWithArray:actions]];
+  [self addChild:_startLabel];
+}
+
+- (BOOL)isServer {
+  if (_angel) {
+    KWSessionManager* manager = [KWSessionManager sharedManager];
+    return [_angel.peerID isEqualToString:manager.session.peerID];
+  }
+  return NO;
 }
 
 #pragma mark KWSessionDelegate

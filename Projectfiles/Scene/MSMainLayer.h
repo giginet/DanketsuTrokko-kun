@@ -24,6 +24,7 @@ typedef enum {
   MSContainerTagGetCoin, // サーバーから。コイン取りました通知
   MSContainerTagRuinRock, // サーバから、クライアントへ岩の破壊通知
   MSContainerTagDamage,  // サーバーから、ダメージ受けました通知
+  MSContainerTagGameStart,   // サーバーから、ゲームスタートしました通知を送信します
 } MSContainerTag;
 
 typedef enum {
@@ -37,6 +38,7 @@ typedef enum {
   float _scroll;
   MSGameState _state;
   CCLabelTTF* _coinLabel;
+  CCNode* _startLabel;
   CCArray* _players;
   CCNode* _stage;
   CCNode* _cameraNode;
@@ -45,6 +47,8 @@ typedef enum {
   CCLabelTTF* _scrollDebugLabel;
 }
 
+@property(readonly) BOOL isServer;
+
 - (id)initWithServerPeer:(NSString*)peer andClients:(CCArray*)peers;
 - (void)sendContainer:(MSContainer*)container peerID:(NSString*)peerID; // peerIDにContainerを送信します
 - (void)broadcastContainerToPlayer:(MSContainer*)container; // 全プレイヤーにコンテナを送信します
@@ -52,5 +56,6 @@ typedef enum {
 - (void)update:(ccTime)dt;
 - (void)buildMap;
 - (void)updateCoinLabel;
+- (void)buildReadyAnimation;
 
 @end

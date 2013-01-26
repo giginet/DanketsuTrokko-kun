@@ -38,46 +38,54 @@
   //CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
   
-  // ライン変更
-  if ([input gesturesAvailable]) {
-    KKSwipeGestureDirection direction = [input gestureSwipeDirection];
-    if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
-      MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
-      if ([_myPlayer canMoving]) {
-        if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
-          [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
+  switch (_state) {
+    case MSGameStateMain:
+    {
+    // ライン変更
+    if ([input gesturesAvailable]) {
+      KKSwipeGestureDirection direction = [input gestureSwipeDirection];
+      if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
+        MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
+        if ([_myPlayer canMoving]) {
+          if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
+            [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
+          }
         }
       }
     }
-  }
-  
-  // レール変更
-  if ([input deviceMotionAvailable]) {
-    float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
-    float deg = rad * 180 / M_PI; // ラジアンを度にする
-    if ([_myPlayer canMoving]) { // レール切り替え中じゃないとき
-      if (deg < -45) { // 左に45度以上傾いてたら
-        if (!_myPlayer.isRailChanged) {
-          [_myPlayer setRailChangeAction:MSDirectionLeft];
+    
+    // レール変更
+    if ([input deviceMotionAvailable]) {
+      float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
+      float deg = rad * 180 / M_PI; // ラジアンを度にする
+      if ([_myPlayer canMoving]) { // レール切り替え中じゃないとき
+        if (deg < -45) { // 左に45度以上傾いてたら
+          if (!_myPlayer.isRailChanged) {
+            [_myPlayer setRailChangeAction:MSDirectionLeft];
+          }
+        } else if (deg > 45) { // 右に45度以上傾いてたら
+          if (!_myPlayer.isRailChanged) {
+            [_myPlayer setRailChangeAction:MSDirectionRight];
+          }
+        } else {
+          _myPlayer.isRailChanged = NO;
         }
-      } else if (deg > 45) { // 右に45度以上傾いてたら
-        if (!_myPlayer.isRailChanged) {
-          [_myPlayer setRailChangeAction:MSDirectionRight];
-        }
-      } else {
-        _myPlayer.isRailChanged = NO;
       }
     }
+    
+    // 移動に応じてカメラを動かしてやる
+    if (_myPlayer.isLineChanging) {
+      _cameraNode.position = ccp(-_myPlayer.position.x + 160, 0);
+    } else {
+      _cameraNode.position = ccp(_myPlayer.lineNumber * -320, 0);
+    }
+    
+    [self sendPlayerToServer:_myPlayer];
+    }
+      break;
+    default:
+      break;
   }
-  
-  // 移動に応じてカメラを動かしてやる
-  if (_myPlayer.isLineChanging) {
-    _cameraNode.position = ccp(-_myPlayer.position.x + 160, 0);
-  } else {
-    _cameraNode.position = ccp(_myPlayer.lineNumber * -320, 0);
-  }
-  
-  [self sendPlayerToServer:_myPlayer];
 }
 
 - (void)sendPlayerToServer:(MSPlayer *)player {
@@ -128,6 +136,12 @@
     } else if (container.tag == MSContainerTagDamage) { // ダメージ受けました通知
       _myPlayer.life -= 1;
       [_myPlayer setCrashAnimation]; // クラッシュ
+    } else if (container.tag == MSContainerTagGameStart) { // ゲーム始まりました通知
+      [_startLabel.actionManager addAction:[CCSequence
+                                            actionOne:
+                                            [CCDelayTime actionWithDuration:1.0f]
+                                            two:[CCRemoveFromParentAction action]] target:_startLabel paused:NO];
+      _state = MSGameStateMain;
     }
   }
 }

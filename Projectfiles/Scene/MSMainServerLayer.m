@@ -29,96 +29,102 @@
   [super update:dt];
   CCDirector* director = [CCDirector sharedDirector];
   
-  // スクロールする
-  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  float railWidth = [KKConfig floatForKey:@"RailWidth"];
-  float goalPoint = _loader.height * railWidth;
-  if (_scroll < goalPoint - 1024 * 1.25f) {
-    _scroll += scrollSpeed;
-  }
-  
-  // 現在のスクロール座標をPlayerにbroadcastする
-  for (MSPlayer* player in _players) {
-    NSNumber* scroll = [NSNumber numberWithFloat:_scroll];
-    MSContainer* container = [MSContainer containerWithObject:scroll forTag:MSContainerTagScroll];
-    [self sendContainer:container peerID:player.peerID];
-  }
-  
-  BOOL isAllGoal = YES;
-  for (MSPlayer* player in _players) {
-    // コイン取りました判定
-    MSTile* currentTile = [_loader tileWithStagePoint:player.position];
-    if (currentTile.tileType == MSTileTypeCoin) { // コイン取った！
-      [currentTile setTileType:MSTileTypeRail]; // コイン消す
-      player.coinCount += 1; // コイン追加します
-      MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagGetCoin]; // 取った人のプレイヤーステートを送ります
-      [self broadcastContainerToPlayer:container];
-      [self updateCoinLabel];
-    } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
-      if (!player.isCrashing) {
-        player.life -= 1;
-        [player setCrashAnimation];
-        if (currentTile.tileType == MSTileTypeRock) {
-          // 岩の破壊 @ToDo
-        }
-        MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagDamage]; // ダメージ受けました通知
-        [self sendContainer:container peerID:player.peerID]; // ダメージ受けたキャラに送信
-      }
+  switch (_state) {
+    case MSGameStateMain:
+    {
+    // スクロールする
+    float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+    float railWidth = [KKConfig floatForKey:@"RailWidth"];
+    float goalPoint = _loader.height * railWidth;
+    if (_scroll < goalPoint - 1024 * 1.25f) {
+      _scroll += scrollSpeed;
     }
     
-    // ゴール判定
-    if (player.position.y - _scroll > director.screenSize.height) { // ゴールになったとき、ゴールタグが付いたモノを送ります
-      MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
-      [self sendContainer:container peerID:player.peerID];
-      player.isGoal = YES;
-    }
-    if (!player.isGoal) {
-      isAllGoal = NO;
-    }
-  }
-  if (isAllGoal) { // 全員がゴールしてたら
-    MSContainer* container = [[MSContainer alloc] initWithObject:nil forTag:MSContainerTagGameEnd];
+    // 現在のスクロール座標をPlayerにbroadcastする
     for (MSPlayer* player in _players) {
+      NSNumber* scroll = [NSNumber numberWithFloat:_scroll];
+      MSContainer* container = [MSContainer containerWithObject:scroll forTag:MSContainerTagScroll];
       [self sendContainer:container peerID:player.peerID];
     }
-    // ゴールレイヤー追加
-    MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
-    [self addChild:goal];
-    _state = MSGameStateClear;
-  }
-  
-  
-  [KKInput sharedInput].gestureTapEnabled = YES;
-  KKInput* input = [KKInput sharedInput];
-  if ([input anyTouchBeganThisFrame]) {
-    for( KKTouch* touch in input.touches ){
-      //      NSLog(@"touch=%@",touch );
-      //      CGPoint touchLocation = touch.location;
-      
-      CGPoint touchLocation =[_stage convertToNodeSpace:touch.location];
-      
-      MSTile* tile = [_loader tileWithStagePoint:touchLocation];
-      switch ([tile tileType]) {
-        case MSTileTypeRock:
-        {
-        //            NSLog(@"MSTileTypeRock" );
-        [tile setTileType:MSTileTypeRuinRock];
-        
-        MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
+    
+    BOOL isAllGoal = YES;
+    for (MSPlayer* player in _players) {
+      // コイン取りました判定
+      MSTile* currentTile = [_loader tileWithStagePoint:player.position];
+      if (currentTile.tileType == MSTileTypeCoin) { // コイン取った！
+        [currentTile setTileType:MSTileTypeRail]; // コイン消す
+        player.coinCount += 1; // コイン追加します
+        MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagGetCoin]; // 取った人のプレイヤーステートを送ります
         [self broadcastContainerToPlayer:container];
+        [self updateCoinLabel];
+      } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
+        if (!player.isCrashing) {
+          player.life -= 1;
+          [player setCrashAnimation];
+          if (currentTile.tileType == MSTileTypeRock) {
+            // 岩の破壊 @ToDo
+          }
+          MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagDamage]; // ダメージ受けました通知
+          [self sendContainer:container peerID:player.peerID]; // ダメージ受けたキャラに送信
         }
-          break;
-        case MSTileTypeRuinRock:
-        {
-        [tile setTileType:MSTileTypeBrokenRock];
-        }
-          break;
+      }
+      
+      // ゴール判定
+      if (player.position.y - _scroll > director.screenSize.height) { // ゴールになったとき、ゴールタグが付いたモノを送ります
+        MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
+        [self sendContainer:container peerID:player.peerID];
+        player.isGoal = YES;
+      }
+      if (!player.isGoal) {
+        isAllGoal = NO;
       }
     }
+    if (isAllGoal) { // 全員がゴールしてたら
+      MSContainer* container = [[MSContainer alloc] initWithObject:nil forTag:MSContainerTagGameEnd];
+      for (MSPlayer* player in _players) {
+        [self sendContainer:container peerID:player.peerID];
+      }
+      // ゴールレイヤー追加
+      MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
+      [self addChild:goal];
+      _state = MSGameStateClear;
+    }
+    
+    
+    [KKInput sharedInput].gestureTapEnabled = YES;
+    KKInput* input = [KKInput sharedInput];
+    if ([input anyTouchBeganThisFrame]) {
+      for( KKTouch* touch in input.touches ){
+        //      NSLog(@"touch=%@",touch );
+        //      CGPoint touchLocation = touch.location;
+        
+        CGPoint touchLocation =[_stage convertToNodeSpace:touch.location];
+        
+        MSTile* tile = [_loader tileWithStagePoint:touchLocation];
+        switch ([tile tileType]) {
+          case MSTileTypeRock:
+          {
+          //            NSLog(@"MSTileTypeRock" );
+          [tile setTileType:MSTileTypeRuinRock];
+          
+          MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
+          [self broadcastContainerToPlayer:container];
+          }
+            break;
+          case MSTileTypeRuinRock:
+          {
+          [tile setTileType:MSTileTypeBrokenRock];
+          }
+            break;
+        }
+      }
+    }
+    }
+      break;
+      
+    default:
+      break;
   }
-  
-  
-  
 }
 
 - (void)broadCastAllPlayers {
