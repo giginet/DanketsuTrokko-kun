@@ -23,9 +23,13 @@ typedef enum {
 - (id)initWithServerPeer:(NSString *)peer andClients:(CCArray *)peers {
   self = [super init];
   if (self) {
+    CCDirector* director = [CCDirector sharedDirector];
     _state = MSGameStateReady;
     
     _loader = [[MSMapLoader alloc] init];
+    _coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d", 0, _loader.coinCount] fontName:@"Helvetica" fontSize:24];
+    _coinLabel.position = ccp(director.screenCenter.x, 30);
+    [self addChild:_coinLabel];
     
     if( [peer compare:[DummyManager serverID]] == NSOrderedSame ){
       KWSessionManager* manager = [KWSessionManager sharedManager];
@@ -112,6 +116,14 @@ typedef enum {
   for (MSPlayer* player in _players) {
     [self sendContainer:container peerID:player.peerID];
   }
+}
+
+- (void)updateCoinLabel {
+  int sum = 0;
+  for (MSPlayer* player in _players) {
+    sum += player.coinCount;
+  }
+  [_coinLabel setString:[NSString stringWithFormat:@"%d/%d", sum, _loader.coinCount]];
 }
 
 #pragma mark KWSessionDelegate

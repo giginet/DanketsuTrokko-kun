@@ -15,10 +15,10 @@
 @interface MSMapLoader : NSObject {
   NSArray* _lines;
   NSMutableDictionary* _chips;
-
   NSDictionary* _itemDictionary;
 }
 
+@property(readonly) int coinCount; // 総コイン枚数です
 @property(readonly) int height;
 @property(nonatomic,readonly) NSDictionary* itemDictionary;
 

@@ -24,6 +24,7 @@
                                                      error:NULL];
     _lines = [content componentsSeparatedByString:@"\n"];
     _chips = [NSMutableDictionary dictionary];
+    _coinCount = 0;
   }
   return self;
 }
@@ -40,6 +41,9 @@
       NSString* chip = [lineString substringWithRange:NSMakeRange(x, 1)];
       MSTile* tile = [self tileWithString:chip line:line rail:rail];
       [_chips setObject:tile forKey:key];
+      if (tile.tileType == MSTileTypeCoin) { // コインの時、総コイン枚数+1
+        _coinCount += 1;
+      }
       return tile;
     }
   }

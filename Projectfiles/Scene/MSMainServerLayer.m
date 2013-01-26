@@ -44,9 +44,19 @@
     [self sendContainer:container peerID:player.peerID];
   }
   
-  // ゴール判定
   BOOL isAllGoal = YES;
   for (MSPlayer* player in _players) {
+    // コイン取りました判定
+    MSTile* currentTile = [_loader tileWithStagePoint:player.position];
+    if (currentTile.tileType == MSTileTypeCoin) { // コイン取った！
+      [currentTile setTileType:MSTileTypeRail]; // コイン消す
+      player.coinCount += 1; // コイン追加します
+      MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagGetCoin]; // 取った人のプレイヤーステートを送ります
+      [self broadcastContainerToPlayer:container];
+      [self updateCoinLabel];
+    }
+    
+    // ゴール判定
     if (player.position.y - _scroll > director.screenSize.height) { // ゴールになったとき、ゴールタグが付いたモノを送ります
       MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
       [self sendContainer:container peerID:player.peerID];

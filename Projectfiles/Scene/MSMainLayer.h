@@ -21,6 +21,7 @@ typedef enum {
   MSContainerTagScroll,       // サーバーから。現在のスクロール
   MSContainerTagGameEnd,      // サーバーから。ゲーム終わりました通知
   MSContainerTagTitleButtonPressed, // サーバーから。タイトルボタン押されました通知
+  MSContainerTagGetCoin, // サーバーから。コイン取りました通知
 } MSContainerTag;
 
 typedef enum {
@@ -33,12 +34,12 @@ typedef enum {
 @interface MSMainLayer : CCLayer <KWSessionDelegate> {
   float _scroll;
   MSGameState _state;
+  CCLabelTTF* _coinLabel;
   CCArray* _players;
   CCNode* _stage;
   CCNode* _cameraNode;
   MSAngel* _angel;
   MSMapLoader* _loader;
-  
   CCLabelTTF* _scrollDebugLabel;
 }
 
@@ -48,5 +49,6 @@ typedef enum {
 - (MSPlayer*)playerWithPeerID:(NSString*)peerID;
 - (void)update:(ccTime)dt;
 - (void)buildMap;
+- (void)updateCoinLabel;
 
 @end

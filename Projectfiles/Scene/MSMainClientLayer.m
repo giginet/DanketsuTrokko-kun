@@ -112,6 +112,13 @@
       CCScene* scene = [MSTitleLayer nodeWithScene];
       CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
       [[CCDirector sharedDirector] replaceScene:fade];
+    } else if (container.tag == MSContainerTagGetCoin) { // コイン取りました通知
+      MSPlayerState* state = (MSPlayerState*)container.object;
+      MSPlayer* player = [self playerWithPeerID:state.peerID];
+      player.coinCount += 1; // コイン追加します
+      [self updateCoinLabel];
+      MSTile* coin = [_loader tileWithStagePoint:state.position];
+      [coin setTileType:MSTileTypeRail];
     }
   }
 }
