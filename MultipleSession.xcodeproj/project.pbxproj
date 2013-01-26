@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		070E639116B2EAC9004ABC0C /* MSMapLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E639016B2EAC9004ABC0C /* MSMapLoader.m */; };
+		0724733516B3B65F0096870E /* coin-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733116B3B65F0096870E /* coin-hd.png */; };
+		0724733616B3B65F0096870E /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733216B3B65F0096870E /* coin.png */; };
+		0724733716B3B65F0096870E /* rock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733316B3B65F0096870E /* rock-hd.png */; };
+		0724733816B3B65F0096870E /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733416B3B65F0096870E /* rock.png */; };
 		07619E9016B17938001E5EA1 /* grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07619E8F16B17938001E5EA1 /* grass.jpg */; };
 		07619E9216B17BD7001E5EA1 /* sky-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07619E9116B17BD7001E5EA1 /* sky-hd.png */; };
 		077D4FD516AEE59E000941CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 077D4F9416AEE59E000941CC /* .gitignore */; };
@@ -146,6 +150,10 @@
 /* Begin PBXFileReference section */
 		070E638F16B2EAC9004ABC0C /* MSMapLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMapLoader.h; path = Model/MSMapLoader.h; sourceTree = "<group>"; };
 		070E639016B2EAC9004ABC0C /* MSMapLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMapLoader.m; path = Model/MSMapLoader.m; sourceTree = "<group>"; };
+		0724733116B3B65F0096870E /* coin-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coin-hd.png"; path = "Image/coin-hd.png"; sourceTree = "<group>"; };
+		0724733216B3B65F0096870E /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Image/coin.png; sourceTree = "<group>"; };
+		0724733316B3B65F0096870E /* rock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rock-hd.png"; path = "Image/rock-hd.png"; sourceTree = "<group>"; };
+		0724733416B3B65F0096870E /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock.png; path = Image/rock.png; sourceTree = "<group>"; };
 		07619E8F16B17938001E5EA1 /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
 		07619E9116B17BD7001E5EA1 /* sky-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sky-hd.png"; sourceTree = "<group>"; };
 		077D4F9416AEE59E000941CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -577,6 +585,10 @@
 		07F414DA16B2FCFE0040F9A3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				0724733116B3B65F0096870E /* coin-hd.png */,
+				0724733216B3B65F0096870E /* coin.png */,
+				0724733316B3B65F0096870E /* rock-hd.png */,
+				0724733416B3B65F0096870E /* rock.png */,
 				07B6798A16B38945009C37D8 /* branch-left-hd.png */,
 				07B6798B16B38945009C37D8 /* branch-left.png */,
 				07B6798C16B38945009C37D8 /* branch-right-hd.png */,
@@ -903,6 +915,10 @@
 				07B6798F16B38945009C37D8 /* branch-left.png in Resources */,
 				07B6799016B38945009C37D8 /* branch-right-hd.png in Resources */,
 				07B6799116B38945009C37D8 /* branch-right.png in Resources */,
+				0724733516B3B65F0096870E /* coin-hd.png in Resources */,
+				0724733616B3B65F0096870E /* coin.png in Resources */,
+				0724733716B3B65F0096870E /* rock-hd.png in Resources */,
+				0724733816B3B65F0096870E /* rock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

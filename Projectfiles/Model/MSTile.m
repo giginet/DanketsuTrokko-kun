@@ -22,42 +22,42 @@
       //rail.position = ccp(tileSize / 2.0f, tileSize / 2.0f);
       //rail.anchorPoint = ccp(0.5f, 0.5f);
       [self addChild:rail];
-
-        switch (type) {
+      
+      switch (type) {
         case MSTileTypeRock:
         case MSTileTypeCoin:
         {
-          CGPoint pos = CGPointZero;
-          NSString* fileName = type == MSTileTypeRock ? @"coin.png" : @"iwa.png";
-          pos = ccp(rockAndCoinWidth,rockAndCoinWidth);
-          CCSprite* branch = [CCSprite spriteWithFile:fileName];
-          branch.position = ccp(rockAndCoinWidth, rockAndCoinWidth);
-          [self addChild:branch];
+        CGPoint pos = CGPointZero;
+        NSString* fileName = type == MSTileTypeRock ? @"coin.png" : @"rock.png";
+        pos = ccp(rockAndCoinWidth,rockAndCoinWidth);
+        CCSprite* branch = [CCSprite spriteWithFile:fileName];
+        branch.position = ccp(rockAndCoinWidth, rockAndCoinWidth);
+        [self addChild:branch];
         }
-            break;
+          break;
         case MSTileTypeBranchRight:
         case MSTileTypeBranchLeft:
         {
-          if (type == MSTileTypeBranchRight || type == MSTileTypeBranchLeft) {
-            NSString* fileName = @"";
-            CGPoint pos = CGPointZero;
-            const int frameWidth = 10;
-            if (type == MSTileTypeBranchLeft) {
-              fileName = @"branch-left.png";
-              pos = ccp(- 2 * margin - frameWidth, railWidth);
-            } else if (type == MSTileTypeBranchRight) {
-              fileName = @"branch-right.png";
-              pos = ccp(2 * margin + frameWidth, railWidth);
-            }
-            CCSprite* branch = [CCSprite spriteWithFile:fileName];
-            branch.position = pos;
-            [self addChild:branch];
+        if (type == MSTileTypeBranchRight || type == MSTileTypeBranchLeft) {
+          NSString* fileName = @"";
+          CGPoint pos = CGPointZero;
+          const int frameWidth = 10;
+          if (type == MSTileTypeBranchLeft) {
+            fileName = @"branch-left.png";
+            pos = ccp(- 2 * margin - frameWidth, railWidth);
+          } else if (type == MSTileTypeBranchRight) {
+            fileName = @"branch-right.png";
+            pos = ccp(2 * margin + frameWidth, railWidth);
           }
+          CCSprite* branch = [CCSprite spriteWithFile:fileName];
+          branch.position = pos;
+          [self addChild:branch];
         }
-            break;
-    default:
-            break;
         }
+          break;
+        default:
+          break;
+      }
       
     }
   }
@@ -66,7 +66,7 @@
 
 - (MSTileType) tile
 {
-    return _tileType;
+  return _tileType;
 }
 
 
