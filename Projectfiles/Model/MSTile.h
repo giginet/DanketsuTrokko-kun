@@ -17,7 +17,12 @@ typedef enum {
 } MSTileType;
 
 @interface MSTile : CCSprite
+{
+    MSTileType _tileType;
+}
 
 - (id)initWithTileType:(MSTileType)type;
+
+@property(nonatomic,readonly) MSTileType tile;
 
 @end
