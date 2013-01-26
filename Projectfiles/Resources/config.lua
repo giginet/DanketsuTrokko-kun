@@ -60,7 +60,8 @@ local config =
   Margin = 28,
   RailWidth = 88,
   LineWidth = 320,
-  ScrollSpeed = 10
+  ScrollSpeed = 10,
+  RockAndCoinWidth = 88
 }
 
 return config
