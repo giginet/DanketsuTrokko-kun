@@ -15,6 +15,8 @@ typedef enum {
   ,MSTileTypeBranchLeft
   ,MSTileTypeBranchRight
   ,MSTileTypeRock
+  ,MSTileTypeRuinRock
+  ,MSTileTypeBrokenRock
   ,MSTileTypeCoin
 } MSTileType;
 

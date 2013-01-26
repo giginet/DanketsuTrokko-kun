@@ -33,12 +33,34 @@
     [self addChild:rail];
     
     switch (type) {
-      case MSTileTypeRock:
       case MSTileTypeCoin:
       {
-      NSString* fileName = type == MSTileTypeRock ? @"rock.png" : @"coin.png";
-      CCSprite* object = [CCSprite spriteWithFile:fileName];
-      [self addChild:object];
+        NSString* fileName = @"coin.png";
+        CCSprite* object = [CCSprite spriteWithFile:fileName];
+        [self addChild:object];
+      }
+        break;
+      case MSTileTypeRock:
+      {
+        NSString* fileName = @"rock.png";
+        CCSprite* object = [CCSprite spriteWithFile:fileName];
+#define ROCK_ID 1
+        object.tag = ROCK_ID;
+        [self addChild:object];
+      }
+        break;
+      case MSTileTypeRuinRock:
+      {
+        [self removeChildByTag:ROCK_ID cleanup:YES];
+//#define ROCK_ID 2
+//        NSString* fileName = @"rock.png";
+//        CCSprite* object = [CCSprite spriteWithFile:fileName];
+//        [self addChild:object];
+      }
+        break;
+      case MSTileTypeBrokenRock:
+      {
+        
       }
         break;
       case MSTileTypeBranchRight:

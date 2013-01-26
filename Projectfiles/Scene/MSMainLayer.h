@@ -22,6 +22,7 @@ typedef enum {
   MSContainerTagGameEnd,      // サーバーから。ゲーム終わりました通知
   MSContainerTagTitleButtonPressed, // サーバーから。タイトルボタン押されました通知
   MSContainerTagGetCoin, // サーバーから。コイン取りました通知
+  MSContainerTagRuinRock // サーバから、クライアントへ岩の破壊通知
 } MSContainerTag;
 
 typedef enum {

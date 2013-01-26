@@ -119,7 +119,13 @@
       [self updateCoinLabel];
       MSTile* coin = [_loader tileWithStagePoint:state.position];
       [coin setTileType:MSTileTypeRail];
+    } else if (container.tag == MSContainerTagRuinRock) { // 岩野破壊
+      CGPoint touchPoint = [(NSValue*)container.object CGPointValue];
+      MSTile* tile = [_loader tileWithStagePoint:touchPoint];
+      [tile setTileType:MSTileTypeRuinRock];
     }
+    
+    
   }
 }
 

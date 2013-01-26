@@ -91,7 +91,16 @@
       switch ([tile tileType]) {
         case MSTileTypeRock:
         {
-        NSLog(@"MSTileTypeRock" );
+//            NSLog(@"MSTileTypeRock" );
+            [tile setTileType:MSTileTypeRuinRock];
+          
+          MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
+          [self broadcastContainerToPlayer:container];
+        }
+          break;
+        case MSTileTypeRuinRock:
+        {
+          [tile setTileType:MSTileTypeBrokenRock];
         }
           break;
         default:
