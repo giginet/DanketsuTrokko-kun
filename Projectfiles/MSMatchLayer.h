@@ -28,6 +28,7 @@ typedef enum {
   CCNode* _peersNode;
   NSString* _serverPeerID;
   CCMenu* _startMenu;
+  CCMenu* _demoMenu;
   NSArray* _clients;
 }
 

@@ -61,13 +61,13 @@ NSString* kStartMessage = @"GameStart";
       [self addChild:_startMenu];
         
         
-        /*CCLabelTTF**/ startLabel = [CCLabelTTF labelWithString:@"Demo" fontName:@"Helvetica" fontSize:32];
-        /*CCMenuItemLabel**/ start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStartDemo:)];
-        _startMenu = [CCMenu menuWithItems:start, nil];
-        _startMenu.enabled = YES;
-        _startMenu.position = ccp(director.screenCenter.x, 100);
-        [self addChild:_startMenu];
-        
+      /*CCLabelTTF**/ startLabel = [CCLabelTTF labelWithString:@"Demo" fontName:@"Helvetica" fontSize:32];
+      /*CCMenuItemLabel**/ start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStartDemo:)];
+      _demoMenu = [CCMenu menuWithItems:start, nil];
+      _demoMenu.enabled = YES;
+      _demoMenu.position = ccp(director.screenCenter.x, 100);
+      [self addChild:_demoMenu];
+      
     }
   }
   return self;
