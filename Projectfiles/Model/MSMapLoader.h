@@ -15,9 +15,12 @@
 @interface MSMapLoader : NSObject {
   NSArray* _lines;
   NSMutableDictionary* _chips;
+
+  NSDictionary* _itemDictionary;
 }
 
 @property(readonly) int height;
+@property(nonatomic,readonly) NSDictionary* itemDictionary;
 
 /**
  Line, Rail, yから設置されているタイルを取ります
