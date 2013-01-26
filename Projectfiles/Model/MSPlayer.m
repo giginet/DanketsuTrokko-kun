@@ -17,6 +17,7 @@
 - (id)initWithPeerID:(NSString *)peerID no:(int)no {
   self = [super initWithFile:@"player0.png"];
   if (self) {
+    _coinCount = 0;
     _peerID = peerID;
     _no = no;
     self.isRailChanging = NO;

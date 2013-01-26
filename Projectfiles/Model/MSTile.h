@@ -23,7 +23,8 @@ typedef enum {
 }
 
 - (id)initWithTileType:(MSTileType)type;
+- (void)setTileType:(MSTileType)type;
 
-@property(nonatomic,readonly) MSTileType tileType;
+@property(nonatomic, readonly) MSTileType tileType;
 
 @end

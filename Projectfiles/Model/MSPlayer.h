@@ -25,6 +25,7 @@ typedef enum {
 @property(readonly) int no; // キャラ番号0~2
 @property(readwrite) int railNumber; // 現在のレール番号
 @property(readwrite) int lineNumber; // 現在のライン番号
+@property(readwrite) int coinCount; // コインの枚数
 @property(readonly) BOOL isMine; // 自分の操っているキャラかどうか
 @property(readwrite) BOOL isRailChanging; // レール切り替え中かどうか
 @property(readwrite) BOOL isLineChanging; // ライン切り替え中かどうか
