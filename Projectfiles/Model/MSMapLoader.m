@@ -69,9 +69,10 @@
 }
 
 - (MSTile*)tileWithStagePoint:(CGPoint)point {
+  int lineWidth = [KKConfig intForKey:@"LineWidth"];
   int railWidth = [KKConfig intForKey:@"RailWidth"];
-  int line = floor(floor( point.x / railWidth ) / 3);
-  int rail = (int)floor( point.x / railWidth ) % 3;
+  int line = floor(point.x / lineWidth);
+  int rail = floor((point.x - (line * lineWidth)) / railWidth);
   int y = floor(point.y / railWidth);
   return [self tileWithLine:line rail:rail y:y];
 }

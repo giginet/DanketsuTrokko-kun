@@ -31,6 +31,7 @@
     self.isRailChanged = NO;
     self.isGoal = NO;
     [self scheduleUpdate];
+    [self updateRailAndLineNumber];
   }
   return self;
 }
@@ -72,7 +73,7 @@
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
   
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed)]; // レール切り替えアニメーション
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed * 0.5)]; // レール切り替えアニメーション
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
     p.isRailChanging = NO;
