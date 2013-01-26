@@ -63,8 +63,8 @@
         _myPlayer.isRailChanged = NO;
       }
     }
-    _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]);
   }
+  _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]);
   [self sendPlayerToServer:_myPlayer];
 }
 
@@ -87,6 +87,9 @@
       }
     } else if (container.tag == MSContainerTagPlayerGoal) { // ゴールはいりました通知を貰ったとき
       NSLog(@"goal %d", _myPlayer.no);
+    } else if (container.tag == MSContainerTagScroll) { // スクロール座標を貰ったとき、同期する
+      NSNumber* scroll = (NSNumber*)container.object;
+      _scroll = [scroll floatValue];
     }
   }
 }
