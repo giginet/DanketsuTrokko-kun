@@ -10,6 +10,7 @@
 #import "MSErrorLayer.h"
 #import "KWSessionManager.h"
 #import "MSTile.h"
+#import "DummyManager.h"
 
 typedef enum {
   MSMainLayerZOrderBackground = 0,
@@ -26,6 +27,15 @@ typedef enum {
     
     _loader = [[MSMapLoader alloc] init];
     
+    if( [peer compare:[DummyManager serverID]] == NSOrderedSame ){
+      KWSessionManager* manager = [KWSessionManager sharedManager];
+      manager.delegate = self;
+    }else{
+        
+        
+    }
+    
+      
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
     _cameraNode = [CCNode node];

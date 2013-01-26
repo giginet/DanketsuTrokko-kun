@@ -10,6 +10,7 @@
 #import "MSMainClientLayer.h"
 #import "MSMainServerLayer.h"
 #import "MSMapLoader.h"
+#import "DummyManager.h"
 
 @interface MSMatchLayer()
 - (void)updatePeerStateFor:(NSString*)peer toState:(GKPeerConnectionState)state;
@@ -58,6 +59,15 @@ NSString* kStartMessage = @"GameStart";
       _startMenu.enabled = NO;
       _startMenu.position = ccp(director.screenCenter.x, 50);
       [self addChild:_startMenu];
+        
+        
+        /*CCLabelTTF**/ startLabel = [CCLabelTTF labelWithString:@"Demo" fontName:@"Helvetica" fontSize:32];
+        /*CCMenuItemLabel**/ start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStartDemo:)];
+        _startMenu = [CCMenu menuWithItems:start, nil];
+        _startMenu.enabled = YES;
+        _startMenu.position = ccp(director.screenCenter.x, 100);
+        [self addChild:_startMenu];
+        
     }
   }
   return self;
@@ -112,6 +122,32 @@ NSString* kStartMessage = @"GameStart";
   [scene addChild:nextLayer];
   CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:fade];
+}
+
+- (void) onStartDemo:(id)sender {
+    
+    if (_type == MSSessionTypeServer) {
+        
+        // サーバー側、接続順に従ってクライアント一覧を作る
+        NSMutableArray* clients = [NSMutableArray arrayWithArray:_sessionManager.connectedPeers];
+        [clients removeObject:_serverPeerID];
+        _clients = [NSArray arrayWithArray:clients];
+        CCLayer* nextLayer = [[MSMainServerLayer alloc] initWithServerPeer:[DummyManager serverID] andClients:[CCArray arrayWithNSArray:@[
+                                                                                                               [DummyManager playerID]
+                                                                                                               ,[DummyManager player2ID]
+                                                                                                               ,[DummyManager player3ID]
+                                                                                                               ]]];
+        for (NSString* client in clients) {
+            MSContainer* container = [MSContainer containerWithObject:clients forTag:MSMatchContainerTagClients];
+            [_sessionManager sendDataToPeer:[NSKeyedArchiver archivedDataWithRootObject:container] to:client mode:GKSendDataReliable];
+        }
+        
+        CCScene* scene = [CCScene node];
+        [scene addChild:nextLayer];
+        CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
+        [[CCDirector sharedDirector] replaceScene:fade];
+        
+    }
 }
 
 #pragma mark KWSessionDelegate

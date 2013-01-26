@@ -10,4 +10,9 @@
 
 @interface DummyManager : NSObject
 
++ (NSString*) serverID;
++ (NSString*) playerID;
++ (NSString*) player2ID;
++ (NSString*) player3ID;
+
 @end
