@@ -9,12 +9,13 @@
 #import "CCSprite.h"
 
 typedef enum {
-  MSTileTypeNone,
-  MSTileTypeRail,
-  MSTileTypeBranchLeft,
-  MSTileTypeBranchRight,
-  MSTileTypeRock,
-  MSTileTypeCoin
+   MSTileTypeNone
+  ,MSTileTypeRail
+  ,MSTileTypeBranch
+  ,MSTileTypeBranchLeft
+  ,MSTileTypeBranchRight
+  ,MSTileTypeRock
+  ,MSTileTypeCoin
 } MSTileType;
 
 @interface MSTile : CCNode {
