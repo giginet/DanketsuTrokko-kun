@@ -31,7 +31,7 @@
           NSString* fileName = type == MSTileTypeRock ? @"coin.png" : @"iwa.png";
           pos = ccp(rockAndCoinWidth,rockAndCoinWidth);
           CCSprite* branch = [CCSprite spriteWithFile:fileName];
-          branch.position = pos;
+          branch.position = ccp(rockAndCoinWidth, rockAndCoinWidth);
           [self addChild:branch];
         }
             break;
