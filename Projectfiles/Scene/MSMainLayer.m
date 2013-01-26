@@ -27,9 +27,6 @@ typedef enum {
     _state = MSGameStateReady;
     
     _loader = [[MSMapLoader alloc] init];
-    _coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d", 0, _loader.coinCount] fontName:@"Helvetica" fontSize:24];
-    _coinLabel.position = ccp(director.screenCenter.x, 30);
-    [self addChild:_coinLabel];
     
     if( [peer compare:[DummyManager serverID]] == NSOrderedSame ){
       KWSessionManager* manager = [KWSessionManager sharedManager];
@@ -62,6 +59,11 @@ typedef enum {
     _scrollDebugLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Helvetica" fontSize:16];
     _scrollDebugLabel.position = ccp(50, 50);
     [self addChild:_scrollDebugLabel];
+    
+    _coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d", 0, _loader.coinCount] fontName:@"Helvetica" fontSize:24];
+    _coinLabel.position = ccp(director.screenCenter.x, 30);
+    [self addChild:_coinLabel];
+    
   }
   return self;
 }

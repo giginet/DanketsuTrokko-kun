@@ -74,7 +74,7 @@
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
   
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed * 0.5)]; // レール切り替えアニメーション
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed * 0.6)]; // レール切り替えアニメーション
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
     p.isRailChanging = NO;
@@ -97,7 +97,7 @@
   int x = direction == MSDirectionLeft ? -distance : distance;
   
   self.isRailChanged = YES;
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, railWidth * 2)]; // レール切り替えアニメーション
+  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, railWidth * 1.5)]; // レール切り替えアニメーション
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、ライン切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
     p.isLineChanging = NO;
