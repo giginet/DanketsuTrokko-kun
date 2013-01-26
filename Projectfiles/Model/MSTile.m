@@ -23,14 +23,12 @@
       //rail.anchorPoint = ccp(0.5f, 0.5f);
       [self addChild:rail];
 
-        CGPoint pos = CGPointZero;
-        NSString* fileName = @"";
-      
         switch (type) {
         case MSTileTypeRock:
         case MSTileTypeCoin:
         {
-            /*NSString**/ fileName = type == MSTileTypeRock ? @"coin.png" : @"iwa.png";
+          CGPoint pos = CGPointZero;
+          NSString* fileName = type == MSTileTypeRock ? @"coin.png" : @"iwa.png";
           pos = ccp(rockAndCoinWidth,rockAndCoinWidth);
           CCSprite* branch = [CCSprite spriteWithFile:fileName];
           branch.position = pos;

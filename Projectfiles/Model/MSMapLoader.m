@@ -62,10 +62,8 @@
 
 
 - (MSTile*)tileWithString:(NSString *)chip line:(int)line rail:(int)rail {
-  MSTileType type = MSTileTypeRail;
-  
   NSNumber* tileType = self.itemDictionary[chip];
-  [tileType intValue] != MSTileTypeBranch ? [tileType intValue] : (rail == 2 ? MSTileTypeBranchRight : MSTileTypeBranchLeft);
+  MSTileType type = [tileType intValue] != MSTileTypeBranch ? [tileType intValue] : (rail == 2 ? MSTileTypeBranchRight : MSTileTypeBranchLeft);
   return [[MSTile alloc] initWithTileType:type];
 }
 
