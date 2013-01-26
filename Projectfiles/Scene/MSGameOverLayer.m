@@ -13,7 +13,9 @@
 - (id)init {
   self = [super init];
   if (self) {
+    CCDirector* director = [CCDirector sharedDirector];
     CCSprite* background = [CCSprite spriteWithFile:@"gameover.png"];
+    background.position = director.screenCenter;
     [self addChild:background];
   }
   return self;
