@@ -12,6 +12,7 @@
 		0724733616B3B65F0096870E /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733216B3B65F0096870E /* coin.png */; };
 		0724733716B3B65F0096870E /* rock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733316B3B65F0096870E /* rock-hd.png */; };
 		0724733816B3B65F0096870E /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733416B3B65F0096870E /* rock.png */; };
+		0724733C16B3C7B30096870E /* MSGoalLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0724733B16B3C7B20096870E /* MSGoalLayer.m */; };
 		07619E9016B17938001E5EA1 /* grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07619E8F16B17938001E5EA1 /* grass.jpg */; };
 		07619E9216B17BD7001E5EA1 /* sky-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07619E9116B17BD7001E5EA1 /* sky-hd.png */; };
 		077D4FD516AEE59E000941CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 077D4F9416AEE59E000941CC /* .gitignore */; };
@@ -154,6 +155,8 @@
 		0724733216B3B65F0096870E /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Image/coin.png; sourceTree = "<group>"; };
 		0724733316B3B65F0096870E /* rock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rock-hd.png"; path = "Image/rock-hd.png"; sourceTree = "<group>"; };
 		0724733416B3B65F0096870E /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock.png; path = Image/rock.png; sourceTree = "<group>"; };
+		0724733A16B3C7B20096870E /* MSGoalLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSGoalLayer.h; path = Scene/MSGoalLayer.h; sourceTree = "<group>"; };
+		0724733B16B3C7B20096870E /* MSGoalLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSGoalLayer.m; path = Scene/MSGoalLayer.m; sourceTree = "<group>"; };
 		07619E8F16B17938001E5EA1 /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
 		07619E9116B17BD7001E5EA1 /* sky-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sky-hd.png"; sourceTree = "<group>"; };
 		077D4F9416AEE59E000941CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -549,6 +552,8 @@
 				077D503116AF3711000941CC /* MSMainServerLayer.m */,
 				078961B816AFA4EB0094D334 /* MSErrorLayer.h */,
 				078961B916AFA4EB0094D334 /* MSErrorLayer.m */,
+				0724733A16B3C7B20096870E /* MSGoalLayer.h */,
+				0724733B16B3C7B20096870E /* MSGoalLayer.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -987,6 +992,7 @@
 				078961BD16AFAC2F0094D334 /* MSContainer.m in Sources */,
 				070E639116B2EAC9004ABC0C /* MSMapLoader.m in Sources */,
 				07F4150316B31C860040F9A3 /* MSTile.m in Sources */,
+				0724733C16B3C7B30096870E /* MSGoalLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

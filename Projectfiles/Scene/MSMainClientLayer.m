@@ -8,6 +8,7 @@
 
 #import "MSMainClientLayer.h"
 #import "KWSessionManager.h"
+#import "MSGoalLayer.h"
 
 @interface MSMainClientLayer()
 - (void)sendPlayerToServer:(MSPlayer*)player;
@@ -42,7 +43,6 @@
     if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
       if (!_myPlayer.isLineChanging && !_myPlayer.isRailChanging) {
         MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
-        NSLog(@"tile = %d", tile.tileType);
         if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
           [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
         }
@@ -89,11 +89,16 @@
         }
       }
     } else if (container.tag == MSContainerTagPlayerGoal) { // ゴールはいりました通知を貰ったとき
-      NSLog(@"goal %d", _myPlayer.no);
+      _myPlayer.isGoal = YES;
     } else if (container.tag == MSContainerTagScroll) { // スクロール座標を貰ったとき、同期する
       NSNumber* scroll = (NSNumber*)container.object;
       _scroll = [scroll floatValue];
       _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]); // ついでにプレイヤーも進ませる
+    } else if (container.tag == MSContainerTagPlayerGoal) { // ゴール終わりました通知を貰ったとき
+      // ゴールレイヤー追加
+      MSGoalLayer* goal = [MSGoalLayer node];
+      [self addChild:goal];
+      _state = MSGameStateClear;
     }
   }
 }

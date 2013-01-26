@@ -29,6 +29,7 @@
     self.velocity.y = scrollSpeed;
     self.railNumber = 1; // 中央のレールから
     self.isRailChanged = NO;
+    self.isGoal = NO;
     [self scheduleUpdate];
   }
   return self;

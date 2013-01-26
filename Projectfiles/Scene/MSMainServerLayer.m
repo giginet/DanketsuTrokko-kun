@@ -8,6 +8,7 @@
 
 #import "MSMainServerLayer.h"
 #import "KWSessionManager.h"
+#import "MSGoalLayer.h"
 
 @interface MSMainServerLayer()
 - (void)broadCastAllPlayers;
@@ -43,12 +44,29 @@
   }
   
   // ゴール判定
+  BOOL isAllGoal = YES;
   for (MSPlayer* player in _players) {
-    if (_scroll >= goalPoint && player.position.y > director.screenCenter.y) { // ゴールになったとき、ゴールタグが付いたモノを送ります
+    if (player.position.y - _scroll > director.screenSize.height) { // ゴールになったとき、ゴールタグが付いたモノを送ります
       MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagPlayerGoal];
       [self sendContainer:container peerID:player.peerID];
+      player.isGoal = YES;
+    }
+    if (!player.isGoal) {
+      isAllGoal = NO;
     }
   }
+  if (isAllGoal) { // 全員がゴールしてたら
+    NSLog(@"all Goal");
+    MSContainer* container = [[MSContainer alloc] initWithObject:nil forTag:MSContainerTagGameEnd];
+    for (MSPlayer* player in _players) {
+      [self sendContainer:container peerID:player.peerID];
+    }
+    // ゴールレイヤー追加
+    MSGoalLayer* goal = [MSGoalLayer node];
+    [self addChild:goal];
+    _state = MSGameStateClear;
+  }
+  
 }
 
 - (void)broadCastAllPlayers {
