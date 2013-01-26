@@ -28,7 +28,18 @@
   CCDirector* director = [CCDirector sharedDirector];
   
   // スクロールする
+  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
+  if (_scroll < GOAL_POINT) {
+    _scroll += scrollSpeed;
+  }
   
+  // 現在のスクロール座標をPlayerにbroadcastする
+  NSMutableArray* array = [NSMutableArray array];
+  for (MSPlayer* player in _players) {
+    NSNumber* scroll = [NSNumber numberWithFloat:_scroll];
+    MSContainer* container = [MSContainer containerWithObject:scroll forTag:MSContainerTagScroll];
+    [self sendContainer:container peerID:player.peerID];
+  }
   
   // ゴール判定
   for (MSPlayer* player in _players) {

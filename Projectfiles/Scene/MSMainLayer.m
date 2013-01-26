@@ -75,12 +75,8 @@ typedef enum {
 }
 
 - (void)update:(ccTime)dt {
-  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  if (_scroll < GOAL_POINT) {
-    _scroll += scrollSpeed;
-  }
   [_scrollDebugLabel setString:[NSString stringWithFormat:@"%d", (int)_scroll                                                                                                                           ]];
-  _stage.position = ccp(0, -_scroll);
+  _stage.position = ccp(0, -_scroll); // スクロールを指定
 
   for (MSPlayer* player in _players) {
     [player updateRailAndLineNumber]; // レール番号、ライン番号を更新
