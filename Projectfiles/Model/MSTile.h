@@ -24,6 +24,6 @@ typedef enum {
 
 - (id)initWithTileType:(MSTileType)type;
 
-@property(nonatomic,readonly) MSTileType tile;
+@property(nonatomic,readonly) MSTileType tileType;
 
 @end
