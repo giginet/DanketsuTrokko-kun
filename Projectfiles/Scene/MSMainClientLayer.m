@@ -35,23 +35,32 @@
   [super update:dt];
   //CCDirector* director = [CCDirector sharedDirector];
   KKInput* input = [KKInput sharedInput];
+  
+  // ライン変更
   if ([input gesturesAvailable]) {
     KKSwipeGestureDirection direction = [input gestureSwipeDirection];
     if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
-      if (!_myPlayer.isLineChanging) {
+      if (!_myPlayer.isLineChanging && !_myPlayer.isRailChanging) {
         [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
       }
     }
   }
   
+  // レール変更
   if ([input deviceMotionAvailable]) {
     float rad = input.deviceMotion.roll; // rollを取るとラジアンが返ってくるはず！
     float deg = rad * 180 / M_PI; // ラジアンを度にする
-    if (!_myPlayer.isRailChanging) { // レール切り替え中じゃないとき
+    if (!_myPlayer.isRailChanging && !_myPlayer.isLineChanging) { // レール切り替え中じゃないとき
       if (deg < -45) { // 左に45度以上傾いてたら
-        [_myPlayer setRailChangeAction:MSDirectionLeft];
+        if (!_myPlayer.isRailChanged) {
+          [_myPlayer setRailChangeAction:MSDirectionLeft];
+        }
       } else if (deg > 45) { // 右に45度以上傾いてたら
-        [_myPlayer setRailChangeAction:MSDirectionRight];
+        if (!_myPlayer.isRailChanged) {
+          [_myPlayer setRailChangeAction:MSDirectionRight];
+        }
+      } else {
+        _myPlayer.isRailChanged = NO;
       }
     }
     _myPlayer.position = ccpAdd(_myPlayer.position, [_myPlayer.velocity point]);

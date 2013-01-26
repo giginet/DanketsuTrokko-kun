@@ -28,6 +28,7 @@
     int scrollSpeed = [KKConfig intForKey:@"ScrollSpeed"];
     self.velocity.y = scrollSpeed;
     self.railNumber = 1; // 中央のレールから
+    self.isRailChanged = NO;
     [self scheduleUpdate];
   }
   return self;
@@ -92,6 +93,7 @@
   int distance = margin * 2 + railWidth;
   int x = direction == MSDirectionLeft ? -distance : distance;
   
+  self.isRailChanged = YES;
   CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, railWidth * 2)]; // レール切り替えアニメーション
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、ライン切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
