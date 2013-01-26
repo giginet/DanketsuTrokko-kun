@@ -16,7 +16,7 @@
     int railWidth = [KKConfig intForKey:@"RailWidth"];
     int margin = [KKConfig intForKey:@"Margin"];
     int rockAndCoinWidth = [KKConfig intForKey:@"RockAndCoinWidth"];
-    
+    _tileType = type;
     if (type != MSTileTypeNone) {
       CCSprite* rail = [CCSprite spriteWithFile:@"rail0.png"];
       [self addChild:rail];
