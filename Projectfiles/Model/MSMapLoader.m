@@ -48,35 +48,33 @@
 
 - (NSDictionary*) itemDictionary
 {
-    if( _itemDictionary == nil ){
-        _itemDictionary = @{
-           @".":[NSNumber numberWithInt:MSTileTypeNone]
-          ,@"B":[NSNumber numberWithInt:MSTileTypeBranch]
-          ,@"R":[NSNumber numberWithInt:MSTileTypeRock]
-          ,@"C":[NSNumber numberWithInt:MSTileTypeCoin]
-        };
+  if( _itemDictionary == nil ){
+    _itemDictionary = @{
+    @".":[NSNumber numberWithInt:MSTileTypeNone]
+    ,@"B":[NSNumber numberWithInt:MSTileTypeBranch]
+    ,@"R":[NSNumber numberWithInt:MSTileTypeRock]
+    ,@"C":[NSNumber numberWithInt:MSTileTypeCoin]
+    };
     
-    }
-    return _itemDictionary;
+  }
+  return _itemDictionary;
 }
 
 
 - (MSTile*)tileWithString:(NSString *)chip line:(int)line rail:(int)rail {
   MSTileType type = MSTileTypeRail;
+  
+  NSNumber* tileType = self.itemDictionary[chip];
+  [tileType intValue] != MSTileTypeBranch ? [tileType intValue] : (rail == 2 ? MSTileTypeBranchRight : MSTileTypeBranchLeft);
+  return [[MSTile alloc] initWithTileType:type];
+}
 
-//  if ([chip isEqualToString:@"."]) {
-//    type = MSTileTypeNone;
-//  } else if ([chip isEqualToString:@"B"]) {
-//    if (rail == 2) {
-//      type = MSTileTypeBranchRight;
-//    } else if (rail == 0) {
-//      type = MSTileTypeBranchLeft;
-//    }
-//  }
-    
-    NSNumber* tileType = self.itemDictionary[chip];
-    [tileType intValue] != MSTileTypeBranch ? [tileType intValue] : (rail == 2 ? MSTileTypeBranchRight : MSTileTypeBranchLeft);
-    return [[MSTile alloc] initWithTileType:type];
+- (MSTile*)tileWithStagePoint:(CGPoint)point {
+  int railWidth = [KKConfig intForKey:@"RailWidth"];
+  int line = floor(floor( point.x / railWidth ) / 3);
+  int rail = (int)floor( point.x / railWidth ) % 3;
+  int y = floor(point.y / railWidth);
+  return [self tileWithLine:line rail:rail y:y];
 }
 
 - (int)height {
