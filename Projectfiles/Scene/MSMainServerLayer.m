@@ -89,16 +89,12 @@
     KKInput* input = [KKInput sharedInput];
     if ([input anyTouchBeganThisFrame]) {
       for( KKTouch* touch in input.touches ){
-        //      NSLog(@"touch=%@",touch );
-        //      CGPoint touchLocation = touch.location;
-        
         CGPoint touchLocation =[_stage convertToNodeSpace:touch.location];
         
         MSTile* tile = [_loader tileWithStagePoint:touchLocation];
         switch ([tile tileType]) {
           case MSTileTypeRock:
           {
-          //            NSLog(@"MSTileTypeRock" );
           [tile setTileType:MSTileTypeRuinRock];
           [[SimpleAudioEngine sharedEngine] playEffect:@"rock_touch.caf"];
           MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];

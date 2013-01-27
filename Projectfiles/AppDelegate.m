@@ -17,7 +17,8 @@
 #else
 	CCLOG(@"ARC is either not available or not enabled");
 #endif
-  [SimpleAudioEngine sharedEngine].backgroundMusicVolume = 0.6f;
+  float volume = [KKConfig floatForKey:@"MusicVolume"];
+  [SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
 }
 
 -(id) alternateView

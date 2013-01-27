@@ -214,6 +214,16 @@ typedef enum {
 }
 
 - (void)gotoGameOverScene {
+  if (self.isServer) {
+    float volume = [KKConfig floatForKey:@"MusicVolume"];
+    id fadeout = [CCRepeat actionWithAction:[CCSequence
+                                             actionOne:[CCCallBlock actionWithBlock:^{
+      [SimpleAudioEngine sharedEngine].backgroundMusicVolume -= volume * 0.1;
+    }]
+                                             two:[CCDelayTime actionWithDuration:0.1f]]
+                                      times:10];
+    [self runAction:fadeout];
+  }
   CCScene* scene = [MSGameOverLayer nodeWithScene];
   CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:1.0f scene:scene];
   [[CCDirector sharedDirector] replaceScene:fade];

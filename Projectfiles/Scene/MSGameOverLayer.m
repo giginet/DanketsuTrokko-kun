@@ -7,6 +7,7 @@
 //
 
 #import "MSGameOverLayer.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MSGameOverLayer
 
@@ -19,6 +20,12 @@
     [self addChild:background];
   }
   return self;
+}
+
+- (void)onEnterTransitionDidFinish {
+  float volume = [KKConfig floatForKey:@"MusicVolume"];
+  [SimpleAudioEngine sharedEngine].backgroundMusicVolume = volume;
+  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gameover.caf"];
 }
 
 @end
