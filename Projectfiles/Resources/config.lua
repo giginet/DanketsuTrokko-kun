@@ -62,7 +62,8 @@ local config =
   LineWidth = 320,
   ScrollSpeed = 10,
   RockAndCoinWidth = 88,
-  MusicVolume = 0.6
+  MusicVolume = 0.6,
+  HighScoreKey = "HighScore"
 }
 
 return config

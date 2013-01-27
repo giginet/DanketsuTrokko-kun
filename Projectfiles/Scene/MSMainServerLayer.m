@@ -120,6 +120,7 @@
       // ゴールレイヤー追加
       MSGoalLayer* goal = [[MSGoalLayer alloc] initWithMainLayer:self];
       [self addChild:goal];
+      [self updateHighScore]; // ハイスコアの更新
       _state = MSGameStateClear;
     } else if (isAllDead) { // 全員死んだとき
       _state = MSGameStateGameOver;
