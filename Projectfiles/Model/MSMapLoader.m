@@ -17,7 +17,7 @@
 - (id)init {
   self = [super init];
   if (self) {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"stage"
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"stage1"
                                                      ofType:@"txt"];
     NSString* content = [NSString stringWithContentsOfFile:path
                                                   encoding:NSUTF8StringEncoding

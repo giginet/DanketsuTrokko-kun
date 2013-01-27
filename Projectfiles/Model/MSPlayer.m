@@ -15,7 +15,7 @@
 @synthesize peerID = _peerID;
 
 - (id)initWithPeerID:(NSString *)peerID no:(int)no {
-  self = [super initWithFile:[NSString stringWithFormat:@"player%d.png", no]];
+  self = [super initWithFile:[NSString stringWithFormat:@"player%d_0.png", no]];
   if (self) {
     _coinCount = 0;
     _peerID = peerID;
@@ -114,6 +114,7 @@
     MSPlayer* p = (MSPlayer*)node;
     p.isLineChanging = NO;
   }];
+  
   [self runAction:[CCSequence actionOne:move two:off]]; // アクションの実装
   
 }
@@ -130,6 +131,12 @@
     float speed = [KKConfig floatForKey:@"ScrollSpeed"];
     player.velocity.y = speed;
   }];
+  
+  
+  if (self.life < 2) {
+    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"player%d_1.png", self.no]]];
+  }
+  
   [self runAction:[CCSequence actionOne:[CCSpawn actionOne:crash two:blink] two:call]];
 }
 
