@@ -39,7 +39,6 @@ typedef enum {
       
     }
     
-    
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
     _cameraNode = [CCNode node];
