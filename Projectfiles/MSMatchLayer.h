@@ -30,6 +30,13 @@ typedef enum {
   CCMenu* _startMenu;
   CCMenu* _demoMenu;
   NSArray* _clients;
+  
+  
+  CCSprite* _lightServer;
+  CCSprite* _lightClient;
+  CCSprite* _lightClient2;
+  CCSprite* _lightClient3;
+  
 }
 
 - (id)initWithServerOrClient:(MSSessionType)type;
