@@ -63,15 +63,33 @@ typedef enum {
     _scrollDebugLabel.position = ccp(50, 50);
     [self addChild:_scrollDebugLabel];
     
-    CCSprite* slash = [CCSprite spriteWithFile:@"slash.png"];
-    slash.position = ccp(director.screenCenter.x, 30);
-    _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
-    _coinLabel.position = ccp(director.screenCenter.x - 150, -16);
-    _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
-    _coinAllLabel.position = ccp(director.screenCenter.x + 10, -16);
-    [self addChild:slash];
-    [self addChild:_coinLabel];
-    [self addChild:_coinAllLabel];
+    if (director.currentDeviceIsIPad) {
+      CCSprite* slash = [CCSprite spriteWithFile:@"slash.png"];
+      slash.position = ccp(director.screenCenter.x, 30);
+      _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
+      _coinLabel.position = ccp(director.screenCenter.x - 150, -16);
+      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
+      _coinAllLabel.position = ccp(director.screenCenter.x + 10, -16);
+      CCSprite* icon = [CCSprite spriteWithFile:@"coinicon.png"];
+      icon.position = ccp(director.screenCenter.x - 200, 30);
+      [self addChild:slash];
+      [self addChild:_coinLabel];
+      [self addChild:_coinAllLabel];
+      [self addChild:icon];
+    } else {
+      CCSprite* slash = [CCSprite spriteWithFile:@"slash.png"];
+      slash.position = ccp(director.screenCenter.x, 15);
+      _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:17.6 itemHeight:35 startCharMap:'0'];
+      _coinLabel.position = ccp(director.screenCenter.x - 60, -2);
+      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:17.6 itemHeight:35 startCharMap:'0'];
+      _coinAllLabel.position = ccp(director.screenCenter.x + 7, -2);
+      CCSprite* icon = [CCSprite spriteWithFile:@"coinicon.png"];
+      icon.position = ccp(director.screenCenter.x - 88, 15);
+      [self addChild:slash];
+      [self addChild:_coinLabel];
+      [self addChild:_coinAllLabel];
+      [self addChild:icon];
+    }
   }
   return self;
 }

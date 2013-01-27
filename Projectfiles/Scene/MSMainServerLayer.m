@@ -123,7 +123,7 @@
     } else if (isAllDead) { // 全員死んだとき
       _state = MSGameStateGameOver;
       __block MSMainLayer* blockSelf = self;
-      [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:1.0f]
+      [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:3.0f]
                                         two:[CCCallBlock actionWithBlock:^{
         MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagGameOver];
         [blockSelf broadcastContainerToPlayer:container];
