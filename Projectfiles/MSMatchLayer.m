@@ -33,7 +33,7 @@ NSString* kStartMessage = @"GameStart";
     _clients = [NSArray array];
     
     CCSprite* spriteBoard = [CCSprite spriteWithFile:@"board.png"];
-    spriteBoard.position = _type == MSSessionTypeClient ? ccp(160.0f,480.0f - 81.0f) : ccp(389.95f,1024-367.75f);
+    spriteBoard.position = _type == MSSessionTypeClient ? ccp(160.0f,480.0f - 141.0f) : ccp(389.95f,1024-367.75f);
     [self addChild:spriteBoard];
     
     _lightServer = [CCSprite spriteWithFile:@"off.png"];
@@ -53,12 +53,12 @@ NSString* kStartMessage = @"GameStart";
     [self addChild:_lightClient3];
     
     CCSprite* spriteStay = [CCSprite spriteWithFile:@"stay.png"];
-    spriteStay.position = _type == MSSessionTypeClient ? ccp(79.5,480.0f - 63.4) : ccp(384.95,1024-224);
+    spriteStay.position = _type == MSSessionTypeClient ? ccp(79.5,480.0f - 81.4) : ccp(384.95,1024-224);
     [self addChild:spriteStay];
     
-    
-    
-    
+    CCSprite* spriteServer = [CCSprite spriteWithFile:@"crown.png"];
+    spriteServer.position = _type == MSSessionTypeClient ? ccp(68.0f,480.0f - 109.15) : ccp(165.1,1024-323.7);
+    [self addChild:spriteServer];
     
     
     
