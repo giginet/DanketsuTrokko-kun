@@ -61,10 +61,15 @@ typedef enum {
     _scrollDebugLabel.position = ccp(50, 50);
     [self addChild:_scrollDebugLabel];
     
-    _coinLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d/%d", 0, _loader.coinCount] fontName:@"Helvetica" fontSize:24];
-    _coinLabel.position = ccp(director.screenCenter.x, 30);
+    CCSprite* slash = [CCSprite spriteWithFile:@"slash.png"];
+    slash.position = ccp(director.screenCenter.x, 30);
+    _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
+    _coinLabel.position = ccp(director.screenCenter.x - 150, -16);
+    _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
+    _coinAllLabel.position = ccp(director.screenCenter.x + 10, -16);
+    [self addChild:slash];
     [self addChild:_coinLabel];
-    
+    [self addChild:_coinAllLabel];
   }
   return self;
 }
@@ -131,7 +136,7 @@ typedef enum {
   for (MSPlayer* player in _players) {
     sum += player.coinCount;
   }
-  [_coinLabel setString:[NSString stringWithFormat:@"%d/%d", sum, _loader.coinCount]];
+  [_coinLabel setString:[NSString stringWithFormat:@"%03d", sum]];
 }
 
 - (void)buildReadyAnimation {

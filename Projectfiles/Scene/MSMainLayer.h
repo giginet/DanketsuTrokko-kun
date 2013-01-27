@@ -38,7 +38,8 @@ typedef enum {
 @interface MSMainLayer : CCLayer <KWSessionDelegate> {
   float _scroll;
   MSGameState _state;
-  CCLabelTTF* _coinLabel;
+  CCLabelAtlas* _coinLabel;
+  CCLabelAtlas* _coinAllLabel;
   CCNode* _startLabel;
   CCArray* _players;
   CCNode* _stage;
