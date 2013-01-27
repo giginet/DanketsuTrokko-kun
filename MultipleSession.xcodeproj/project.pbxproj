@@ -44,7 +44,7 @@
 		071D516816B4CF65001D8BFD /* coinicon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D516416B4CF65001D8BFD /* coinicon-hd.png */; };
 		071D516916B4CF65001D8BFD /* coinicon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D516516B4CF65001D8BFD /* coinicon-ipad.png */; };
 		071D516A16B4CF65001D8BFD /* coinicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D516616B4CF65001D8BFD /* coinicon.png */; };
-		071D516B16B4CF65001D8BFD /* coinx-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D516716B4CF65001D8BFD /* coinx-ipadhd.png */; };
+		071D516D16B4D422001D8BFD /* coinicon-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D516C16B4D422001D8BFD /* coinicon-ipadhd.png */; };
 		0724733516B3B65F0096870E /* coin-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733116B3B65F0096870E /* coin-hd.png */; };
 		0724733616B3B65F0096870E /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733216B3B65F0096870E /* coin.png */; };
 		0724733716B3B65F0096870E /* rock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733316B3B65F0096870E /* rock-hd.png */; };
@@ -231,7 +231,7 @@
 		071D516416B4CF65001D8BFD /* coinicon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coinicon-hd.png"; path = "Image/UI/coinicon-hd.png"; sourceTree = "<group>"; };
 		071D516516B4CF65001D8BFD /* coinicon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coinicon-ipad.png"; path = "Image/UI/coinicon-ipad.png"; sourceTree = "<group>"; };
 		071D516616B4CF65001D8BFD /* coinicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coinicon.png; path = Image/UI/coinicon.png; sourceTree = "<group>"; };
-		071D516716B4CF65001D8BFD /* coinx-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coinx-ipadhd.png"; path = "Image/UI/coinx-ipadhd.png"; sourceTree = "<group>"; };
+		071D516C16B4D422001D8BFD /* coinicon-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coinicon-ipadhd.png"; path = "Image/UI/coinicon-ipadhd.png"; sourceTree = "<group>"; };
 		0724733116B3B65F0096870E /* coin-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coin-hd.png"; path = "Image/coin-hd.png"; sourceTree = "<group>"; };
 		0724733216B3B65F0096870E /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Image/coin.png; sourceTree = "<group>"; };
 		0724733316B3B65F0096870E /* rock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rock-hd.png"; path = "Image/rock-hd.png"; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 				071D516416B4CF65001D8BFD /* coinicon-hd.png */,
 				071D516516B4CF65001D8BFD /* coinicon-ipad.png */,
 				071D516616B4CF65001D8BFD /* coinicon.png */,
-				071D516716B4CF65001D8BFD /* coinx-ipadhd.png */,
+				071D516C16B4D422001D8BFD /* coinicon-ipadhd.png */,
 				071D515016B4CF38001D8BFD /* highscore-hd.png */,
 				071D515116B4CF38001D8BFD /* highscore-ipad.png */,
 				071D515216B4CF38001D8BFD /* highscore-ipadhd.png */,
@@ -1133,7 +1133,7 @@
 				071D516816B4CF65001D8BFD /* coinicon-hd.png in Resources */,
 				071D516916B4CF65001D8BFD /* coinicon-ipad.png in Resources */,
 				071D516A16B4CF65001D8BFD /* coinicon.png in Resources */,
-				071D516B16B4CF65001D8BFD /* coinx-ipadhd.png in Resources */,
+				071D516D16B4D422001D8BFD /* coinicon-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

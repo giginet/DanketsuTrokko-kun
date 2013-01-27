@@ -79,12 +79,12 @@ typedef enum {
     } else {
       CCSprite* slash = [CCSprite spriteWithFile:@"slash.png"];
       slash.position = ccp(director.screenCenter.x, 15);
-      _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:17.6 itemHeight:35 startCharMap:'0'];
-      _coinLabel.position = ccp(director.screenCenter.x - 60, -2);
-      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:17.6 itemHeight:35 startCharMap:'0'];
-      _coinAllLabel.position = ccp(director.screenCenter.x + 7, -2);
+      _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:22 itemHeight:44 startCharMap:'0'];
+      _coinLabel.position = ccp(director.screenCenter.x - 74, -6);
+      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:22 itemHeight:44 startCharMap:'0'];
+      _coinAllLabel.position = ccp(director.screenCenter.x + 7, -6);
       CCSprite* icon = [CCSprite spriteWithFile:@"coinicon.png"];
-      icon.position = ccp(director.screenCenter.x - 88, 15);
+      icon.position = ccp(director.screenCenter.x - 93, 15);
       [self addChild:slash];
       [self addChild:_coinLabel];
       [self addChild:_coinAllLabel];

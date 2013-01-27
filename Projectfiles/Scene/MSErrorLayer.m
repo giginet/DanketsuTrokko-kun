@@ -9,6 +9,7 @@
 #import "MSErrorLayer.h"
 #import "MSTitleLayer.h"
 #import "KWSessionManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MSErrorLayer
 
@@ -25,6 +26,7 @@
     [manager disable];
     [manager setDelegate:nil];
     [manager stopSession];
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
   }
   return self;
 }
