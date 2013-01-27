@@ -8,7 +8,7 @@
 
 #import "MSTitleLayer.h"
 #import "MSMatchLayer.h"
-#import "SimpleAudioEngine.h"
+#import "KKInput.h"
 
 @interface MSTitleLayer()
 - (void)onServerButtonPressed:(id)sender;
@@ -56,44 +56,65 @@
     [self addChild:logo];
     
     [self addChild:menu];
-    self.mainMenu = menu;
+    
+    // CCSchedulerにこのインスタンスを登録する
+    [self scheduleUpdate];
+    
   }
   return self;
 }
 
-- (void)onEnterTransitionDidFinish {
-  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.caf" loop:YES];
-}
-
-/**
- Hostボタンが押されたとき
- */
 - (void)onServerButtonPressed:(id)sender {
-  CCDirector* director = [CCDirector sharedDirector];
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeServer];
-  [self addChild:layer];
-  layer.position = ccp(0, director.screenSize.height * 1.5);
-  [layer runAction:[CCMoveTo actionWithDuration:0.5f position:CGPointZero]];
-  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"matching.caf"];
-  self.mainMenu.enabled = NO;
+  CCScene* scene = [CCNode node];
+  [scene addChild:layer];
+  CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
+  [[CCDirector sharedDirector] replaceScene:transition];
 }
 
 /**
  Clientボタンが押されたとき
  */
 - (void)onClientButtonPressed:(id)sender {
-  CCDirector* director = [CCDirector sharedDirector];
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeClient];
-  [self addChild:layer];
-  layer.position = ccp(0, director.screenSize.height * 1.5);
-  [layer runAction:[CCMoveTo actionWithDuration:0.5f position:CGPointZero]];
-  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"matching.caf"];
-  self.mainMenu.enabled = NO;
+  CCScene* scene = [CCNode node];
+  [scene addChild:layer];
+  CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
+  [[CCDirector sharedDirector] replaceScene:transition];
 }
 
-- (void)onHelpButtonPressed:(id)sender {
+- (void)onHelpButtonPressed:(id)sender
+{
+  if( _spriteHelp == nil ){
+    _spriteHelp = [CCSprite spriteWithFile:@"GGJ2013_team1_help1.png"];
+    CCDirector* director = [CCDirector sharedDirector];
+    _spriteHelp.position = director.screenCenter;
+    [self addChild:_spriteHelp];
+  }
+  
+  [KKInput sharedInput].gestureTapEnabled = YES;
 }
+
+- (void)update:(ccTime)dt {
+  KKInput* input = [KKInput sharedInput];
+  if( input.gestureTapRecognizedThisFrame ){
+    _helpIndex++;
+    
+    NSArray* helpFiles =  @[@"GGJ2013_team1_help1.png",@"GGJ2013_team1_help1.png",@"GGJ2013_team1_help2.png",@"GGJ2013_team1_help3.png",@"GGJ2013_team1_help4.png",@"GGJ2013_team1_help5.png",@"GGJ2013_team1_help6.png"];
+    
+    if( _helpIndex < [helpFiles count] ){
+      NSString* fileFile = helpFiles[_helpIndex];
+      [_spriteHelp setTexture:[[CCTextureCache sharedTextureCache] addImage:fileFile] ];
+    }else{
+      [self removeChild:_spriteHelp cleanup:YES];
+      _spriteHelp = nil;
+      
+      [CCTextureCache purgeSharedTextureCache];
+      
+      [KKInput sharedInput].gestureTapEnabled = NO;
+    }
+  }
+}
+
 
 @end

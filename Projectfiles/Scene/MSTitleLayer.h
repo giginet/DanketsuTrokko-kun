@@ -9,7 +9,9 @@
 #import "KWLayer.h"
 
 @interface MSTitleLayer : CCLayer
-
-@property(readwrite) CCMenu* mainMenu;
+{
+  CCSprite* _spriteHelp;
+  NSUInteger _helpIndex;
+}
 
 @end
