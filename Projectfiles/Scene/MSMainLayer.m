@@ -136,7 +136,7 @@ typedef enum {
 
 - (void)buildReadyAnimation {
   CCDirector* director = [CCDirector sharedDirector];
-  _startLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", 3] fontName:@"Helvetica" fontSize:72];
+  _startLabel = [CCSprite spriteWithFile:@"count3.png"];
   _startLabel.scale = 0.0f;
   _startLabel.position = director.screenCenter;
   // 共通アクションを定義
@@ -144,22 +144,25 @@ typedef enum {
                       [CCScaleTo actionWithDuration:0.1f scale:1.0],
                       [CCDelayTime actionWithDuration:0.9f],
                       [CCCallBlockN actionWithBlock:^(CCNode *node) {
-    CCLabelTTF* label = (CCLabelTTF*)node;
-    [label setString:@"2"];
+    CCSprite* label = (CCSprite*)node;
+    [label setTexture:[[CCTextureCache sharedTextureCache] addImage:@"count2.png"]];
     label.scale = 0.0;
   }],
                       [CCScaleTo actionWithDuration:0.1f scale:1.0],
                       [CCDelayTime actionWithDuration:0.9f],
                       [CCCallBlockN actionWithBlock:^(CCNode *node) {
-    CCLabelTTF* label = (CCLabelTTF*)node;
-    [label setString:@"1"];
+    CCSprite* label = (CCSprite*)node;
+    [label setTexture:[[CCTextureCache sharedTextureCache] addImage:@"count1.png"]];
     label.scale = 0.0;
   }],
                       [CCScaleTo actionWithDuration:0.1f scale:1.0],
                       [CCDelayTime actionWithDuration:0.9f],
                       [CCCallBlockN actionWithBlock:^(CCNode *node) {
-    CCLabelTTF* label = (CCLabelTTF*)node;
-    [label setString:@"Go!"];
+    CCSprite* label = (CCSprite*)node;
+    CCTexture2D* texture = [[CCTextureCache sharedTextureCache] addImage:@"go.png"];
+    [label setTexture:texture];
+    [label setTextureRect:CGRectMake(0, 0, texture.contentSize.width, texture.contentSize.height)];
+    [label setContentSize:texture.contentSize];
     label.scale = 0.0;
   }],
                       [CCScaleTo actionWithDuration:0.1f scale:1.0f],
