@@ -138,6 +138,10 @@
 		87C1827F16B4C29F00D6EC3B /* on-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1827B16B4C29F00D6EC3B /* on-ipad.png */; };
 		87C1828016B4C29F00D6EC3B /* on-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1827C16B4C29F00D6EC3B /* on-ipadhd.png */; };
 		87C1828116B4C29F00D6EC3B /* on.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1827D16B4C29F00D6EC3B /* on.png */; };
+		87C1828616B4D3F600D6EC3B /* stay-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1828216B4D3F200D6EC3B /* stay-hd.png */; };
+		87C1828716B4D3F600D6EC3B /* stay-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1828316B4D3F300D6EC3B /* stay-ipad.png */; };
+		87C1828816B4D3F600D6EC3B /* stay-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1828416B4D3F400D6EC3B /* stay-ipadhd.png */; };
+		87C1828916B4D3F600D6EC3B /* stay.png in Resources */ = {isa = PBXBuildFile; fileRef = 87C1828516B4D3F400D6EC3B /* stay.png */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -378,6 +382,10 @@
 		87C1827B16B4C29F00D6EC3B /* on-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "on-ipad.png"; path = "Image/on-ipad.png"; sourceTree = "<group>"; };
 		87C1827C16B4C29F00D6EC3B /* on-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "on-ipadhd.png"; path = "Image/on-ipadhd.png"; sourceTree = "<group>"; };
 		87C1827D16B4C29F00D6EC3B /* on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = on.png; path = Image/on.png; sourceTree = "<group>"; };
+		87C1828216B4D3F200D6EC3B /* stay-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stay-hd.png"; path = "Image/stay-hd.png"; sourceTree = "<group>"; };
+		87C1828316B4D3F300D6EC3B /* stay-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stay-ipad.png"; path = "Image/stay-ipad.png"; sourceTree = "<group>"; };
+		87C1828416B4D3F400D6EC3B /* stay-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stay-ipadhd.png"; path = "Image/stay-ipadhd.png"; sourceTree = "<group>"; };
+		87C1828516B4D3F400D6EC3B /* stay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stay.png; path = Image/stay.png; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -734,6 +742,10 @@
 		07F414DA16B2FCFE0040F9A3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				87C1828216B4D3F200D6EC3B /* stay-hd.png */,
+				87C1828316B4D3F300D6EC3B /* stay-ipad.png */,
+				87C1828416B4D3F400D6EC3B /* stay-ipadhd.png */,
+				87C1828516B4D3F400D6EC3B /* stay.png */,
 				87C1827A16B4C29F00D6EC3B /* on-hd.png */,
 				87C1827B16B4C29F00D6EC3B /* on-ipad.png */,
 				87C1827C16B4C29F00D6EC3B /* on-ipadhd.png */,
@@ -1154,6 +1166,10 @@
 				87C1827F16B4C29F00D6EC3B /* on-ipad.png in Resources */,
 				87C1828016B4C29F00D6EC3B /* on-ipadhd.png in Resources */,
 				87C1828116B4C29F00D6EC3B /* on.png in Resources */,
+				87C1828616B4D3F600D6EC3B /* stay-hd.png in Resources */,
+				87C1828716B4D3F600D6EC3B /* stay-ipad.png in Resources */,
+				87C1828816B4D3F600D6EC3B /* stay-ipadhd.png in Resources */,
+				87C1828916B4D3F600D6EC3B /* stay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
