@@ -73,6 +73,7 @@
   [scene addChild:layer];
   CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:transition];
+  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 
 /**
@@ -84,6 +85,7 @@
   [scene addChild:layer];
   CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:transition];
+  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 
 - (void)onHelpButtonPressed:(id)sender {
