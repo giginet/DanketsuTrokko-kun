@@ -53,13 +53,13 @@ NSString* kStartMessage = @"GameStart";
     [self addChild:_lightClient3];
     
     CCSprite* spriteStay = [CCSprite spriteWithFile:@"stay.png"];
-    spriteStay.position = _type == MSSessionTypeClient ? ccp(79.5,480.0f - 81.4) : ccp(384.95,1024-224);
+    spriteStay.position = _type == MSSessionTypeClient ? ccp(160,480.0f - 81.4) : ccp(384.95,1024-224);
     [self addChild:spriteStay];
     
     CCSprite* spriteServer = [CCSprite spriteWithFile:@"crown.png"];
     spriteServer.position = _type == MSSessionTypeClient ? ccp(68.0f,480.0f - 109.15) : ccp(165.1,1024-323.7);
     [self addChild:spriteServer];
-    
+
     
     
     
@@ -86,16 +86,15 @@ NSString* kStartMessage = @"GameStart";
       _serverPeerID = @"";
     }
     if (_type == MSSessionTypeServer) {
-      CCLabelTTF* startLabel = [CCLabelTTF labelWithString:@"Start" fontName:@"Helvetica" fontSize:32];
-      CCMenuItemLabel* start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStart:)];
-      _startMenu = [CCMenu menuWithItems:start, nil];
+      CCMenuItemImage* menuItemImage = [CCMenuItemImage itemWithNormalImage:@"startbtn-on.png" selectedImage:@"startbtn-on.png"disabledImage:@"startbtn.png" target:self selector:@selector(onStart:)];
+      _startMenu = [CCMenu menuWithItems:menuItemImage,nil];
       _startMenu.enabled = NO;
-      _startMenu.position = ccp(director.screenCenter.x, 50);
+      _startMenu.position = ccp(384,1024 - 613.15);
       [self addChild:_startMenu];
-        
-        
-      /*CCLabelTTF**/ startLabel = [CCLabelTTF labelWithString:@"Demo" fontName:@"Helvetica" fontSize:32];
-      /*CCMenuItemLabel**/ start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStartDemo:)];
+
+      
+      CCLabelTTF* startLabel = [CCLabelTTF labelWithString:@"Demo" fontName:@"Helvetica" fontSize:32];
+      CCMenuItemLabel* start = [CCMenuItemLabel itemWithLabel:startLabel target:self selector:@selector(onStartDemo:)];
       _demoMenu = [CCMenu menuWithItems:start, nil];
       _demoMenu.enabled = YES;
       _demoMenu.position = ccp(director.screenCenter.x, 100);

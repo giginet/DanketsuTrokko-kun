@@ -37,6 +37,8 @@ typedef enum {
   CCSprite* _lightClient2;
   CCSprite* _lightClient3;
   
+  CCMenu* _menuStart;
+
 }
 
 - (id)initWithServerOrClient:(MSSessionType)type;
