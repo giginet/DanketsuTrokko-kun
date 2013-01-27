@@ -60,7 +60,7 @@
         [self broadcastContainerToPlayer:container];
         [self updateCoinLabel];
       } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
-        if (!player.isCrashing && !player.isDead) {
+        if (!player.isDead && player.canMoving) {
           player.life -= 1;
           [player setCrashAnimation];
           if (currentTile.tileType == MSTileTypeRock) {
