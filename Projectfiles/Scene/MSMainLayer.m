@@ -146,25 +146,37 @@ typedef enum {
   _startLabel = [CCSprite spriteWithFile:@"count3.png"];
   _startLabel.scale = 0.0f;
   _startLabel.position = director.screenCenter;
+  BOOL isServer = self.isServer;
   // 共通アクションを定義
   NSMutableArray* actions = [NSMutableArray arrayWithObjects:
-                      [CCScaleTo actionWithDuration:0.1f scale:1.0],
-                      [CCDelayTime actionWithDuration:0.9f],
-                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                             [CCCallBlock actionWithBlock:^{
+    if (isServer) {
+      [[SimpleAudioEngine sharedEngine] playEffect:@"count.caf"];
+    }
+  }],
+                             [CCScaleTo actionWithDuration:0.1f scale:1.0],
+                             [CCDelayTime actionWithDuration:0.9f],
+                             [CCCallBlockN actionWithBlock:^(CCNode *node) {
     CCSprite* label = (CCSprite*)node;
     [label setTexture:[[CCTextureCache sharedTextureCache] addImage:@"count2.png"]];
+    if (isServer) {
+      [[SimpleAudioEngine sharedEngine] playEffect:@"count.caf"];
+    }
     label.scale = 0.0;
   }],
-                      [CCScaleTo actionWithDuration:0.1f scale:1.0],
-                      [CCDelayTime actionWithDuration:0.9f],
-                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                             [CCScaleTo actionWithDuration:0.1f scale:1.0],
+                             [CCDelayTime actionWithDuration:0.9f],
+                             [CCCallBlockN actionWithBlock:^(CCNode *node) {
     CCSprite* label = (CCSprite*)node;
+    if (isServer) {
+      [[SimpleAudioEngine sharedEngine] playEffect:@"count.caf"];
+    }
     [label setTexture:[[CCTextureCache sharedTextureCache] addImage:@"count1.png"]];
     label.scale = 0.0;
   }],
-                      [CCScaleTo actionWithDuration:0.1f scale:1.0],
-                      [CCDelayTime actionWithDuration:0.9f],
-                      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                             [CCScaleTo actionWithDuration:0.1f scale:1.0],
+                             [CCDelayTime actionWithDuration:0.9f],
+                             [CCCallBlockN actionWithBlock:^(CCNode *node) {
     CCSprite* label = (CCSprite*)node;
     CCTexture2D* texture = [[CCTextureCache sharedTextureCache] addImage:@"go.png"];
     [label setTexture:texture];
@@ -172,7 +184,7 @@ typedef enum {
     [label setContentSize:texture.contentSize];
     label.scale = 0.0;
   }],
-                      [CCScaleTo actionWithDuration:0.1f scale:1.0f],
+                             [CCScaleTo actionWithDuration:0.1f scale:1.0f],
                              nil];
   // サーバー固有アクションの追加
   if (self.isServer) {
@@ -183,6 +195,7 @@ typedef enum {
       [blockSelf broadcastContainerToPlayer:container];
       _state = MSGameStateMain;
       int n = [[KWRandom random] nextInt] % 2;
+      NSLog(@"%d", n);
       [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"main%d.caf", n] loop:YES];
     }]];
     [actions addObject:[CCDelayTime actionWithDuration:1.0f]];

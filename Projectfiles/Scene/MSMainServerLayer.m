@@ -10,6 +10,7 @@
 #import "KWSessionManager.h"
 #import "MSGoalLayer.h"
 #import "KKInputTouch.h"
+#import "SimpleAudioEngine.h"
 
 @interface MSMainServerLayer()
 - (void)broadCastAllPlayers;
@@ -82,6 +83,8 @@
         isAllDead = NO;
       }
     }
+    
+    // タッチによる岩の破壊
     [KKInput sharedInput].gestureTapEnabled = YES;
     KKInput* input = [KKInput sharedInput];
     if ([input anyTouchBeganThisFrame]) {
@@ -97,7 +100,7 @@
           {
           //            NSLog(@"MSTileTypeRock" );
           [tile setTileType:MSTileTypeRuinRock];
-          
+          [[SimpleAudioEngine sharedEngine] playEffect:@"rock_touch.caf"];
           MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
           [self broadcastContainerToPlayer:container];
           }
@@ -106,6 +109,8 @@
           {
           [tile setTileType:MSTileTypeBrokenRock];
           }
+            break;
+          default:
             break;
         }
       }

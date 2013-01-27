@@ -10,6 +10,7 @@
 #import "KWSessionManager.h"
 #import "MSGoalLayer.h"
 #import "MSTitleLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface MSMainClientLayer()
 - (void)sendPlayerToServer:(MSPlayer*)player;
@@ -62,10 +63,12 @@
         if (deg < -45) { // 左に45度以上傾いてたら
           if (!_myPlayer.isRailChanged) {
             [_myPlayer setRailChangeAction:MSDirectionLeft];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"rail_change.caf"];
           }
         } else if (deg > 45) { // 右に45度以上傾いてたら
           if (!_myPlayer.isRailChanged) {
             [_myPlayer setRailChangeAction:MSDirectionRight];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"rail_change.caf"];
           }
         } else {
           _myPlayer.isRailChanged = NO;
@@ -133,6 +136,7 @@
       CGPoint touchPoint = [(NSValue*)container.object CGPointValue];
       MSTile* tile = [_loader tileWithStagePoint:touchPoint];
       [tile setTileType:MSTileTypeRuinRock];
+      [[SimpleAudioEngine sharedEngine] playEffect:@"rock_break.caf"];
     } else if (container.tag == MSContainerTagDamage) { // ダメージ受けました通知
       _myPlayer.life -= 1;
       [_myPlayer setCrashAnimation]; // クラッシュ

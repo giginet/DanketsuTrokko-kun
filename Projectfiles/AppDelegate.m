@@ -6,6 +6,7 @@
  */
 
 #import "AppDelegate.h"
+#import "SimpleAudioEngine.h"
 
 @implementation AppDelegate
 
@@ -16,6 +17,7 @@
 #else
 	CCLOG(@"ARC is either not available or not enabled");
 #endif
+  [SimpleAudioEngine sharedEngine].backgroundMusicVolume = 0.6f;
 }
 
 -(id) alternateView

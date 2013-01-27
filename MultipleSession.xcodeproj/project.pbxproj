@@ -30,6 +30,10 @@
 		071D512616B4B368001D8BFD /* slash.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D512216B4B367001D8BFD /* slash.png */; };
 		071D512E16B4C0E5001D8BFD /* main0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D512816B4BDEE001D8BFD /* main0.caf */; };
 		071D512F16B4C0E5001D8BFD /* main1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D512916B4BDEE001D8BFD /* main1.caf */; };
+		071D513516B4C678001D8BFD /* count.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D513116B4C42E001D8BFD /* count.caf */; };
+		071D513616B4C678001D8BFD /* rail_change.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D513216B4C42E001D8BFD /* rail_change.caf */; };
+		071D513716B4C678001D8BFD /* rock_touch.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D513316B4C42E001D8BFD /* rock_touch.caf */; };
+		071D513816B4C678001D8BFD /* rock_break.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D513416B4C616001D8BFD /* rock_break.caf */; };
 		0724733516B3B65F0096870E /* coin-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733116B3B65F0096870E /* coin-hd.png */; };
 		0724733616B3B65F0096870E /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733216B3B65F0096870E /* coin.png */; };
 		0724733716B3B65F0096870E /* rock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733316B3B65F0096870E /* rock-hd.png */; };
@@ -202,6 +206,10 @@
 		071D512216B4B367001D8BFD /* slash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slash.png; path = Image/slash.png; sourceTree = "<group>"; };
 		071D512816B4BDEE001D8BFD /* main0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = main0.caf; path = Music/main0.caf; sourceTree = "<group>"; };
 		071D512916B4BDEE001D8BFD /* main1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = main1.caf; path = Music/main1.caf; sourceTree = "<group>"; };
+		071D513116B4C42E001D8BFD /* count.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = count.caf; path = SE/count.caf; sourceTree = "<group>"; };
+		071D513216B4C42E001D8BFD /* rail_change.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rail_change.caf; path = SE/rail_change.caf; sourceTree = "<group>"; };
+		071D513316B4C42E001D8BFD /* rock_touch.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rock_touch.caf; path = SE/rock_touch.caf; sourceTree = "<group>"; };
+		071D513416B4C616001D8BFD /* rock_break.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rock_break.caf; path = SE/rock_break.caf; sourceTree = "<group>"; };
 		0724733116B3B65F0096870E /* coin-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coin-hd.png"; path = "Image/coin-hd.png"; sourceTree = "<group>"; };
 		0724733216B3B65F0096870E /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Image/coin.png; sourceTree = "<group>"; };
 		0724733316B3B65F0096870E /* rock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rock-hd.png"; path = "Image/rock-hd.png"; sourceTree = "<group>"; };
@@ -467,6 +475,17 @@
 				071D512916B4BDEE001D8BFD /* main1.caf */,
 			);
 			name = Music;
+			sourceTree = "<group>";
+		};
+		071D513016B4C425001D8BFD /* SE */ = {
+			isa = PBXGroup;
+			children = (
+				071D513116B4C42E001D8BFD /* count.caf */,
+				071D513216B4C42E001D8BFD /* rail_change.caf */,
+				071D513316B4C42E001D8BFD /* rock_touch.caf */,
+				071D513416B4C616001D8BFD /* rock_break.caf */,
+			);
+			name = SE;
 			sourceTree = "<group>";
 		};
 		077D4F9316AEE59E000941CC /* Heqet */ = {
@@ -858,6 +877,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				071D513016B4C425001D8BFD /* SE */,
 				071D512716B4BDE0001D8BFD /* Music */,
 				07F414E016B316920040F9A3 /* Map */,
 				07F414DA16B2FCFE0040F9A3 /* Image */,
@@ -965,6 +985,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071D513516B4C678001D8BFD /* count.caf in Resources */,
+				071D513616B4C678001D8BFD /* rail_change.caf in Resources */,
+				071D513716B4C678001D8BFD /* rock_touch.caf in Resources */,
+				071D513816B4C678001D8BFD /* rock_break.caf in Resources */,
 				071D512E16B4C0E5001D8BFD /* main0.caf in Resources */,
 				071D512F16B4C0E5001D8BFD /* main1.caf in Resources */,
 				077D501416AEF673000941CC /* kawaz.mp4 in Resources */,
