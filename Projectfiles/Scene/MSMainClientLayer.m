@@ -49,6 +49,7 @@
         MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
         if ([_myPlayer canMoving]) {
           if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
+            [[SimpleAudioEngine sharedEngine] playEffect:@"line_change.caf"];
             [_myPlayer setLineChangeAction:direction == KKSwipeGestureDirectionLeft ? MSDirectionLeft : MSDirectionRight];
           }
         }
@@ -129,6 +130,7 @@
       MSPlayerState* state = (MSPlayerState*)container.object;
       MSPlayer* player = [self playerWithPeerID:state.peerID];
       player.coinCount += 1; // コイン追加します
+      [[SimpleAudioEngine sharedEngine] playEffect:@"coin.caf"];
       [self updateCoinLabel];
       MSTile* coin = [_loader tileWithStagePoint:state.position];
       [coin setTileType:MSTileTypeRail];
@@ -146,6 +148,9 @@
         CCSprite* crash = [CCSprite spriteWithFile:[NSString stringWithFormat:@"crash%d.png", _myPlayer.no + 1]];
         crash.position = director.screenCenter;
         [self addChild:crash];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"death.caf"];
+      } else {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"hit.caf"];
       }
     } else if (container.tag == MSContainerTagGameStart) { // ゲーム始まりました通知
       [_startLabel.actionManager addAction:[CCSequence

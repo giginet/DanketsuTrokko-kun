@@ -205,6 +205,7 @@ typedef enum {
     [label setTextureRect:CGRectMake(0, 0, texture.contentSize.width, texture.contentSize.height)];
     [label setContentSize:texture.contentSize];
     label.scale = 0.0;
+    [[SimpleAudioEngine sharedEngine] playEffect:@"go.caf"];
   }],
                              [CCScaleTo actionWithDuration:0.1f scale:1.0f],
                              nil];

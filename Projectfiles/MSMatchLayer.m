@@ -283,6 +283,7 @@ NSString* kStartMessage = @"GameStart";
     case GKPeerStateConnected:
       stateName = @"Connected";
       if (_type == MSSessionTypeClient) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"matching_complete.caf"];
         [_stateLabel setString:@"ホストに接続しました"];
       } else if (_type == MSSessionTypeServer) {
         MSContainer* container = [MSContainer containerWithObject:_serverPeerID forTag:MSMatchContainerTagServerPeer];

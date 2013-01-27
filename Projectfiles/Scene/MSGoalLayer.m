@@ -10,6 +10,7 @@
 #import "MSTitleLayer.h"
 #import "MSContainer.h"
 #import "MSGameEndMenu.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MSGoalLayer
 
@@ -26,6 +27,8 @@
     CCSprite* clear = [CCSprite spriteWithFile:@"clear.png"];
     clear.position = ccp(director.screenCenter.x, director.screenCenter.y * 1.5);
     [self addChild:clear];
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"result.caf"];
   }
   return self;
 }
