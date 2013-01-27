@@ -78,7 +78,7 @@ NSString* kStartMessage = @"GameStart";
     
     _peersNode = [CCNode node];
     _peersNode.position = director.screenCenter;
-    [self addChild:_stateLabel];
+    //[self addChild:_stateLabel];
     [self addChild:_peersNode];
     if (_type == MSSessionTypeServer) {
       _serverPeerID = _sessionManager.session.peerID;
@@ -86,7 +86,7 @@ NSString* kStartMessage = @"GameStart";
       _serverPeerID = @"";
     }
     if (_type == MSSessionTypeServer) {
-      CCMenuItemImage* menuItemImage = [CCMenuItemImage itemWithNormalImage:@"startbtn-on.png" selectedImage:@"startbtn-on.png"disabledImage:@"startbtn.png" target:self selector:@selector(onStart:)];
+      CCMenuItemImage* menuItemImage = [CCMenuItemImage itemWithNormalImage:@"startbtn.png" selectedImage:@"startbtn-on.png"disabledImage:@"startbtn-on.png" target:self selector:@selector(onStart:)];
       _startMenu = [CCMenu menuWithItems:menuItemImage,nil];
       _startMenu.enabled = NO;
       _startMenu.position = ccp(384,1024 - 613.15);
@@ -236,6 +236,7 @@ NSString* kStartMessage = @"GameStart";
   [scene addChild:nextLayer];
   CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:fade];
+  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 
 - (void) onStartDemo:(id)sender {

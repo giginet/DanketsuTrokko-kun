@@ -10,4 +10,6 @@
 
 @interface MSTitleLayer : CCLayer
 
+@property(readwrite) CCMenu* mainMenu;
+
 @end

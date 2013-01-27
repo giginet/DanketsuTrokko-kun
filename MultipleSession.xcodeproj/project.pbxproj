@@ -50,6 +50,7 @@
 		0724733716B3B65F0096870E /* rock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733316B3B65F0096870E /* rock-hd.png */; };
 		0724733816B3B65F0096870E /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733416B3B65F0096870E /* rock.png */; };
 		0724733C16B3C7B30096870E /* MSGoalLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0724733B16B3C7B20096870E /* MSGoalLayer.m */; };
+		073EF3C416B5047700C7650B /* matching.caf in Resources */ = {isa = PBXBuildFile; fileRef = 073EF3C216B5046C00C7650B /* matching.caf */; };
 		07619E9016B17938001E5EA1 /* grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07619E8F16B17938001E5EA1 /* grass.jpg */; };
 		07619E9216B17BD7001E5EA1 /* sky-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07619E9116B17BD7001E5EA1 /* sky-hd.png */; };
 		077D4FD516AEE59E000941CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 077D4F9416AEE59E000941CC /* .gitignore */; };
@@ -329,6 +330,7 @@
 		0724733416B3B65F0096870E /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock.png; path = Image/rock.png; sourceTree = "<group>"; };
 		0724733A16B3C7B20096870E /* MSGoalLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSGoalLayer.h; path = Scene/MSGoalLayer.h; sourceTree = "<group>"; };
 		0724733B16B3C7B20096870E /* MSGoalLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSGoalLayer.m; path = Scene/MSGoalLayer.m; sourceTree = "<group>"; };
+		073EF3C216B5046C00C7650B /* matching.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = matching.caf; path = Music/matching.caf; sourceTree = "<group>"; };
 		07619E8F16B17938001E5EA1 /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
 		07619E9116B17BD7001E5EA1 /* sky-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sky-hd.png"; sourceTree = "<group>"; };
 		077D4F9416AEE59E000941CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 		071D512716B4BDE0001D8BFD /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				073EF3C216B5046C00C7650B /* matching.caf */,
 				071D513916B4CA50001D8BFD /* gameover.caf */,
 				071D512816B4BDEE001D8BFD /* main0.caf */,
 				071D512916B4BDEE001D8BFD /* main1.caf */,
@@ -1309,6 +1312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				073EF3C416B5047700C7650B /* matching.caf in Resources */,
 				0786FEF516B5025A009C23CB /* result.caf in Resources */,
 				0786FEF616B5025A009C23CB /* title.caf in Resources */,
 				071D513A16B4CA5A001D8BFD /* gameover.caf in Resources */,
@@ -1501,18 +1505,6 @@
 				0786FEF016B4FACB009C23CB /* titleback-ipad.png in Resources */,
 				0786FEF116B4FACB009C23CB /* titleback-ipadhd.png in Resources */,
 				0786FEF216B4FACB009C23CB /* titleback.png in Resources */,
-				0786FECB16B4F082009C23CB /* retry0-hd.png in Resources */,
-				0786FECC16B4F082009C23CB /* retry0-ipad.png in Resources */,
-				0786FECD16B4F082009C23CB /* retry0-ipadhd.png in Resources */,
-				0786FECE16B4F082009C23CB /* retry0.png in Resources */,
-				0786FECF16B4F082009C23CB /* retry1-hd.png in Resources */,
-				0786FED016B4F082009C23CB /* retry1-ipad.png in Resources */,
-				0786FED116B4F082009C23CB /* retry1-ipadhd.png in Resources */,
-				0786FED216B4F082009C23CB /* retry1.png in Resources */,
-				0786FED316B4F082009C23CB /* titleback-hd.png in Resources */,
-				0786FED416B4F082009C23CB /* titleback-ipad.png in Resources */,
-				0786FED516B4F082009C23CB /* titleback-ipadhd.png in Resources */,
-				0786FED616B4F082009C23CB /* titleback.png in Resources */,
 				87A88F1F16B5000E00AFF3D2 /* GGJ2013_team1_help1.png in Resources */,
 				87A88F2016B5000E00AFF3D2 /* GGJ2013_team1_help2.png in Resources */,
 				87A88F2116B5000E00AFF3D2 /* GGJ2013_team1_help3.png in Resources */,

@@ -56,6 +56,7 @@
     [self addChild:logo];
     
     [self addChild:menu];
+    self.mainMenu = menu;
   }
   return self;
 }
@@ -68,24 +69,28 @@
  Hostボタンが押されたとき
  */
 - (void)onServerButtonPressed:(id)sender {
+  CCDirector* director = [CCDirector sharedDirector];
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeServer];
-  CCScene* scene = [CCNode node];
-  [scene addChild:layer];
-  CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
-  [[CCDirector sharedDirector] replaceScene:transition];
+  [self addChild:layer];
+  layer.position = ccp(0, director.screenSize.height * 1.5);
+  [layer runAction:[CCMoveTo actionWithDuration:0.5f position:CGPointZero]];
   [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"matching.caf"];
+  self.mainMenu.enabled = NO;
 }
 
 /**
  Clientボタンが押されたとき
  */
 - (void)onClientButtonPressed:(id)sender {
+  CCDirector* director = [CCDirector sharedDirector];
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeClient];
-  CCScene* scene = [CCNode node];
-  [scene addChild:layer];
-  CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
-  [[CCDirector sharedDirector] replaceScene:transition];
+  [self addChild:layer];
+  layer.position = ccp(0, director.screenSize.height * 1.5);
+  [layer runAction:[CCMoveTo actionWithDuration:0.5f position:CGPointZero]];
   [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"matching.caf"];
+  self.mainMenu.enabled = NO;
 }
 
 - (void)onHelpButtonPressed:(id)sender {
