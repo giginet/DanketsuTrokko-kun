@@ -97,6 +97,7 @@
           {
           [tile setTileType:MSTileTypeRuinRock];
           [[SimpleAudioEngine sharedEngine] playEffect:@"rock_touch.caf"];
+          [tile addRockBreakAnimation]; // アニメの追加
           MSContainer* container = [MSContainer containerWithObject:[NSValue valueWithCGPoint:touchLocation] forTag:MSContainerTagRuinRock];
           [self broadcastContainerToPlayer:container];
           }

@@ -136,6 +136,7 @@
       CGPoint touchPoint = [(NSValue*)container.object CGPointValue];
       MSTile* tile = [_loader tileWithStagePoint:touchPoint];
       [tile setTileType:MSTileTypeRuinRock];
+      [tile addRockBreakAnimation];
       [[SimpleAudioEngine sharedEngine] playEffect:@"rock_break.caf"];
     } else if (container.tag == MSContainerTagDamage) { // ダメージ受けました通知
       _myPlayer.life -= 1;
