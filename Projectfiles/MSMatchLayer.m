@@ -61,6 +61,8 @@ NSString* kStartMessage = @"GameStart";
     spriteServer.position = _type == MSSessionTypeClient ? ccp(68.0f,480.0f - 109.15) : ccp(165.1,1024-323.7);
     [self addChild:spriteServer];
 
+    const float stateFontSizePhone = [KKConfig floatForKey:@"MatchStateFontSizePhone"];
+    const float stateFontSizePad = [KKConfig floatForKey:@"MatchStateFontSizePad"];
     
     
     
@@ -72,9 +74,9 @@ NSString* kStartMessage = @"GameStart";
     if (_type == MSSessionTypeClient) {
       _stateLabel = [CCLabelTTF labelWithString:@"ホストを探しています" fontName:@"Helvetica" fontSize:24];
     } else {
-      _stateLabel = [CCLabelTTF labelWithString:@"参加者を募集中" fontName:@"Helvetica" fontSize:24];
+      _stateLabel = [CCLabelTTF labelWithString:@"参加者を募集中" fontName:@"Helvetica" fontSize:_type == MSSessionTypeClient ? stateFontSizePhone : stateFontSizePad];
     }
-    _stateLabel.position = ccp(director.screenCenter.x, 280);
+    _stateLabel.position = _type == MSSessionTypeClient ? ccp(director.screenCenter.x, 480 - 213.6 ) : ccp(director.screenCenter.x, 1024 - 682.5);
     _stateLabel.color = ccc3(255, 255, 255);
     
     _peersNode = [CCNode node];
