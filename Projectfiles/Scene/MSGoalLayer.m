@@ -27,9 +27,9 @@
       menu.position = ccp(director.screenCenter.x, 500);
       [self addChild:menu];
     }
-    CCLabelTTF* goalLabel = [CCLabelTTF labelWithString:@"Goal" fontName:@"Helvetica" fontSize:48];
-    goalLabel.position = ccp(director.screenCenter.x, director.screenCenter.y * 1.5);
-    [self addChild:goalLabel];
+    CCSprite* clear = [CCSprite spriteWithFile:@"clear.png"];
+    clear.position = ccp(director.screenCenter.x, director.screenCenter.y * 1.5);
+    [self addChild:clear];
   }
   return self;
 }

@@ -120,6 +120,10 @@
 		0786FE9216B4DDD5009C23CB /* start-on-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE8216B4DDD5009C23CB /* start-on-ipadhd.png */; };
 		0786FE9316B4DDD5009C23CB /* start-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE8316B4DDD5009C23CB /* start-on.png */; };
 		0786FE9416B4DDD5009C23CB /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE8416B4DDD5009C23CB /* start.png */; };
+		0786FE9916B4E327009C23CB /* clear-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE9516B4E327009C23CB /* clear-hd.png */; };
+		0786FE9A16B4E327009C23CB /* clear-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE9616B4E327009C23CB /* clear-ipad.png */; };
+		0786FE9B16B4E327009C23CB /* clear-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE9716B4E327009C23CB /* clear-ipadhd.png */; };
+		0786FE9C16B4E327009C23CB /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 0786FE9816B4E327009C23CB /* clear.png */; };
 		0789617B16AF539A0094D334 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0789617A16AF539A0094D334 /* background.jpg */; };
 		078961B316AF5E960094D334 /* MSPlayerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 078961B216AF5E960094D334 /* MSPlayerState.m */; };
 		078961B616AF63880094D334 /* background-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 078961B416AF63880094D334 /* background-hd.jpg */; };
@@ -397,6 +401,10 @@
 		0786FE8216B4DDD5009C23CB /* start-on-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "start-on-ipadhd.png"; path = "Image/UI/start-on-ipadhd.png"; sourceTree = "<group>"; };
 		0786FE8316B4DDD5009C23CB /* start-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "start-on.png"; path = "Image/UI/start-on.png"; sourceTree = "<group>"; };
 		0786FE8416B4DDD5009C23CB /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = start.png; path = Image/UI/start.png; sourceTree = "<group>"; };
+		0786FE9516B4E327009C23CB /* clear-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clear-hd.png"; path = "Image/UI/clear-hd.png"; sourceTree = "<group>"; };
+		0786FE9616B4E327009C23CB /* clear-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clear-ipad.png"; path = "Image/UI/clear-ipad.png"; sourceTree = "<group>"; };
+		0786FE9716B4E327009C23CB /* clear-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clear-ipadhd.png"; path = "Image/UI/clear-ipadhd.png"; sourceTree = "<group>"; };
+		0786FE9816B4E327009C23CB /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clear.png; path = Image/UI/clear.png; sourceTree = "<group>"; };
 		0789617A16AF539A0094D334 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		078961B116AF5E960094D334 /* MSPlayerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSPlayerState.h; path = Model/MSPlayerState.h; sourceTree = "<group>"; };
 		078961B216AF5E960094D334 /* MSPlayerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSPlayerState.m; path = Model/MSPlayerState.m; sourceTree = "<group>"; };
@@ -618,6 +626,10 @@
 		071D513B16B4CEE8001D8BFD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0786FE9516B4E327009C23CB /* clear-hd.png */,
+				0786FE9616B4E327009C23CB /* clear-ipad.png */,
+				0786FE9716B4E327009C23CB /* clear-ipadhd.png */,
+				0786FE9816B4E327009C23CB /* clear.png */,
 				0786FE7516B4DDD5009C23CB /* help-hd.png */,
 				0786FE7616B4DDD5009C23CB /* help-ipad.png */,
 				0786FE7716B4DDD5009C23CB /* help-ipadhd.png */,
@@ -1342,6 +1354,10 @@
 				0786FE9216B4DDD5009C23CB /* start-on-ipadhd.png in Resources */,
 				0786FE9316B4DDD5009C23CB /* start-on.png in Resources */,
 				0786FE9416B4DDD5009C23CB /* start.png in Resources */,
+				0786FE9916B4E327009C23CB /* clear-hd.png in Resources */,
+				0786FE9A16B4E327009C23CB /* clear-ipad.png in Resources */,
+				0786FE9B16B4E327009C23CB /* clear-ipadhd.png in Resources */,
+				0786FE9C16B4E327009C23CB /* clear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
