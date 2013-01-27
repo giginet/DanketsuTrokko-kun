@@ -8,6 +8,7 @@
 
 #import "MSTitleLayer.h"
 #import "MSMatchLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface MSTitleLayer()
 - (void)onServerButtonPressed:(id)sender;
@@ -60,7 +61,7 @@
 }
 
 - (void)onEnterTransitionDidFinish {
-  
+  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"title.caf" loop:YES];
 }
 
 /**
