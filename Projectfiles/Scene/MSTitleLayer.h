@@ -9,5 +9,9 @@
 #import "KWLayer.h"
 
 @interface MSTitleLayer : CCLayer
+{
+  CCSprite* _spriteHelp;
+  NSUInteger _helpIndex;
+}
 
 @end
