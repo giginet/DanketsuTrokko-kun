@@ -63,7 +63,11 @@ local config =
   ScrollSpeed = 10,
   RockAndCoinWidth = 88,
   MusicVolume = 0.6,
-  HighScoreKey = "HighScore"
+  HighScoreKey = "HighScore",
+  MatchFontSizePhone = 9.0,
+  MatchFontSizePad = 16,
+  MatchStateFontSizePhone = 12.0,
+  MatchStateFontSizePad = 24.0
 }
 
 return config
