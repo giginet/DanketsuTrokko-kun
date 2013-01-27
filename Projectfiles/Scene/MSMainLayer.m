@@ -200,6 +200,9 @@ typedef enum {
   CCScene* scene = [MSGameOverLayer nodeWithScene];
   CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:1.0f scene:scene];
   [[CCDirector sharedDirector] replaceScene:fade];
+  KWSessionManager* manager = [KWSessionManager sharedManager];
+  [manager.session disconnectFromAllPeers];
+  manager.delegate = nil;
 }
 
 #pragma mark KWSessionDelegate
