@@ -26,6 +26,7 @@ typedef enum {
 
 - (id)initWithTileType:(MSTileType)type;
 - (void)setTileType:(MSTileType)type;
+- (void)addRockBreakAnimation;
 
 @property(nonatomic, readonly) MSTileType tileType;
 

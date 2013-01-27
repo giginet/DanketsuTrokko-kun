@@ -39,7 +39,6 @@ typedef enum {
       
     }
     
-    
     KWSessionManager* manager = [KWSessionManager sharedManager];
     manager.delegate = self;
     _cameraNode = [CCNode node];
@@ -152,11 +151,16 @@ typedef enum {
 }
 
 - (void)updateCoinLabel {
+  int sum = [self allCoinCount];
+  [_coinLabel setString:[NSString stringWithFormat:@"%03d", sum]];
+}
+
+- (int)allCoinCount {
   int sum = 0;
   for (MSPlayer* player in _players) {
     sum += player.coinCount;
   }
-  [_coinLabel setString:[NSString stringWithFormat:@"%03d", sum]];
+  return sum;
 }
 
 - (void)buildReadyAnimation {
@@ -233,6 +237,7 @@ typedef enum {
 
 - (void)gotoGameOverScene {
   if (self.isServer) {
+    [self updateHighScore];
     float volume = [KKConfig floatForKey:@"MusicVolume"];
     id fadeout = [CCRepeat actionWithAction:[CCSequence
                                              actionOne:[CCCallBlock actionWithBlock:^{
@@ -248,6 +253,16 @@ typedef enum {
   KWSessionManager* manager = [KWSessionManager sharedManager];
   [manager.session disconnectFromAllPeers];
   manager.delegate = nil;
+}
+
+- (void)updateHighScore {
+  NSString* hiscoreKey = [KKConfig stringForKey:@"HighScoreKey"];
+  NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+  int pre = [ud integerForKey:hiscoreKey];
+  int score = [self allCoinCount];
+  if (score > pre) {
+    [ud setInteger:score forKey:hiscoreKey];
+  }
 }
 
 #pragma mark KWSessionDelegate

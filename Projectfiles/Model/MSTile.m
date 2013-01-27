@@ -89,4 +89,13 @@
   }
 }
 
+- (void)addRockBreakAnimation {
+  CCSprite* rockBreak = [CCSprite spriteWithFile:@"rock_break.png"];
+  [rockBreak runAction:[CCSequence actions:
+                        [CCFadeOut actionWithDuration:2.0f],
+                        [CCRemoveFromParentAction action],
+                        nil]];
+  [self addChild:rockBreak];
+}
+
 @end

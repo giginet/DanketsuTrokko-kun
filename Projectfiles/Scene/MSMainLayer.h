@@ -60,5 +60,7 @@ typedef enum {
 - (void)updateCoinLabel;
 - (void)buildReadyAnimation;
 - (void)gotoGameOverScene;
+- (int)allCoinCount;
+- (void)updateHighScore;
 
 @end

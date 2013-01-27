@@ -8,6 +8,7 @@
 
 #import "MSGameOverLayer.h"
 #import "SimpleAudioEngine.h"
+#import "MSGameEndMenu.h"
 
 @implementation MSGameOverLayer
 
@@ -18,6 +19,9 @@
     CCSprite* background = [CCSprite spriteWithFile:@"gameover.png"];
     background.position = director.screenCenter;
     [self addChild:background];
+    MSGameEndMenu* menu = [[MSGameEndMenu alloc] initWithMainLayer:nil];
+    menu.position = ccp(director.screenCenter.x, 250);
+    [self addChild:menu];
   }
   return self;
 }
