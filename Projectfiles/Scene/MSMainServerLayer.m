@@ -22,6 +22,7 @@
   self = [super initWithServerPeer:peer andClients:peers];
   if (self) {
     _cameraNode.scale = 0.8f; // iPad版はサイズを0.8倍にして扱う
+    _random = [KWRandom random];
   }
   return self;
 }
@@ -40,6 +41,19 @@
     if (_scroll < goalPoint - 1024 * 1.25f) {
       _scroll += scrollSpeed;
     }
+    
+    // ランダムに雲を追加
+    /*int r = [_random nextInt] % 300;
+    if (r == 0) {
+      CCSprite* cloud = [CCSprite spriteWithFile:@"cloud0.png"];
+      cloud.position = ccp(-40, _scroll + 100);
+      int w = director.screenSize.width;
+      [_stage addChild:cloud];
+      [cloud runAction:[CCSequence actions:
+                        [CCMoveTo actionWithDuration:10.0f position:ccp(w + 40, _scroll + 600)],
+                        [CCRemoveFromParentAction action],
+                        nil]];
+    }*/
     
     // 現在のスクロール座標をPlayerにbroadcastする
     for (MSPlayer* player in _players) {
