@@ -31,6 +31,7 @@ typedef enum {
   CCMenu* _demoMenu;
   NSArray* _clients;
   
+  CCSprite* _spriteServerMark;
   
   CCSprite* _lightServer;
   CCSprite* _lightClient;
