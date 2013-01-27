@@ -56,17 +56,14 @@
     [self addChild:logo];
     
     [self addChild:menu];
+    
+    // CCSchedulerにこのインスタンスを登録する
+    [self scheduleUpdate];
+    
   }
   return self;
 }
 
-- (void)onEnterTransitionDidFinish {
-  
-}
-
-/**
- Hostボタンが押されたとき
- */
 - (void)onServerButtonPressed:(id)sender {
   MSMatchLayer* layer = [[MSMatchLayer alloc] initWithServerOrClient:MSSessionTypeServer];
   CCScene* scene = [CCNode node];
@@ -93,11 +90,8 @@
     CCDirector* director = [CCDirector sharedDirector];
     _spriteHelp.position = director.screenCenter;
     [self addChild:_spriteHelp];
-  }else{
-    [_spriteHelp setTexture:[[CCTextureCache sharedTextureCache] addImage:@"GGJ2013_team1_help1.png"] ];
   }
   
-  _helpIndex  = 0;
   [KKInput sharedInput].gestureTapEnabled = YES;
 }
 
@@ -108,7 +102,7 @@
     
     NSArray* helpFiles =  @[@"GGJ2013_team1_help1.png",@"GGJ2013_team1_help1.png",@"GGJ2013_team1_help2.png",@"GGJ2013_team1_help3.png",@"GGJ2013_team1_help4.png",@"GGJ2013_team1_help5.png",@"GGJ2013_team1_help6.png"];
     
-    if( [helpFiles count] < _helpIndex ){
+    if( _helpIndex < [helpFiles count] ){
       NSString* fileFile = helpFiles[_helpIndex];
       [_spriteHelp setTexture:[[CCTextureCache sharedTextureCache] addImage:fileFile] ];
     }else{
@@ -120,10 +114,7 @@
       [KKInput sharedInput].gestureTapEnabled = NO;
     }
   }
-  
 }
-
-
 
 
 @end
