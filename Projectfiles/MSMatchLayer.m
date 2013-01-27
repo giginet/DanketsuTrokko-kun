@@ -57,9 +57,6 @@ NSString* kStartMessage = @"GameStart";
     spriteStay.position = _type == MSSessionTypeClient ? ccp(160,480.0f - 81.4) : ccp(384.95,1024-224);
     [self addChild:spriteStay];
     
-    _spriteServerMark = [CCSprite spriteWithFile:@"crown.png"];
-    _spriteServerMark.position = _type == MSSessionTypeClient ? ccp(68.0f,480.0f - 109.15) : ccp(165.1,1024-323.7);
-    [self addChild:_spriteServerMark];
 
     const float stateFontSizePhone = [KKConfig floatForKey:@"MatchStateFontSizePhone"];
     const float stateFontSizePad = [KKConfig floatForKey:@"MatchStateFontSizePad"];
@@ -136,22 +133,36 @@ NSString* kStartMessage = @"GameStart";
     const float fontSizePhone = [KKConfig floatForKey:@"MatchFontSizePhone"];
     const float fontSizePad = [KKConfig floatForKey:@"MatchFontSizePad"];
     
-//    _clients = [NSArray arrayWithArray:clients];
+    CCSprite* indicators[] = {
+      _lightServer,_lightClient,_lightClient2,_lightClient3
+    };
 
+    const CGPoint pointServerMarkOffset = ccp( 0 , -44.f);
     
-//    GKPeerConnectionState s = (GKPeerConnectionState)[(NSNumber*)[_peers objectForKey:peerID] intValue];
-    NSString* peerName = [_serverPeerID length] > 0 ?  [_sessionManager.session displayNameForPeer:_serverPeerID] : nil;
-    if( [peerName length] <= 0 && _type == MSSessionTypeServer)
-      peerName = [UIDevice currentDevice].name;
-    
-  if( [peerName length] > 0 )
-    {
-      CCLabelTTF* label = [CCLabelTTF labelWithString:peerName fontName:@"Helvetica" fontSize:_type == MSSessionTypeClient ? fontSizePhone : fontSizePad];
-      label.color = ccc3(255, 255, 255);
-      label.position = points[count];
-      [_peersNode addChild:label];
+    if( _type == MSSessionTypeServer ){
+      NSString* peerName = [_serverPeerID length] > 0 ?  [_sessionManager.session displayNameForPeer:_serverPeerID] : nil;
+      if( [peerName length] <= 0 )
+        peerName = [UIDevice currentDevice].name;
+      
+      if( [peerName length] > 0 )
+      {
+        if( _spriteServerMark == nil ){
+          _spriteServerMark = [CCSprite spriteWithFile:@"crown.png"];
+          _spriteServerMark.position = CGPointMake(points[count].x - pointServerMarkOffset.x ,points[count].y - pointServerMarkOffset.y);
+          [_peersNode addChild:_spriteServerMark];
+        }else{
+          _spriteServerMark.position = CGPointMake(points[count].x - pointServerMarkOffset.x ,points[count].y - pointServerMarkOffset.y);
+        }
+        
+        
+        CCLabelTTF* label = [CCLabelTTF labelWithString:peerName fontName:@"Helvetica" fontSize:_type == MSSessionTypeClient ? fontSizePhone : fontSizePad];
+
+        label.position = points[count];
+        [_peersNode addChild:label];
+        [indicators[count] setTexture:[[CCTextureCache sharedTextureCache] addImage:@"on.png"]];
+      }
+      count++;
     }
-    count++;
     
     
     for (NSString* peerID in [_peers keyEnumerator]) {
@@ -160,18 +171,42 @@ NSString* kStartMessage = @"GameStart";
       CCLabelTTF* label = [CCLabelTTF labelWithString:peerName fontName:@"Helvetica" fontSize:_type == MSSessionTypeClient ? fontSizePhone : fontSizePad];
 
       label.position = points[count];
+
       
       if ([_serverPeerID isEqualToString:peerID]) {
-        label.color = ccc3(0, 0, 255);
+        
+        if( _spriteServerMark == nil ){
+          _spriteServerMark = [CCSprite spriteWithFile:@"crown.png"];
+          _spriteServerMark.position = CGPointMake(points[count].x - pointServerMarkOffset.x ,points[count].y - pointServerMarkOffset.y);
+          [_peersNode addChild:_spriteServerMark];
+        }else{
+          _spriteServerMark.position = CGPointMake(points[count].x - pointServerMarkOffset.x ,points[count].y - pointServerMarkOffset.y);
+        }
+        
+        
+        [indicators[count] setTexture:[[CCTextureCache sharedTextureCache] addImage:@"on.png"]];
       } else if (s == GKPeerStateConnecting) {
-        label.color = ccc3(255, 255, 0);
+        [indicators[count] setTexture:[[CCTextureCache sharedTextureCache] addImage:@"off.png"]];
       } else if (s == GKPeerStateConnected) {
-        label.color = ccc3(255, 0, 0);
+        [indicators[count] setTexture:[[CCTextureCache sharedTextureCache] addImage:@"on.png"]];
       } else if (s == GKPeerStateDisconnected) {
-        label.color = ccc3(128, 128, 128);
+        [indicators[count] setTexture:[[CCTextureCache sharedTextureCache] addImage:@"off.png"]];
       } else {
-        label.color = ccc3(255, 255, 255);
+
       }
+      
+      
+//      if ([_serverPeerID isEqualToString:peerID]) {
+//        label.color = ccc3(0, 0, 255);
+//      } else if (s == GKPeerStateConnecting) {
+//        label.color = ccc3(255, 255, 0);
+//      } else if (s == GKPeerStateConnected) {
+//        label.color = ccc3(255, 0, 0);
+//      } else if (s == GKPeerStateDisconnected) {
+//        label.color = ccc3(128, 128, 128);
+//      } else {
+//        label.color = ccc3(255, 255, 255);
+//      }
       [_peersNode addChild:label];
       ++count;
     }
