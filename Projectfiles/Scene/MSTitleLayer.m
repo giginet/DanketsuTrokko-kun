@@ -12,6 +12,7 @@
 @interface MSTitleLayer()
 - (void)onServerButtonPressed:(id)sender;
 - (void)onClientButtonPressed:(id)sender;
+- (void)onHelpButtonPressed:(id)sender;
 @end
 
 @implementation MSTitleLayer
@@ -20,34 +21,47 @@
   self = [super init];
   if (self) {
     CCDirector* director = [CCDirector sharedDirector];
-    CCLabelTTF* hostLabel = [CCLabelTTF labelWithString:@"Host" fontName:@"Helvetica" fontSize:24];
-    CCLabelTTF* clientLabel = [CCLabelTTF labelWithString:@"Client" fontName:@"Helvetica" fontSize:24];
-    CCMenuItemLabel* host = [CCMenuItemLabel itemWithLabel:hostLabel target:self selector:@selector(onServerButtonPressed:)];
-    CCMenuItemLabel* client = [CCMenuItemLabel itemWithLabel:clientLabel target:self selector:@selector(onClientButtonPressed:)];
     CCMenu* menu = nil;
+    CCMenuItemImage* help = [CCMenuItemImage itemWithNormalImage:@"help.png"
+                                                   selectedImage:@"help-on.png"
+                                                   disabledImage:@"help-on.png"
+                                                          target:self
+                                                        selector:@selector(onHelpButtonPressed:)];
     if (director.currentDeviceIsIPad) {
-      menu = [CCMenu menuWithItems:host, client, nil];
+      CCMenuItemImage* start = [CCMenuItemImage itemWithNormalImage:@"start.png"
+                                                      selectedImage:@"start-on.png"
+                                                      disabledImage:@"start-on.png"
+                                                             target:self
+                                                           selector:@selector(onServerButtonPressed:)];
+      menu = [CCMenu menuWithItems:start, help, nil];
+      menu.position = ccp(director.screenCenter.x, 200);
     } else if (director.currentPlatformIsIOS) {
-      menu = [CCMenu menuWithItems:client, nil];
+      CCMenuItemImage* start = [CCMenuItemImage itemWithNormalImage:@"start.png"
+                                                      selectedImage:@"start-on.png"
+                                                      disabledImage:@"start-on.png"
+                                                             target:self
+                                                           selector:@selector(onClientButtonPressed:)];
+      menu = [CCMenu menuWithItems:start, help, nil];
+      menu.position = ccp(director.screenCenter.x, 150);
     }
     
-    menu.position = director.screenCenter;
-    [menu alignItemsVerticallyWithPadding:50];
+    [menu alignItemsVerticallyWithPadding:25];
+    
+    CCSprite* title = [CCSprite spriteWithFile:@"title.png"];
+    CCSprite* logo = [CCSprite spriteWithFile:@"logo.png"];
+    title.position = director.screenCenter;
+    logo.position = director.screenCenter;
+    [self addChild:title];
+    [self addChild:logo];
+    
     [self addChild:menu];
   }
   return self;
 }
 
 - (void)onEnterTransitionDidFinish {
-  // シーンに入った瞬間にマッチング画面に飛ばす
-  CCDirector* director = [CCDirector sharedDirector];
-  if (director.currentDeviceIsIPad) {
-    [self onServerButtonPressed:nil];
-  } else {
-    [self onClientButtonPressed:nil];
-  }
+  
 }
-
 
 /**
  Hostボタンが押されたとき
@@ -69,6 +83,9 @@
   [scene addChild:layer];
   CCTransitionCrossFade* transition = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:transition];
+}
+
+- (void)onHelpButtonPressed:(id)sender {
 }
 
 @end
