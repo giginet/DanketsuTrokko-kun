@@ -28,6 +28,8 @@
 		071D512416B4B368001D8BFD /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D512016B4B367001D8BFD /* number.png */; };
 		071D512516B4B368001D8BFD /* slash-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D512116B4B367001D8BFD /* slash-hd.png */; };
 		071D512616B4B368001D8BFD /* slash.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D512216B4B367001D8BFD /* slash.png */; };
+		071D512E16B4C0E5001D8BFD /* main0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D512816B4BDEE001D8BFD /* main0.caf */; };
+		071D512F16B4C0E5001D8BFD /* main1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071D512916B4BDEE001D8BFD /* main1.caf */; };
 		0724733516B3B65F0096870E /* coin-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733116B3B65F0096870E /* coin-hd.png */; };
 		0724733616B3B65F0096870E /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733216B3B65F0096870E /* coin.png */; };
 		0724733716B3B65F0096870E /* rock-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 0724733316B3B65F0096870E /* rock-hd.png */; };
@@ -198,6 +200,8 @@
 		071D512016B4B367001D8BFD /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = number.png; path = Image/number.png; sourceTree = "<group>"; };
 		071D512116B4B367001D8BFD /* slash-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "slash-hd.png"; path = "Image/slash-hd.png"; sourceTree = "<group>"; };
 		071D512216B4B367001D8BFD /* slash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slash.png; path = Image/slash.png; sourceTree = "<group>"; };
+		071D512816B4BDEE001D8BFD /* main0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = main0.caf; path = Music/main0.caf; sourceTree = "<group>"; };
+		071D512916B4BDEE001D8BFD /* main1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = main1.caf; path = Music/main1.caf; sourceTree = "<group>"; };
 		0724733116B3B65F0096870E /* coin-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "coin-hd.png"; path = "Image/coin-hd.png"; sourceTree = "<group>"; };
 		0724733216B3B65F0096870E /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Image/coin.png; sourceTree = "<group>"; };
 		0724733316B3B65F0096870E /* rock-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rock-hd.png"; path = "Image/rock-hd.png"; sourceTree = "<group>"; };
@@ -454,6 +458,15 @@
 				071D510E16B4A6D1001D8BFD /* go.png */,
 			);
 			name = countdown;
+			sourceTree = "<group>";
+		};
+		071D512716B4BDE0001D8BFD /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				071D512816B4BDEE001D8BFD /* main0.caf */,
+				071D512916B4BDEE001D8BFD /* main1.caf */,
+			);
+			name = Music;
 			sourceTree = "<group>";
 		};
 		077D4F9316AEE59E000941CC /* Heqet */ = {
@@ -845,6 +858,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				071D512716B4BDE0001D8BFD /* Music */,
 				07F414E016B316920040F9A3 /* Map */,
 				07F414DA16B2FCFE0040F9A3 /* Image */,
 				07619E9116B17BD7001E5EA1 /* sky-hd.png */,
@@ -951,6 +965,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071D512E16B4C0E5001D8BFD /* main0.caf in Resources */,
+				071D512F16B4C0E5001D8BFD /* main1.caf in Resources */,
 				077D501416AEF673000941CC /* kawaz.mp4 in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FC13A94ED5005BD75D /* fps_images.png in Resources */,

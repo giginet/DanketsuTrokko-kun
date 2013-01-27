@@ -11,6 +11,7 @@
 #import "MSMainServerLayer.h"
 #import "MSMapLoader.h"
 #import "DummyManager.h"
+#import "SimpleAudioEngine.h"
 
 @interface MSMatchLayer()
 - (void)updatePeerStateFor:(NSString*)peer toState:(GKPeerConnectionState)state;

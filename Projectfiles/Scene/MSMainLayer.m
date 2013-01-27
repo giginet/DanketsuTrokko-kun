@@ -12,6 +12,8 @@
 #import "MSTile.h"
 #import "DummyManager.h"
 #import "MSGameOverLayer.h"
+#import "SimpleAudioEngine.h"
+#import "KWRandom.h"
 
 typedef enum {
   MSMainLayerZOrderBackground = 0,
@@ -180,6 +182,8 @@ typedef enum {
       MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagGameStart];
       [blockSelf broadcastContainerToPlayer:container];
       _state = MSGameStateMain;
+      int n = [[KWRandom random] nextInt] % 2;
+      [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"main%d.caf", n] loop:YES];
     }]];
     [actions addObject:[CCDelayTime actionWithDuration:1.0f]];
     [actions addObject:[CCRemoveFromParentAction action]];
