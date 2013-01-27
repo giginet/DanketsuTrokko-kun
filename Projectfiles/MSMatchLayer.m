@@ -16,6 +16,7 @@
 @interface MSMatchLayer()
 - (void)updatePeerStateFor:(NSString*)peer toState:(GKPeerConnectionState)state;
 - (void)onStart:(id)sender;
+- (void)onStartDemo:(id)sender;
 @end
 
 @implementation MSMatchLayer
@@ -41,7 +42,7 @@ NSString* kStartMessage = @"GameStart";
     [self addChild:_lightServer];
     
     _lightClient = [CCSprite spriteWithFile:@"off.png"];
-    _lightClient.position = _type == MSSessionTypeClient ? ccp(183.2f,480.0f - 126.75f) : ccp(441.75,1024-364.75f);
+    _lightClient.position = _type == MSSessionTypeClient ? ccp(174.0f,480.0f - 126.75f) : ccp(441.75,1024-364.75f);
     [self addChild:_lightClient];
     
     _lightClient2 = [CCSprite spriteWithFile:@"off.png"];
@@ -49,7 +50,7 @@ NSString* kStartMessage = @"GameStart";
     [self addChild:_lightClient2];
     
     _lightClient3 = [CCSprite spriteWithFile:@"off.png"];
-    _lightClient3.position = _type == MSSessionTypeClient ? ccp(183.2f,480.0f - 174.4f) : ccp(441.75,1024-481.1f);
+    _lightClient3.position = _type == MSSessionTypeClient ? ccp(174.0f,480.0f - 174.4f) : ccp(441.75,1024-481.1f);
     [self addChild:_lightClient3];
     
     CCSprite* spriteStay = [CCSprite spriteWithFile:@"stay.png"];
@@ -112,11 +113,35 @@ NSString* kStartMessage = @"GameStart";
     [_peers setObject:[NSNumber numberWithInt:state] forKey:peer];
     [_peersNode removeAllChildrenWithCleanup:YES];
     int count = 0;
+
+    CCDirector* director = [CCDirector sharedDirector];
+    CGPoint center = director.screenCenter;
+    
+    const CGPoint pointsClient[] = {
+      ccp(120.55f - center.x,480.0f - 126.45f- center.y)
+      ,ccp(223.55f- center.x,480.0f - 126.45f- center.y)
+      ,ccp(120.55f- center.x,480.0f - 171.45- center.y)
+      ,ccp(223.55f- center.x,480.0f - 171.45- center.y) };
+    
+    const CGPoint pointsServer[] = {
+       ccp(305.55f- center.x,1024.0f - 364.1f- center.y)
+      ,ccp(582.15f- center.x,1024.0f - 364.1f- center.y)
+      ,ccp(305.55f- center.x,1024.0f - 478.6f- center.y)
+      ,ccp(582.15f- center.x,1024.0f - 474.6f- center.y)
+    };
+    
+    const CGPoint* points = _type == MSSessionTypeClient ? pointsClient : pointsServer;
+    const float fontSizePhone = [KKConfig floatForKey:@"MatchFontSizePhone"];
+    const float fontSizePad = [KKConfig floatForKey:@"MatchFontSizePad"];
+    
     for (NSString* peerID in [_peers keyEnumerator]) {
       GKPeerConnectionState s = (GKPeerConnectionState)[(NSNumber*)[_peers objectForKey:peerID] intValue];
       NSString* peerName = [_sessionManager.session displayNameForPeer:peerID];
-      CCLabelTTF* label = [CCLabelTTF labelWithString:peerName fontName:@"Helvetica" fontSize:16];
-      label.position = ccp(0, count * 20);
+      CCLabelTTF* label = [CCLabelTTF labelWithString:peerName fontName:@"Helvetica" fontSize:_type == MSSessionTypeClient ? fontSizePhone : fontSizePad];
+
+      label.position = /*ccp(0, count * 20);*/ points[count];
+      
+      
       if ([_serverPeerID isEqualToString:peerID]) {
         label.color = ccc3(0, 0, 255);
       } else if (s == GKPeerStateConnecting) {

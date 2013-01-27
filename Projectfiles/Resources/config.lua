@@ -62,7 +62,9 @@ local config =
   LineWidth = 320,
   ScrollSpeed = 10,
   RockAndCoinWidth = 88,
-  MusicVolume = 0.6
+  MusicVolume = 0.6,
+  MatchFontSizePhone = 9.0,
+  MatchFontSizePad = 16
 }
 
 return config
