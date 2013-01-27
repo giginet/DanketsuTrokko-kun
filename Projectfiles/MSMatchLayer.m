@@ -32,6 +32,38 @@ NSString* kStartMessage = @"GameStart";
     _sessionManager = [KWSessionManager sharedManager];
     _clients = [NSArray array];
     
+    CCSprite* spriteBoard = [CCSprite spriteWithFile:@"board.png"];
+    spriteBoard.position = _type == MSSessionTypeClient ? ccp(160.0f,480.0f - 81.0f) : ccp(389.95f,1024-367.75f);
+    [self addChild:spriteBoard];
+    
+    _lightServer = [CCSprite spriteWithFile:@"off.png"];
+    _lightServer.position = _type == MSSessionTypeClient ? ccp(69.15,480.0f - 126.75f) : ccp(168.95,1024-367.75f);
+    [self addChild:_lightServer];
+    
+    _lightClient = [CCSprite spriteWithFile:@"off.png"];
+    _lightClient.position = _type == MSSessionTypeClient ? ccp(183.2f,480.0f - 126.75f) : ccp(441.75,1024-364.75f);
+    [self addChild:_lightClient];
+    
+    _lightClient2 = [CCSprite spriteWithFile:@"off.png"];
+    _lightClient2.position = _type == MSSessionTypeClient ? ccp(69.15,480.0f - 174.4f) : ccp(168.95,1024-481.1f);
+    [self addChild:_lightClient2];
+    
+    _lightClient3 = [CCSprite spriteWithFile:@"off.png"];
+    _lightClient3.position = _type == MSSessionTypeClient ? ccp(183.2f,480.0f - 174.4f) : ccp(441.75,1024-481.1f);
+    [self addChild:_lightClient3];
+    
+    CCSprite* spriteStay = [CCSprite spriteWithFile:@"stay.png"];
+    spriteStay.position = _type == MSSessionTypeClient ? ccp(79.5,480.0f - 63.4) : ccp(384.95,1024-224);
+    [self addChild:spriteStay];
+    
+    
+    
+    
+    
+    
+    
+    
+    
     [_sessionManager startSession:kSessionID sessionMode:type == MSSessionTypeClient ? GKSessionModeClient : GKSessionModeServer];
     _sessionManager.delegate = self;
     [_sessionManager available];
