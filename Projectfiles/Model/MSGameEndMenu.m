@@ -19,7 +19,7 @@
 - (id)initWithMainLayer:(MSMainLayer *)layer {
   CCSprite* retry = [CCSprite spriteWithFile:@"retry0.png"];
   [retry runAction:[CCAnimate actionWithAnimation:
-                    [CCAnimation animationWithFrames:@"retry%d.png" frameCount:2 delay:0.5f]]];
+                    [CCAnimation animationWithFrames:@"retry" frameCount:2 delay:0.5f]]];
   CCMenuItemSprite* retryItem = [CCMenuItemSprite itemWithNormalSprite:retry
                                                         selectedSprite:retry
                                                                 target:self
