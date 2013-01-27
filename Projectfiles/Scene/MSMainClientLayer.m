@@ -140,6 +140,12 @@
     } else if (container.tag == MSContainerTagDamage) { // ダメージ受けました通知
       _myPlayer.life -= 1;
       [_myPlayer setCrashAnimation]; // クラッシュ
+      if (_myPlayer.life <= 0) {
+        CCDirector* director = [CCDirector sharedDirector];
+        CCSprite* crash = [CCSprite spriteWithFile:[NSString stringWithFormat:@"crash%d.png", _myPlayer.no + 1]];
+        crash.position = director.screenCenter;
+        [self addChild:crash];
+      }
     } else if (container.tag == MSContainerTagGameStart) { // ゲーム始まりました通知
       [_startLabel.actionManager addAction:[CCSequence
                                             actionOne:
