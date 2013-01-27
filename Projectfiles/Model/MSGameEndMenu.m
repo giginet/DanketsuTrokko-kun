@@ -17,18 +17,20 @@
 @implementation MSGameEndMenu
 
 - (id)initWithMainLayer:(MSMainLayer *)layer {
-  CCSprite* retry = [CCSprite spriteWithFile:@"retry0.png"];
-  [retry runAction:[CCAnimate actionWithAnimation:
-                    [CCAnimation animationWithFrames:@"retry" frameCount:2 delay:0.5f]]];
+  /*CCSprite* retry = [CCSprite spriteWithFile:@"retry0.png"];
+  [retry runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:
+                                                      [CCAnimation animationWithFiles:[NSArray arrayWithObjects:@"retry0.png", @"retry1.png", nil]
+                                                                           frameCount:2
+                                                                                delay:0.5f]]]];
   CCMenuItemSprite* retryItem = [CCMenuItemSprite itemWithNormalSprite:retry
                                                         selectedSprite:retry
                                                                 target:self
-                                                              selector:@selector(onRetryButtonPressed:)];
+                                                              selector:@selector(onRetryButtonPressed:)];*/
   CCMenuItemImage* back = [CCMenuItemImage itemWithNormalImage:@"titleback.png"
                                                  selectedImage:@"titleback.png"
                                                         target:self
                                                       selector:@selector(onTitleButtonPressed:)];
-  self = [super initWithArray:[NSArray arrayWithObjects:retryItem, back, nil]];
+  self = [super initWithArray:[NSArray arrayWithObjects:back, nil]];
   if (self) {
     self.mainLayer = layer;
     
