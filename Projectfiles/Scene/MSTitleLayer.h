@@ -14,4 +14,6 @@
   NSUInteger _helpIndex;
 }
 
+@property(readwrite) CCMenu* mainMenu;
+
 @end

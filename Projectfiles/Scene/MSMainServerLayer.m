@@ -73,7 +73,7 @@
         MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagGetCoin]; // 取った人のプレイヤーステートを送ります
         [self broadcastContainerToPlayer:container];
         [self updateCoinLabel];
-      } else if (currentTile.tileType == MSTileTypeNone || currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
+      } else if (currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
         if (!player.isDead && player.canMoving) {
           player.life -= 1;
           [player setCrashAnimation];

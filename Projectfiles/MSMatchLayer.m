@@ -237,6 +237,7 @@ NSString* kStartMessage = @"GameStart";
   CCTransitionFade* fade = [CCTransitionFade transitionWithDuration:0.5f scene:scene];
   [[CCDirector sharedDirector] replaceScene:fade];
   [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+  [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"matching.caf"];
 }
 
 - (void) onStartDemo:(id)sender {
