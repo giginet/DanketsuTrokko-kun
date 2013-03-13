@@ -78,7 +78,6 @@
   [self addChild:layer];
   [layer runAction:[CCMoveTo actionWithDuration:0.5f
                                        position:CGPointZero]];
-  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
   self.mainMenu.enabled = NO;
 }
 
@@ -92,7 +91,6 @@
   layer.position = ccp(0, director.screenSize.height * 1.5);
   [layer runAction:[CCMoveTo actionWithDuration:0.5f
                                        position:CGPointZero]];
-  [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
   self.mainMenu.enabled = NO;
 }
 

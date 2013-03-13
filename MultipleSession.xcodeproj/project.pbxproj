@@ -73,8 +73,6 @@
 		073EF40616B50F4C00C7650B /* clowd0.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40216B50F4C00C7650B /* clowd0.png */; };
 		073EF40716B50F4C00C7650B /* clowd1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40316B50F4C00C7650B /* clowd1-hd.png */; };
 		073EF40816B50F4C00C7650B /* clowd1.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40416B50F4C00C7650B /* clowd1.png */; };
-		073EF40A16B5141F00C7650B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40916B5141E00C7650B /* Default.png */; };
-		073EF40C16B5142A00C7650B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40B16B5142A00C7650B /* Default@2x.png */; };
 		073EF40E16B5158600C7650B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40D16B5158600C7650B /* Icon@2x.png */; };
 		073EF41016B5158D00C7650B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF40F16B5158D00C7650B /* Icon.png */; };
 		073EF41216B515BE00C7650B /* Icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 073EF41116B515BE00C7650B /* Icon72.png */; };
@@ -114,7 +112,6 @@
 		077D500816AEED63000941CC /* videoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D4FFE16AEED63000941CC /* videoOverlayView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		077D500C16AEED63000941CC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 077D500516AEED63000941CC /* README.md */; };
 		077D501016AEF008000941CC /* MSLogoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D500F16AEF008000941CC /* MSLogoLayer.m */; };
-		077D501316AEF5AF000941CC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077D501216AEF5AF000941CC /* MediaPlayer.framework */; };
 		077D501416AEF673000941CC /* kawaz.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 077D501116AEF4AD000941CC /* kawaz.mp4 */; };
 		077D501716AEF852000941CC /* MSTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D501616AEF852000941CC /* MSTitleLayer.m */; };
 		077D501A16AEF89F000941CC /* MSMatchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077D501916AEF89F000941CC /* MSMatchLayer.m */; };
@@ -210,6 +207,7 @@
 		07BD81B816B49FB7006D1D1E /* gameover-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B416B49FB7006D1D1E /* gameover-ipad.png */; };
 		07BD81B916B49FB7006D1D1E /* gameover-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B516B49FB7006D1D1E /* gameover-ipadhd.png */; };
 		07BD81BA16B49FB7006D1D1E /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BD81B616B49FB7006D1D1E /* gameover.png */; };
+		07EDA67716F0633C00A4BAC9 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDA67616F0633C00A4BAC9 /* MediaPlayer.framework */; };
 		07F414E216B316F80040F9A3 /* stage.lua in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E116B316F80040F9A3 /* stage.lua */; };
 		07F414E416B3194F0040F9A3 /* stage.txt in Resources */ = {isa = PBXBuildFile; fileRef = 07F414E316B3194F0040F9A3 /* stage.txt */; };
 		07F4150316B31C860040F9A3 /* MSTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F4150216B31C860040F9A3 /* MSTile.m */; };
@@ -449,7 +447,6 @@
 		077D500E16AEF008000941CC /* MSLogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSLogoLayer.h; path = Scene/MSLogoLayer.h; sourceTree = "<group>"; };
 		077D500F16AEF008000941CC /* MSLogoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSLogoLayer.m; path = Scene/MSLogoLayer.m; sourceTree = "<group>"; };
 		077D501116AEF4AD000941CC /* kawaz.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = kawaz.mp4; sourceTree = "<group>"; };
-		077D501216AEF5AF000941CC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		077D501516AEF852000941CC /* MSTitleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTitleLayer.h; path = Scene/MSTitleLayer.h; sourceTree = "<group>"; };
 		077D501616AEF852000941CC /* MSTitleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSTitleLayer.m; path = Scene/MSTitleLayer.m; sourceTree = "<group>"; };
 		077D501816AEF89F000941CC /* MSMatchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSMatchLayer.h; sourceTree = "<group>"; };
@@ -558,6 +555,7 @@
 		07BD81B416B49FB7006D1D1E /* gameover-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gameover-ipad.png"; path = "Image/gameover-ipad.png"; sourceTree = "<group>"; };
 		07BD81B516B49FB7006D1D1E /* gameover-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gameover-ipadhd.png"; path = "Image/gameover-ipadhd.png"; sourceTree = "<group>"; };
 		07BD81B616B49FB7006D1D1E /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameover.png; path = Image/gameover.png; sourceTree = "<group>"; };
+		07EDA67616F0633C00A4BAC9 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		07F414E116B316F80040F9A3 /* stage.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.lua; path = Map/stage.lua; sourceTree = "<group>"; };
 		07F414E316B3194F0040F9A3 /* stage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stage.txt; path = Map/stage.txt; sourceTree = "<group>"; };
 		07F4150116B31C850040F9A3 /* MSTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSTile.h; path = Model/MSTile.h; sourceTree = "<group>"; };
@@ -674,7 +672,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077D501316AEF5AF000941CC /* MediaPlayer.framework in Frameworks */,
+				07EDA67716F0633C00A4BAC9 /* MediaPlayer.framework in Frameworks */,
 				DC65615C13A969B600A7AC53 /* libbox2d-ios.a in Frameworks */,
 				DC65615D13A969B600A7AC53 /* libchipmunk-ios.a in Frameworks */,
 				DC65615E13A969B600A7AC53 /* libchipmunk-spacemanager-ios.a in Frameworks */,
@@ -1182,7 +1180,6 @@
 				073EF40D16B5158600C7650B /* Icon@2x.png */,
 				073EF40B16B5142A00C7650B /* Default@2x.png */,
 				073EF40916B5141E00C7650B /* Default.png */,
-				077D501216AEF5AF000941CC /* MediaPlayer.framework */,
 				DCC1A38C13A94F1A005BD75D /* Projectfiles */,
 				DCC1A0F713A94ED5005BD75D /* Projectfiles-iOS */,
 				DCC1A26413A94EE6005BD75D /* Projectfiles-Mac */,
@@ -1204,6 +1201,7 @@
 		DCC1A0E613A94ED5005BD75D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07EDA67616F0633C00A4BAC9 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1612,8 +1610,6 @@
 				073EF40616B50F4C00C7650B /* clowd0.png in Resources */,
 				073EF40716B50F4C00C7650B /* clowd1-hd.png in Resources */,
 				073EF40816B50F4C00C7650B /* clowd1.png in Resources */,
-				073EF40A16B5141F00C7650B /* Default.png in Resources */,
-				073EF40C16B5142A00C7650B /* Default@2x.png in Resources */,
 				073EF40E16B5158600C7650B /* Icon@2x.png in Resources */,
 				073EF41016B5158D00C7650B /* Icon.png in Resources */,
 				073EF41216B515BE00C7650B /* Icon72.png in Resources */,
