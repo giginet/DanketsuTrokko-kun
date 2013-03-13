@@ -81,12 +81,11 @@
   if ((self.railNumber == 0 && direction == MSDirectionLeft) || (self.railNumber == 2 && direction == MSDirectionRight)) return; // 左端、右端だったらはみ出さないようにする
   int railWidth = [KKConfig intForKey:@"RailWidth"];
   const float animationDuration = 0.6f;
-  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  float fps = [[KKStartupConfig config] maxFrameRate];
+
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
   
-  CCActionTween* move = [CCActionTween actionWithDuration:animationDuration key:@"x" from:self.position.x to:self.position.x + x];
+  id move = [CCEaseSineInOut actionWithAction:[CCActionTween actionWithDuration:animationDuration key:@"x" from:self.position.x to:self.position.x + x]];
   id jump = [CCSequence actionOne:[CCEaseSineIn actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.5f]]
                               two:[CCEaseSineOut actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.0f]]];
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
@@ -102,16 +101,14 @@
   if ( (direction == MSDirectionRight && !canRight) || (direction == MSDirectionLeft && !canLeft) ) return;
   int railWidth = [KKConfig intForKey:@"RailWidth"];
   int margin = [KKConfig intForKey:@"Margin"];
-  const float animationDuration = 0.5f;
-  float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
-  float fps = [[KKStartupConfig config] maxFrameRate];
+  const float animationDuration = 0.8f; // ハードコーディング
   
   self.isLineChanging = YES; // ライン切り替え中をONにする
   int distance = margin * 2 + railWidth;
   int x = direction == MSDirectionLeft ? -distance : distance;
   
   self.isRailChanged = YES;
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, railWidth * 1.5)]; // レール切り替えアニメーション
+  CCActionTween* move = [CCActionTween actionWithDuration:animationDuration key:@"x" from:self.position.x to:self.position.x + x];
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、ライン切り替え中フラグをOFFに
     MSPlayer* p = (MSPlayer*)node;
     p.isLineChanging = NO;
