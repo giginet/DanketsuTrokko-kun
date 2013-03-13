@@ -11,7 +11,7 @@
 #import "MSPlayer.h"
 #import "MSContainer.h"
 #import "KWSessionDelegate.h"
-#import "MSMapLoader.h"
+#import "MSMap.h"
 
 typedef enum {
   MSContainerTagInitialInfo,  // サーバーから。初期プレイヤーを各クライアントに送信
@@ -45,7 +45,7 @@ typedef enum {
   CCNode* _stage;
   CCNode* _cameraNode;
   MSAngel* _angel;
-  MSMapLoader* _loader;
+  MSMap* _map;
   CCLabelTTF* _scrollDebugLabel;
 }
 
@@ -61,6 +61,8 @@ typedef enum {
 - (void)buildReadyAnimation;
 - (void)gotoGameOverScene;
 - (int)allCoinCount;
+- (int)getSight;
+- (void)updateSight;
 - (void)updateHighScore;
 
 @end

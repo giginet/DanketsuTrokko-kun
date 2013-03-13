@@ -40,6 +40,7 @@
 }
 
 - (void)update:(ccTime)dt {
+  self.position = ccp(self.x, self.position.y);
 }
 
 - (NSData*)dump {
@@ -62,6 +63,7 @@
     self.life = state.life;
     self.opacity = state.opacity;
     self.position = state.position;
+    self.x = self.position.x;
     self.scale = state.scale;
     self.rotation = state.rotation;
   }
@@ -84,7 +86,7 @@
   self.isRailChanging = YES; // レール切り替え中をONにする
   int x = direction == MSDirectionLeft ? -railWidth : railWidth;
   
-  CCMoveBy* move = [CCMoveBy actionWithDuration:animationDuration position:ccp(x, fps * animationDuration * scrollSpeed)]; // レール切り替えアニメーション
+  CCActionTween* move = [CCActionTween actionWithDuration:animationDuration key:@"x" from:self.position.x to:self.position.x + x];
   id jump = [CCSequence actionOne:[CCEaseSineIn actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.5f]]
                               two:[CCEaseSineOut actionWithAction:[CCScaleTo actionWithDuration:animationDuration / 2.0 scale:1.0f]]];
   CCCallFuncN* off = [CCCallBlockN actionWithBlock:^(CCNode *node) { // アニメーション後、ブロックを呼んで、レール切り替え中フラグをOFFに
@@ -146,6 +148,11 @@
 
 - (BOOL)isDead {
   return self.life <= 0;
+}
+
+- (int)tileCountFromStart {
+  int tileHeight = [KKConfig intForKey:@"RailWidth"];
+  return floor(self.position.y / tileHeight);
 }
 
 @end

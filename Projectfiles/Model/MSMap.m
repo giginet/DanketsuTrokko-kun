@@ -6,13 +6,13 @@
 //
 //
 
-#import "MSMapLoader.h"
+#import "MSMap.h"
 
-@interface MSMapLoader()
+@interface MSMap()
 - (MSTile*)tileWithString:(NSString*)chip line:(int)line rail:(int)rail;
 @end
 
-@implementation MSMapLoader
+@implementation MSMap
 
 - (id)init {
   self = [super init];

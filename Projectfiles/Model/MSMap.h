@@ -12,7 +12,7 @@
 /**
  Mapを読み込むクラスです
  */
-@interface MSMapLoader : NSObject {
+@interface MSMap : NSObject {
   NSArray* _lines;
   NSMutableDictionary* _chips;
   NSDictionary* _itemDictionary;

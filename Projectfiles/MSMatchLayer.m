@@ -9,7 +9,7 @@
 #import "MSMatchLayer.h"
 #import "MSMainClientLayer.h"
 #import "MSMainServerLayer.h"
-#import "MSMapLoader.h"
+#import "MSMap.h"
 #import "DummyManager.h"
 #import "SimpleAudioEngine.h"
 

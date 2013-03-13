@@ -37,6 +37,14 @@ typedef enum {
 @property(readonly, copy) NSString* peerID; // PeerID
 @property(readwrite, retain) KWVector* velocity; // 加速度
 
+/*
+ x座標が変化するのは
+  ・レールの変更
+  ・ラインの変更
+ のみなので、その時のみ操作してやる
+ */
+@property(readwrite) float x; // 現在のx座標
+
 - (id)initWithPeerID:(NSString*)peerID no:(int)no;
 - (void)update:(ccTime)dt;
 - (NSData*)dump;
@@ -60,5 +68,8 @@ typedef enum {
 - (void)setCrashAnimation;
 
 - (BOOL)canMoving;
+
+// スタートからのタイル数を取得します
+- (int)tileCountFromStart;
 
 @end

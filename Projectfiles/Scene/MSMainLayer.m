@@ -29,7 +29,7 @@ typedef enum {
     CCDirector* director = [CCDirector sharedDirector];
     _state = MSGameStateReady;
     
-    _loader = [[MSMapLoader alloc] init];
+    _map = [[MSMap alloc] init];
     
     if( [peer compare:[DummyManager serverID]] == NSOrderedSame ){
       KWSessionManager* manager = [KWSessionManager sharedManager];
@@ -43,7 +43,7 @@ typedef enum {
     manager.delegate = self;
     _cameraNode = [CCNode node];
     _stage = [CCNode node];
-    _players = [CCArray array                                                                                                                                                                                          ];
+    _players = [CCArray array];
     _angel = [[MSAngel alloc] initWithPeerID:peer];
     [_cameraNode addChild:_stage];
     [self buildMap];
@@ -53,6 +53,7 @@ typedef enum {
       [_players addObject:player];
       [_stage addChild:player z:MSMainLayerZOrderPlayer];
       player.position = ccp(320 * no + 28 + 88 + 44, 260);
+      player.x = player.position.x;
       ++no;
     }
     [self addChild:_cameraNode];
@@ -67,7 +68,7 @@ typedef enum {
       slash.position = ccp(director.screenCenter.x, 30);
       _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
       _coinLabel.position = ccp(director.screenCenter.x - 150, -16);
-      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
+      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_map coinCount]] charMapFile:@"number.png" itemWidth:44 itemHeight:88 startCharMap:'0'];
       _coinAllLabel.position = ccp(director.screenCenter.x + 10, -16);
       CCSprite* icon = [CCSprite spriteWithFile:@"coinicon.png"];
       icon.position = ccp(director.screenCenter.x - 200, 30);
@@ -80,7 +81,7 @@ typedef enum {
       slash.position = ccp(director.screenCenter.x, 15);
       _coinLabel = [CCLabelAtlas labelWithString:@"000" charMapFile:@"number.png" itemWidth:22 itemHeight:44 startCharMap:'0'];
       _coinLabel.position = ccp(director.screenCenter.x - 74, -6);
-      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_loader coinCount]] charMapFile:@"number.png" itemWidth:22 itemHeight:44 startCharMap:'0'];
+      _coinAllLabel = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", [_map coinCount]] charMapFile:@"number.png" itemWidth:22 itemHeight:44 startCharMap:'0'];
       _coinAllLabel.position = ccp(director.screenCenter.x + 7, -6);
       CCSprite* icon = [CCSprite spriteWithFile:@"coinicon.png"];
       icon.position = ccp(director.screenCenter.x - 93, 15);
@@ -99,13 +100,13 @@ typedef enum {
 }
 
 - (void)buildMap {
-  for (int y = 0; y < [_loader height]; ++y) {
+  for (int y = 0; y < [_map height]; ++y) {
     for (int x = 0; x < 9; ++x) {
       int line = floor(x / 3);
       int rail = x % 3;
       const int tileSize = 88;
       const int margin = 28;
-      MSTile* tile = [_loader tileWithLine:line rail:rail y:y];
+      MSTile* tile = [_map tileWithLine:line rail:rail y:y];
       int ax = (margin * 2 + tileSize * 3) * line + margin + rail * tileSize;
       int ay = y * tileSize;
       CGPoint pos = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));
@@ -118,6 +119,13 @@ typedef enum {
       [_stage addChild:tile z:MSMainLayerZOrderRail];
     }
   }
+}
+
+- (int)getSight {
+  return 0;
+}
+
+- (void)updateSight {
 }
 
 - (void)update:(ccTime)dt {

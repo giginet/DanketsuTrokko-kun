@@ -37,23 +37,23 @@
     // スクロールする
     float scrollSpeed = [KKConfig floatForKey:@"ScrollSpeed"];
     float railWidth = [KKConfig floatForKey:@"RailWidth"];
-    float goalPoint = _loader.height * railWidth;
+    float goalPoint = _map.height * railWidth;
     if (_scroll < goalPoint - 1024 * 1.25f) {
       _scroll += scrollSpeed;
     }
     
     // ランダムに雲を追加
     /*int r = [_random nextInt] % 300;
-    if (r == 0) {
-      CCSprite* cloud = [CCSprite spriteWithFile:@"cloud0.png"];
-      cloud.position = ccp(-40, _scroll + 100);
-      int w = director.screenSize.width;
-      [_stage addChild:cloud];
-      [cloud runAction:[CCSequence actions:
-                        [CCMoveTo actionWithDuration:10.0f position:ccp(w + 40, _scroll + 600)],
-                        [CCRemoveFromParentAction action],
-                        nil]];
-    }*/
+     if (r == 0) {
+     CCSprite* cloud = [CCSprite spriteWithFile:@"cloud0.png"];
+     cloud.position = ccp(-40, _scroll + 100);
+     int w = director.screenSize.width;
+     [_stage addChild:cloud];
+     [cloud runAction:[CCSequence actions:
+     [CCMoveTo actionWithDuration:10.0f position:ccp(w + 40, _scroll + 600)],
+     [CCRemoveFromParentAction action],
+     nil]];
+     }*/
     
     // 現在のスクロール座標をPlayerにbroadcastする
     for (MSPlayer* player in _players) {
@@ -66,7 +66,7 @@
     BOOL isAllDead = YES;
     for (MSPlayer* player in _players) {
       // コイン取りました判定
-      MSTile* currentTile = [_loader tileWithStagePoint:player.position];
+      MSTile* currentTile = [_map tileWithStagePoint:player.position];
       if (currentTile.tileType == MSTileTypeCoin) { // コイン取った！
         [currentTile setTileType:MSTileTypeRail]; // コイン消す
         player.coinCount += 1; // コイン追加します
@@ -105,7 +105,7 @@
       for( KKTouch* touch in input.touches ){
         CGPoint touchLocation =[_stage convertToNodeSpace:touch.location];
         
-        MSTile* tile = [_loader tileWithStagePoint:touchLocation];
+        MSTile* tile = [_map tileWithStagePoint:touchLocation];
         switch ([tile tileType]) {
           case MSTileTypeRock:
           {
@@ -175,6 +175,13 @@
       [self broadCastAllPlayers];
     }
   }
+}
+
+- (int)getSight {
+  return [KKConfig intForKey:@"ServerSight"];
+}
+
+- (void)updateSight {
 }
 
 @end

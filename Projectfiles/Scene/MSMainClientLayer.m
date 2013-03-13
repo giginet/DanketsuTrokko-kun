@@ -46,7 +46,7 @@
     if ([input gesturesAvailable]) {
       KKSwipeGestureDirection direction = [input gestureSwipeDirection];
       if ([input gestureSwipeRecognizedThisFrame] && (direction == KKSwipeGestureDirectionLeft || direction == KKSwipeGestureDirectionRight) ) {
-        MSTile* tile = [_loader tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
+        MSTile* tile = [_map tileWithStagePoint:_myPlayer.position]; // 現在の足下のタイルを取得します
         if ([_myPlayer canMoving]) {
           if (tile.tileType == MSTileTypeBranchLeft || tile.tileType == MSTileTypeBranchRight) { // 足下がブランチの時のみ分岐可能です
             [[SimpleAudioEngine sharedEngine] playEffect:@"line_change.caf"];
@@ -92,6 +92,13 @@
   }
 }
 
+- (int)getSight {
+  return [KKConfig intForKey:@"ClientSight"];
+}
+
+- (void)updateSight {
+}
+
 - (void)sendPlayerToServer:(MSPlayer *)player {
   KWSessionManager* manager = [KWSessionManager sharedManager];
   MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagPlayerState];
@@ -132,11 +139,11 @@
       player.coinCount += 1; // コイン追加します
       [[SimpleAudioEngine sharedEngine] playEffect:@"coin.caf"];
       [self updateCoinLabel];
-      MSTile* coin = [_loader tileWithStagePoint:state.position];
+      MSTile* coin = [_map tileWithStagePoint:state.position];
       [coin setTileType:MSTileTypeRail];
     } else if (container.tag == MSContainerTagRuinRock) { // 岩の破壊
       CGPoint touchPoint = [(NSValue*)container.object CGPointValue];
-      MSTile* tile = [_loader tileWithStagePoint:touchPoint];
+      MSTile* tile = [_map tileWithStagePoint:touchPoint];
       [tile setTileType:MSTileTypeRuinRock];
       [tile addRockBreakAnimation];
       [[SimpleAudioEngine sharedEngine] playEffect:@"rock_break.caf"];

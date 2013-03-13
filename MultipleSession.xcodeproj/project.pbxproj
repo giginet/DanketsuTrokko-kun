@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070E639116B2EAC9004ABC0C /* MSMapLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E639016B2EAC9004ABC0C /* MSMapLoader.m */; };
+		070E639116B2EAC9004ABC0C /* MSMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 070E639016B2EAC9004ABC0C /* MSMap.m */; };
 		071D510F16B4A6D1001D8BFD /* count1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D50FF16B4A6D1001D8BFD /* count1-hd.png */; };
 		071D511016B4A6D1001D8BFD /* count1-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D510016B4A6D1001D8BFD /* count1-ipad.png */; };
 		071D511116B4A6D1001D8BFD /* count1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 071D510116B4A6D1001D8BFD /* count1-ipadhd.png */; };
@@ -309,8 +309,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		070E638F16B2EAC9004ABC0C /* MSMapLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMapLoader.h; path = Model/MSMapLoader.h; sourceTree = "<group>"; };
-		070E639016B2EAC9004ABC0C /* MSMapLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMapLoader.m; path = Model/MSMapLoader.m; sourceTree = "<group>"; };
+		070E638F16B2EAC9004ABC0C /* MSMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSMap.h; path = Model/MSMap.h; sourceTree = "<group>"; };
+		070E639016B2EAC9004ABC0C /* MSMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSMap.m; path = Model/MSMap.m; sourceTree = "<group>"; };
 		071D50FF16B4A6D1001D8BFD /* count1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "count1-hd.png"; path = "Image/countdown/count1-hd.png"; sourceTree = "<group>"; };
 		071D510016B4A6D1001D8BFD /* count1-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "count1-ipad.png"; path = "Image/countdown/count1-ipad.png"; sourceTree = "<group>"; };
 		071D510116B4A6D1001D8BFD /* count1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "count1-ipadhd.png"; path = "Image/countdown/count1-ipadhd.png"; sourceTree = "<group>"; };
@@ -1016,8 +1016,8 @@
 				078961B216AF5E960094D334 /* MSPlayerState.m */,
 				078961BB16AFAC2F0094D334 /* MSContainer.h */,
 				078961BC16AFAC2F0094D334 /* MSContainer.m */,
-				070E638F16B2EAC9004ABC0C /* MSMapLoader.h */,
-				070E639016B2EAC9004ABC0C /* MSMapLoader.m */,
+				070E638F16B2EAC9004ABC0C /* MSMap.h */,
+				070E639016B2EAC9004ABC0C /* MSMap.m */,
 				07F4150116B31C850040F9A3 /* MSTile.h */,
 				07F4150216B31C860040F9A3 /* MSTile.m */,
 				0786FED816B4F414009C23CB /* MSGameEndMenu.h */,
@@ -1679,7 +1679,7 @@
 				078961B316AF5E960094D334 /* MSPlayerState.m in Sources */,
 				078961BA16AFA4EC0094D334 /* MSErrorLayer.m in Sources */,
 				078961BD16AFAC2F0094D334 /* MSContainer.m in Sources */,
-				070E639116B2EAC9004ABC0C /* MSMapLoader.m in Sources */,
+				070E639116B2EAC9004ABC0C /* MSMap.m in Sources */,
 				07F4150316B31C860040F9A3 /* MSTile.m in Sources */,
 				0724733C16B3C7B30096870E /* MSGoalLayer.m in Sources */,
 				87574C7916B3C92D00D94F09 /* DummyManager.m in Sources */,
