@@ -18,7 +18,8 @@
 typedef enum {
   MSMainLayerZOrderBackground = 0,
   MSMainLayerZOrderRail = 1,
-  MSMainLayerZOrderPlayer = 2
+  MSMainLayerZOrderBranch = 2,
+  MSMainLayerZOrderPlayer = 3
 } MSMainLayerZOrder;
 
 @implementation MSMainLayer
@@ -124,6 +125,7 @@ typedef enum {
       background.position = pos;
       [tiles addChild:background z:MSMainLayerZOrderBackground];
     }
+    [tile addBranch:_stage pos:ccpAdd(pos, ccp(0, tileSize * y)) z:MSMainLayerZOrderBranch];
     [tiles addChild:tile z:MSMainLayerZOrderRail];
   }
   [_stage addChild:tiles z:MSMainLayerZOrderRail tag:y];

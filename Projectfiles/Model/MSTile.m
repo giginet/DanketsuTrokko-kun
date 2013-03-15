@@ -25,8 +25,6 @@
 
 - (void)setTileType:(MSTileType)type {
   [self removeAllChildrenWithCleanup:YES];
-  int railWidth = [KKConfig intForKey:@"RailWidth"];
-  int margin = [KKConfig intForKey:@"Margin"];
   _tileType = type;
   if (type != MSTileTypeNone) {
     CCSprite* rail = [CCSprite spriteWithFile:@"rail0.png"];
@@ -66,26 +64,33 @@
       case MSTileTypeBranchRight:
       case MSTileTypeBranchLeft:
       {
-      if (type == MSTileTypeBranchRight || type == MSTileTypeBranchLeft) {
-        NSString* fileName = @"";
-        CGPoint pos = CGPointZero;
-        const int frameWidth = 10;
-        if (type == MSTileTypeBranchLeft) {
-          fileName = @"branch-left.png";
-          pos = ccp(- 2 * margin - frameWidth, railWidth);
-        } else if (type == MSTileTypeBranchRight) {
-          fileName = @"branch-right.png";
-          pos = ccp(2 * margin + frameWidth, railWidth);
-        }
-        CCSprite* branch = [CCSprite spriteWithFile:fileName];
-        branch.position = pos;
-        [self addChild:branch];
-      }
+      
       }
         break;
       default:
         break;
     }
+  }
+}
+
+- (void)addBranch:(CCNode *)node pos:(CGPoint)origin z:(int)z {
+  MSTileType type = _tileType;
+  int railWidth = [KKConfig intForKey:@"RailWidth"];
+  int margin = [KKConfig intForKey:@"Margin"];
+  if (type == MSTileTypeBranchRight || type == MSTileTypeBranchLeft) {
+    NSString* fileName = @"";
+    CGPoint pos = CGPointZero;
+    const int frameWidth = 10;
+    if (type == MSTileTypeBranchLeft) {
+      fileName = @"branch-left.png";
+      pos = ccp(- 2 * margin - frameWidth, railWidth);
+    } else if (type == MSTileTypeBranchRight) {
+      fileName = @"branch-right.png";
+      pos = ccp(2 * margin + frameWidth, railWidth);
+    }
+    CCSprite* branch = [CCSprite spriteWithFile:fileName];
+    branch.position = ccpAdd(pos, origin);
+    [node addChild:branch z:z];
   }
 }
 

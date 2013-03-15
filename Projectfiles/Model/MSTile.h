@@ -27,6 +27,7 @@ typedef enum {
 - (id)initWithTileType:(MSTileType)type;
 - (void)setTileType:(MSTileType)type;
 - (void)addRockBreakAnimation;
+- (void)addBranch:(CCNode*)node pos:(CGPoint)origin z:(int)z;
 
 @property(nonatomic, readonly) MSTileType tileType;
 
