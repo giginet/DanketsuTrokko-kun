@@ -8,11 +8,12 @@
 
 #import "CCLayer.h"
 #import "MSMainLayer.h"
+#import "KWSessionDelegate.h"
 
-@interface MSGoalLayer : CCLayer
+@interface MSGoalLayer : CCLayer <KWSessionDelegate>
 
 - (id)initWithMainLayer:(MSMainLayer*)main;
 
-@property(readwrite) MSMainLayer* mainLayer;
+@property(readwrite, weak) MSMainLayer* mainLayer;
 
 @end

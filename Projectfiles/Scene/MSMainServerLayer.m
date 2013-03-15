@@ -43,17 +43,17 @@
     }
     
     // ランダムに雲を追加
-    /*int r = [_random nextInt] % 300;
-     if (r == 0) {
-     CCSprite* cloud = [CCSprite spriteWithFile:@"cloud0.png"];
-     cloud.position = ccp(-40, _scroll + 100);
-     int w = director.screenSize.width;
-     [_stage addChild:cloud];
-     [cloud runAction:[CCSequence actions:
-     [CCMoveTo actionWithDuration:10.0f position:ccp(w + 40, _scroll + 600)],
-     [CCRemoveFromParentAction action],
-     nil]];
-     }*/
+    int r = [_random nextInt] % 300;
+    if (r == 0) {
+      CCSprite* clowd = [CCSprite spriteWithFile:@"clowd0.png"];
+      clowd.position = ccp(-40, _scroll + 100);
+      int w = director.screenSize.width;
+      [_stage addChild:clowd];
+      [clowd runAction:[CCSequence actions:
+                        [CCMoveTo actionWithDuration:10.0f position:ccp(w + 40, _scroll + 600)],
+                        [CCRemoveFromParentAction action],
+                        nil]];
+    }
     
     // 現在のスクロール座標をPlayerにbroadcastする
     for (MSPlayer* player in _players) {
@@ -73,7 +73,7 @@
         MSContainer* container = [MSContainer containerWithObject:[player state] forTag:MSContainerTagGetCoin]; // 取った人のプレイヤーステートを送ります
         [self broadcastContainerToPlayer:container];
         [self updateCoinLabel];
-      } else if (currentTile.tileType == MSTileTypeRock) { // クラッシュ判定
+      } else if (currentTile.tileType == MSTileTypeRock || currentTile.tileType == MSTileTypeNone) { // クラッシュ判定
         if (!player.isDead && player.canMoving) {
           player.life -= 1;
           [player setCrashAnimation];

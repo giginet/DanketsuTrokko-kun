@@ -131,9 +131,11 @@
       [self addChild:goal];
       _state = MSGameStateClear;
     } else if (container.tag == MSContainerTagTitleButtonPressed) { // ボタンが押されたこと通知
-      CCScene* scene = [MSTitleLayer nodeWithScene];
-      CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
-      [[CCDirector sharedDirector] replaceScene:fade];
+      [self runAction:[CCSequence actionOne:[CCDelayTime actionWithDuration:0.5f] two:[CCCallBlock actionWithBlock:^{
+        CCScene* scene = [MSTitleLayer nodeWithScene];
+        CCTransitionCrossFade* fade = [CCTransitionCrossFade transitionWithDuration:0.5f scene:scene];
+        [[CCDirector sharedDirector] replaceScene:fade];
+      }]]];
     } else if (container.tag == MSContainerTagGetCoin) { // コイン取りました通知
       MSPlayerState* state = (MSPlayerState*)container.object;
       MSPlayer* player = [self playerWithPeerID:state.peerID];

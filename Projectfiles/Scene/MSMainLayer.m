@@ -282,8 +282,8 @@ typedef enum {
       MSContainer* container = [MSContainer containerWithObject:nil forTag:MSContainerTagGameStart];
       [blockSelf broadcastContainerToPlayer:container];
       _state = MSGameStateMain;
-      int n = [[KWRandom random] nextInt] % 2;
-      NSLog(@"hoge : %d", [[KWRandom random] nextInt] % 2);
+      int n = rand() % 2;
+      NSLog(@"hoge : %d", n);
       [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"main%d.caf", n] loop:YES];
     }]];
     [actions addObject:[CCDelayTime actionWithDuration:1.0f]];
