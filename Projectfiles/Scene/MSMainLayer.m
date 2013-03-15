@@ -164,6 +164,7 @@ typedef enum {
   int from = max(0, current - 1);
   int to = min(current + [self getSight], [_map height]);
   int sub = current - _lastRow;
+  if (to < from) return;
   for (int i = _lastRow; i < to; ++i) {
     if (i < from) {
       if ([self getChildByTag:i]) {
@@ -171,7 +172,7 @@ typedef enum {
       }
     }
     if (i >= to - sub) {
-      CCNode* tiles = [self getChildByTag:i];
+      CCNode* tiles = [_stage getChildByTag:i];
       if (!tiles) {
         [self loadTiles:i];
       }
@@ -282,7 +283,7 @@ typedef enum {
       [blockSelf broadcastContainerToPlayer:container];
       _state = MSGameStateMain;
       int n = [[KWRandom random] nextInt] % 2;
-      NSLog(@"%d", n);
+      NSLog(@"hoge : %d", [[KWRandom random] nextInt] % 2);
       [[SimpleAudioEngine sharedEngine] playBackgroundMusic:[NSString stringWithFormat:@"main%d.caf", n] loop:YES];
     }]];
     [actions addObject:[CCDelayTime actionWithDuration:1.0f]];
