@@ -134,7 +134,9 @@ typedef enum {
 - (void)removeTiles:(int)y {
   // yに相当するノードを取り出す
   CCNode* tiles = [self getChildByTag:y];
-  [self removeChild:tiles];
+  if (tiles) {
+    [self removeChild:tiles];
+  }
 }
 
 /**
@@ -169,7 +171,10 @@ typedef enum {
       }
     }
     if (i >= to - sub) {
-      [self loadTiles:i];
+      CCNode* tiles = [self getChildByTag:i];
+      if (!tiles) {
+        [self loadTiles:i];
+      }
     }
   }
   _lastRow = current;
