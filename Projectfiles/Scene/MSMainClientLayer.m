@@ -96,7 +96,8 @@
   return [KKConfig intForKey:@"ClientSight"];
 }
 
-- (void)updateSight {
+- (int)currentRow {
+  return [_myPlayer tileCountFromStart];
 }
 
 - (void)sendPlayerToServer:(MSPlayer *)player {

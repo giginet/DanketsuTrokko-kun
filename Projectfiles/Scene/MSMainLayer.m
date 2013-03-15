@@ -96,36 +96,81 @@ typedef enum {
 
 - (void)onEnterTransitionDidFinish {
   [super onEnterTransitionDidFinish];
+  _lastRow = [self currentRow];
   [self buildReadyAnimation];
 }
 
 - (void)buildMap {
-  for (int y = 0; y < [_map height]; ++y) {
-    for (int x = 0; x < 9; ++x) {
-      int line = floor(x / 3);
-      int rail = x % 3;
-      const int tileSize = 88;
-      const int margin = 28;
-      MSTile* tile = [_map tileWithLine:line rail:rail y:y];
-      int ax = (margin * 2 + tileSize * 3) * line + margin + rail * tileSize;
-      int ay = y * tileSize;
-      CGPoint pos = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));
-      tile.position = pos;
-      if (rail == 1) { // 背景の配置
-        CCSprite* background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background%d.png", line]];
-        background.position = pos;
-        [_stage addChild:background z:MSMainLayerZOrderBackground];
-      }
-      [_stage addChild:tile z:MSMainLayerZOrderRail];
-    }
+  for (int y = 0; y < [self getSight]; ++y) {
+    [self loadTiles:y];
   }
 }
 
+- (void)loadTiles:(int)y {
+  const int tileSize = 88;
+  CCNode* tiles = [CCNode node];
+  tiles.position = ccp(0, tileSize * y);
+  for (int x = 0; x < 9; ++x) {
+    int line = floor(x / 3);
+    int rail = x % 3;
+    const int margin = 28;
+    MSTile* tile = [_map tileWithLine:line rail:rail y:y];
+    int ax = (margin * 2 + tileSize * 3) * line + margin + rail * tileSize;
+    int ay = 0;
+    CGPoint pos = ccpAdd(ccp(tileSize / 2, tileSize / 2), ccp(ax, ay));
+    tile.position = pos;
+    if (rail == 1) { // 背景の配置
+      CCSprite* background = [CCSprite spriteWithFile:[NSString stringWithFormat:@"background%d.png", line]];
+      background.position = pos;
+      [tiles addChild:background z:MSMainLayerZOrderBackground];
+    }
+    [tiles addChild:tile z:MSMainLayerZOrderRail];
+  }
+  [_stage addChild:tiles z:MSMainLayerZOrderRail tag:y];
+}
+
+- (void)removeTiles:(int)y {
+  // yに相当するノードを取り出す
+  CCNode* tiles = [self getChildByTag:y];
+  [self removeChild:tiles];
+}
+
+/**
+ 視界の広さを取り出します。オーバーロードしてください
+ */
 - (int)getSight {
   return 0;
 }
 
+/**
+ 現在、マップ上で何列目かを取り出します。
+ オーバーロードしてください
+ */
+- (int)currentRow {
+  return 0;
+}
+
+/**
+ 視界を更新します。
+ currentRowとlastRowが変わったタイミングで呼んで上げると良いです
+ rowが増える方向にしか移動しないの前提です
+ */
 - (void)updateSight {
+  int current = [self currentRow];
+  int from = max(0, current - 1);
+  int to = min(current + [self getSight], [_map height]);
+  int sub = current - _lastRow;
+  for (int i = _lastRow; i < to; ++i) {
+    if (i < from) {
+      if ([self getChildByTag:i]) {
+        [self removeChildByTag:i cleanup:YES]; // ふるいの消す
+      }
+    }
+    if (i >= to - sub) {
+      [self loadTiles:i];
+    }
+  }
+  _lastRow = current;
 }
 
 - (void)update:(ccTime)dt {
@@ -134,6 +179,10 @@ typedef enum {
   
   for (MSPlayer* player in _players) {
     [player updateRailAndLineNumber]; // レール番号、ライン番号を更新
+  }
+  int current = [self currentRow];
+  if (_lastRow != current) {
+    [self updateSight];
   }
 }
 

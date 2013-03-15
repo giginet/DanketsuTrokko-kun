@@ -36,6 +36,7 @@ typedef enum {
 } MSGameState;
 
 @interface MSMainLayer : CCLayer <KWSessionDelegate> {
+  int _lastRow; // 直前のフレームの列です。変わってたときにマップを更新します。
   float _scroll;
   MSGameState _state;
   CCLabelAtlas* _coinLabel;

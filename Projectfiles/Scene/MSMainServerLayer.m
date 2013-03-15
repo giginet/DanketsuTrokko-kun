@@ -154,6 +154,10 @@
   }
 }
 
+- (int)currentRow {
+  return [[_players objectAtIndex:0] tileCountFromStart];
+}
+
 - (void)broadCastAllPlayers {
   KWSessionManager* manager = [KWSessionManager sharedManager];
   NSMutableArray* array = [NSMutableArray array];
@@ -179,9 +183,6 @@
 
 - (int)getSight {
   return [KKConfig intForKey:@"ServerSight"];
-}
-
-- (void)updateSight {
 }
 
 @end
