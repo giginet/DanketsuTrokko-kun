@@ -33,7 +33,6 @@
   self = [super initWithArray:[NSArray arrayWithObjects:back, nil]];
   if (self) {
     self.mainLayer = layer;
-    
   }
   return self;
 }

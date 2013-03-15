@@ -7,7 +7,7 @@
 //
 
 #import "CCLayer.h"
+#import "KWSessionDelegate.h"
 
 @interface MSGameOverLayer : CCLayer
-
 @end
